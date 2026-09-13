@@ -9,7 +9,7 @@ export const wedding = {
   couple: {
     bride: 'Huyền Nhu',
     groom: 'Hoàng Thái',
-    monogram: 'HN×HT',
+    monogram: 'HT×HN',
   },
   date: {
     display: '22.11.2026',
@@ -44,12 +44,12 @@ export const schedule = [
 ];
 
 export const galleryPhotos = [
-  { image: byTheLake, alt: 'Huyền Nhu và Hoàng Thái bên mặt hồ, dưới tán cây xanh', layout: 'ring' },
+  { image: byTheLake, alt: 'Hoàng Thái và Huyền Nhu bên mặt hồ, dưới tán cây xanh', layout: 'ring' },
   { image: proposal, alt: 'Hoàng Thái trao nhẫn cho Huyền Nhu giữa khu vườn', layout: 'proposal' },
-  { image: imperialArch, alt: 'Huyền Nhu và Hoàng Thái bên cổng vòm cổ', layout: 'arch' },
+  { image: imperialArch, alt: 'Hoàng Thái và Huyền Nhu bên cổng vòm cổ', layout: 'arch' },
   { image: underTheParasol, alt: 'Cặp đôi dưới chiếc ô giấy trong nắng', layout: 'parasol' },
   { image: onTheSteps, alt: 'Khoảnh khắc thân mật của cặp đôi trên bậc thềm', layout: 'steps' },
-  { image: togetherOnTheSteps, alt: 'Huyền Nhu và Hoàng Thái ngồi bên nhau giữa những bậc đá', layout: 'together' },
+  { image: togetherOnTheSteps, alt: 'Hoàng Thái và Huyền Nhu ngồi bên nhau giữa những bậc đá', layout: 'together' },
 ];
 
 export const revealSelectors = [

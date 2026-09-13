@@ -4,7 +4,7 @@ import invitationArtwork from '../design/assets/invitation-antique-gold.png';
 
 export function SiteIntro({ isOpening, onOpen }) {
   return (
-    <section className={`site-intro${isOpening ? ' is-opening' : ''}`} aria-label="Thiệp mời cưới của Huyền Nhu và Hoàng Thái">
+    <section className={`site-intro${isOpening ? ' is-opening' : ''}`} aria-label="Thiệp mời cưới của Hoàng Thái và Huyền Nhu">
       <button className="invitation-cover" type="button" onClick={onOpen} disabled={isOpening}>
         <span className="invitation-artwork"><img src={invitationArtwork} alt="Thiệp cưới Vàng đồng với họa tiết đôi hạc" /></span>
         <span className="open-invitation">{isOpening ? 'Đang mở thiệp...' : 'Chạm để mở thiệp'}</span>
@@ -18,7 +18,7 @@ export function Header({ menuOpen, onToggleMenu, onCloseMenu }) {
 
   return (
     <header className="site-header">
-      <a className="monogram" href="#top" aria-label={`${wedding.couple.bride} và ${wedding.couple.groom}, trang chủ`}>HN<span>×</span>HT</a>
+      <a className="monogram" href="#top" aria-label={`${wedding.couple.groom} và ${wedding.couple.bride}, trang chủ`}>HT<span>×</span>HN</a>
       <nav id="nav-links" className={menuOpen ? 'open' : ''} aria-label="Điều hướng chính">
         <a href="#story" onClick={onCloseMenu}>Chuyện mình</a>
         <a href="#details" onClick={onCloseMenu}>Thông tin</a>
@@ -34,7 +34,7 @@ export function Header({ menuOpen, onToggleMenu, onCloseMenu }) {
 export function Footer() {
   return (
     <footer>
-      <a className="monogram" href="#top">HN<span>×</span>HT</a>
+      <a className="monogram" href="#top">HT<span>×</span>HN</a>
       <p>Được chuẩn bị bằng tất cả yêu thương.</p>
       <a href="#rsvp">Xác nhận tham dự ↗</a>
     </footer>

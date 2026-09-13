@@ -1,0 +1,69 @@
+/* ------------------------------------------------------------------
+   Crane-and-cloud background layer.
+   Layout is untouched: a fixed illustrated sheet sits under the page,
+   and each section's solid fill becomes translucent paper so the
+   artwork shows through.
+   ------------------------------------------------------------------ */
+
+:root{
+  --veil:rgb(255 250 240/.86);
+  --veil-soft:rgb(243 234 219/.84);
+}
+
+body{background:#f7f0e2}
+
+.site-backdrop{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  background:#f7f0e2 url("../assets/ornamental-crane-frame.png") center/cover no-repeat;
+  pointer-events:none;
+}
+.site-backdrop::after{
+  position:absolute;
+  inset:0;
+  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .24 0 0 0 0 .16 0 0 0 0 .06 0 0 0 .5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23g)'/></svg>") 0 0/260px 260px repeat;
+  opacity:.14;
+  mix-blend-mode:multiply;
+  content:"";
+  pointer-events:none;
+}
+
+/* Translucent paper instead of solid fills. Borders and layout stay as they were. */
+.site-header{background:rgb(255 250 240/.9)}
+.hero-copy{background:var(--veil)}
+.story{background-color:transparent;background-image:none}
+.story::before{display:none}
+.details,.gallery,.rsvp{background:var(--veil)}
+.guest-guide{background:var(--veil-soft)}
+.stay-copy{background:var(--veil-soft)}
+footer{background:var(--veil-soft)}
+.schedule-item.featured{background:rgb(180 135 73/.1)}
+
+/* Legibility: darker body copy, and a soft paper halo behind text that sits directly on the artwork. */
+.hero-sub,.story-copy,.stay-copy>p:not(.section-number):not(.kicker),.rsvp-intro>p:last-child,
+.schedule-item p:last-child,.guide-item div>p,.gallery-intro>p:last-child,.venue p:last-child{color:#4a4036}
+.story .section-intro,.story .story-heading>*:not(.story-photo),.story .story-copy{
+  text-shadow:0 0 6px #f7f0e2,0 0 14px #f7f0e2,0 0 26px rgb(247 240 226/.9);
+}
+/* Box-shadow halos keep the layout untouched while lifting the copy off the crane. */
+.story .story-copy p,.story .section-intro .kicker{
+  background:rgb(247 240 226/.78);
+  box-shadow:0 0 0 .9rem rgb(247 240 226/.78),0 0 2.2rem 1.6rem rgb(247 240 226/.78);
+}
+
+/* Mobile: the landscape artwork is too wide, so show the left crane at the top and the right crane at the bottom. */
+@media(max-width:760px){
+  .site-backdrop{background:#f7f0e2}
+  .site-backdrop::before{
+    position:absolute;
+    inset:0;
+    background:url("../assets/ornamental-crane-frame.png") left -2.5rem/260% auto no-repeat,
+      url("../assets/ornamental-crane-frame.png") right bottom/260% auto no-repeat;
+    opacity:.6;
+    mask-image:linear-gradient(180deg,#000 0,#000 28%,transparent 42%,transparent 56%,#000 70%,#000);
+    -webkit-mask-image:linear-gradient(180deg,#000 0,#000 28%,transparent 42%,transparent 56%,#000 70%,#000);
+    content:"";
+    pointer-events:none;
+  }
+}

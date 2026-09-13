@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Footer, Header, SiteIntro } from './components/Layout.jsx';
+import { SiteBackdrop } from './components/Decorations.jsx';
 import {
   DetailsSection,
   GallerySection,
@@ -30,7 +31,9 @@ function App() {
 
   return (
     <>
-      {!invitationDismissed && <SiteIntro isOpening={invitationOpening} onOpen={openInvitation} />}
+      {/* Tạm ẩn màn thiệp mở đầu. Bỏ comment dòng dưới để bật lại. */}
+      {/* {!invitationDismissed && <SiteIntro isOpening={invitationOpening} onOpen={openInvitation} />} */}
+      <SiteBackdrop />
       <Header
         menuOpen={menuOpen}
         onToggleMenu={() => setMenuOpen((open) => !open)}

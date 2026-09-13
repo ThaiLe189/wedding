@@ -6,7 +6,7 @@ const calendarEvent = [
   'BEGIN:VEVENT',
   `DTSTART:${wedding.date.calendarStart}`,
   `DTEND:${wedding.date.calendarEnd}`,
-  `SUMMARY:Đám cưới ${wedding.couple.bride} & ${wedding.couple.groom}`,
+  `SUMMARY:Đám cưới ${wedding.couple.groom} & ${wedding.couple.bride}`,
   `LOCATION:${wedding.venue.name}, ${wedding.venue.address}`,
   'DESCRIPTION:Đón bạn lúc 10:00, lễ thành hôn lúc 10:30 và tiệc mừng lúc 11:00.',
   'END:VEVENT',

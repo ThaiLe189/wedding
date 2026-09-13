@@ -1,5 +1,10 @@
 import React from 'react';
 
+/* Fixed illustrated layer (cranes and clouds) that sits underneath every section. */
+export function SiteBackdrop() {
+  return <div className="site-backdrop" aria-hidden="true"></div>;
+}
+
 export function CraneField({ placement }) {
   return (
     <div className={`crane-field crane-field-${placement}`} aria-hidden="true">
