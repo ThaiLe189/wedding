@@ -1,1 +1,22 @@
 #root{min-height:100dvh}
+
+/* Make each time marker scannable before guests read the supporting copy. */
+.schedule .time{
+  width:max-content;
+  margin-bottom:1.65rem;
+  padding-bottom:.7rem;
+  border-bottom:1px solid color-mix(in srgb,var(--accent) 55%,transparent);
+  color:var(--accent-dark);
+  font:500 clamp(1.35rem,1.8vw,1.9rem)/.9 var(--serif);
+  font-variant-numeric:tabular-nums;
+  letter-spacing:-.045em;
+}
+
+@media(max-width:760px){
+  .schedule .time{
+    margin:0;
+    padding-bottom:0;
+    border-bottom:0;
+    font-size:1.5rem;
+  }
+}
