@@ -15,13 +15,22 @@ import { downloadWeddingCalendar } from './utils/calendar.js';
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [invitationOpening, setInvitationOpening] = useState(false);
+  const [invitationDismissed, setInvitationDismissed] = useState(false);
   const closeMenu = () => setMenuOpen(false);
+
+  const openInvitation = () => {
+    if (invitationOpening) return;
+    setInvitationOpening(true);
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.setTimeout(() => setInvitationDismissed(true), reducedMotion ? 0 : 1250);
+  };
 
   useScrollReveal(revealSelectors);
 
   return (
     <>
-      <SiteIntro />
+      {!invitationDismissed && <SiteIntro isOpening={invitationOpening} onOpen={openInvitation} />}
       <Header
         menuOpen={menuOpen}
         onToggleMenu={() => setMenuOpen((open) => !open)}
