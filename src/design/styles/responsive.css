@@ -1,0 +1,23 @@
+/* The story headline keeps its editorial scale without forcing words outside mobile viewports. */
+@media (max-width: 760px) {
+  .hero h1 {
+    font-size: clamp(3rem, 13vw, 4.2rem);
+    line-height: .9;
+  }
+
+  .story-heading .handwritten {
+    max-width: 13ch;
+    font-size: clamp(1.1rem, 5.7vw, 1.45rem);
+    line-height: 1.18;
+  }
+
+  .story-heading h2 {
+    font-size: clamp(2.85rem, 14.2vw, 3.75rem);
+    line-height: .95;
+  }
+
+  .story-heading h2 em {
+    display: inline;
+    white-space: normal;
+  }
+}
