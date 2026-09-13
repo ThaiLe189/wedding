@@ -23,7 +23,7 @@ function App() {
     if (invitationOpening) return;
     setInvitationOpening(true);
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    window.setTimeout(() => setInvitationDismissed(true), reducedMotion ? 0 : 1250);
+    window.setTimeout(() => setInvitationDismissed(true), reducedMotion ? 0 : 1500);
   };
 
   useScrollReveal(revealSelectors);

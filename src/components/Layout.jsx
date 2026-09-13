@@ -1,6 +1,6 @@
 import React from 'react';
 import { wedding } from '../data/wedding.js';
-import invitationArtwork from '../design/assets/invitation-card.png';
+import invitationArtwork from '../design/assets/invitation-antique-gold.png';
 
 export function SiteIntro({ isOpening, onOpen }) {
   return (
