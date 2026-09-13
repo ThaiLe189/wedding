@@ -15,6 +15,7 @@ export function Header({ menuOpen, onToggleMenu, onCloseMenu }) {
         <a href="#story" onClick={onCloseMenu}>Chuyện mình</a>
         <a href="#details" onClick={onCloseMenu}>Thông tin</a>
         <a href="#guide" onClick={onCloseMenu}>Hướng dẫn</a>
+        <a href="#gallery" onClick={onCloseMenu}>Album</a>
         <a className="nav-rsvp" href="#rsvp" onClick={onCloseMenu}>Xác nhận tham dự</a>
       </nav>
       <button className="menu-toggle" type="button" aria-label={menuLabel} aria-expanded={menuOpen} aria-controls="nav-links" onClick={onToggleMenu}><i></i><i></i></button>

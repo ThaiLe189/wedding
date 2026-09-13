@@ -16,6 +16,7 @@ pnpm-debug.log*
 
 # Local QA captures
 artifacts/screenshots/
+artifacts/gallery-review/
 
 # Editor and operating-system files
 .DS_Store

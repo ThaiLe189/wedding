@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Footer, Header, SiteIntro } from './components/Layout.jsx';
 import {
   DetailsSection,
+  GallerySection,
   GuestGuideSection,
   HeroSection,
   RsvpSection,
@@ -31,6 +32,7 @@ function App() {
         <StorySection />
         <DetailsSection onDownloadCalendar={downloadWeddingCalendar} />
         <GuestGuideSection />
+        <GallerySection />
         <StaySection />
         <RsvpSection />
       </main>

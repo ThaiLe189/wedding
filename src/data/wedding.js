@@ -1,3 +1,10 @@
+import engagementRing from '../design/assets/gallery/engagement-ring.jpg';
+import proposal from '../design/assets/gallery/proposal.jpg';
+import imperialArch from '../design/assets/gallery/imperial-arch.jpg';
+import underTheParasol from '../design/assets/gallery/under-the-parasol.jpg';
+import onTheSteps from '../design/assets/gallery/on-the-steps.jpg';
+import togetherOnTheSteps from '../design/assets/gallery/together-on-the-steps.jpg';
+
 export const wedding = {
   couple: {
     bride: 'Huyền Nhu',
@@ -36,6 +43,15 @@ export const schedule = [
   },
 ];
 
+export const galleryPhotos = [
+  { image: engagementRing, alt: 'Chiếc nhẫn trong khoảnh khắc đôi bạn mỉm cười', layout: 'ring' },
+  { image: proposal, alt: 'Hoàng Thái trao nhẫn cho Huyền Nhu giữa khu vườn', layout: 'proposal' },
+  { image: imperialArch, alt: 'Huyền Nhu và Hoàng Thái bên cổng vòm cổ', layout: 'arch' },
+  { image: underTheParasol, alt: 'Cặp đôi dưới chiếc ô giấy trong nắng', layout: 'parasol' },
+  { image: onTheSteps, alt: 'Khoảnh khắc thân mật của cặp đôi trên bậc thềm', layout: 'steps' },
+  { image: togetherOnTheSteps, alt: 'Huyền Nhu và Hoàng Thái ngồi bên nhau giữa những bậc đá', layout: 'together' },
+];
+
 export const revealSelectors = [
   '.story > .section-intro',
   '.story > .story-heading',
@@ -45,6 +61,8 @@ export const revealSelectors = [
   '.details > .venue',
   '.guest-guide > .guide-heading',
   '.guide-item',
+  '.gallery > .gallery-intro',
+  '.gallery > .gallery-grid',
   '.stay > *',
   '.rsvp > *',
 ].join(', ');

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { wedding, schedule } from '../data/wedding.js';
+import { galleryPhotos, wedding, schedule } from '../data/wedding.js';
 import { PetalField, RsvpBloom } from './Decorations.jsx';
 
 export function HeroSection() {
@@ -46,6 +46,17 @@ export function GuestGuideSection() {
       <div className="guide-list">
         <article className="guide-item"><p className="guide-index">Trang phục</p><div><h3>Thanh lịch, và thật là bạn.</h3><p>Chúng mình rất vui khi bạn chọn một bộ trang phục lịch sự, thoải mái để cùng tận hưởng trọn vẹn buổi tiệc.</p><div className="colour-notes" aria-label="Gợi ý màu sắc: kem nhạt, hồng phấn, xanh xám và nâu nhạt"><i></i><i></i><i></i><i></i></div></div></article>
         <article className="guide-item"><p className="guide-index">Đường đến</p><div><h3>Hẹn bạn tại Tasco Mall Long Biên.</h3><p>Địa điểm tổ chức nằm tại số 7-9 Nguyễn Văn Linh. Khi đến nơi, bạn có thể gửi xe và theo biển chỉ dẫn của trung tâm thương mại.</p><a className="inline-link" href={wedding.venue.mapsUrl} target="_blank" rel="noreferrer">Mở chỉ đường <span>↗</span></a></div></article>
+      </div>
+    </section>
+  );
+}
+
+export function GallerySection() {
+  return (
+    <section id="gallery" className="gallery section-pad" aria-labelledby="gallery-title">
+      <div className="gallery-intro scroll-reveal"><p className="kicker">Một ngày rất đỏ</p><h2 id="gallery-title">Những khung hình<br /><em>mình thương.</em></h2><p>Giữa nắng, những bậc đá và thật nhiều nụ cười.</p></div>
+      <div className="gallery-grid scroll-reveal">
+        {galleryPhotos.map((photo) => <figure className={`gallery-photo gallery-photo--${photo.layout}`} key={photo.layout}><img src={photo.image} alt={photo.alt} loading="lazy" /></figure>)}
       </div>
     </section>
   );
