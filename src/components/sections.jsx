@@ -45,7 +45,7 @@ export function GuestGuideSection() {
       <div className="guide-heading"><p className="kicker">Để ngày vui thật thảnh thơi</p><h2 id="guide-title">Một vài điều<br />nhỏ <em>cho bạn.</em></h2></div>
       <div className="guide-list">
         <article className="guide-item"><p className="guide-index">Trang phục</p><div><h3>Thanh lịch, và thật là bạn.</h3><p>Chúng mình rất vui khi bạn chọn một bộ trang phục lịch sự, thoải mái để cùng tận hưởng trọn vẹn buổi tiệc.</p><div className="colour-notes" aria-label="Gợi ý màu sắc: kem nhạt, hồng phấn, xanh xám và nâu nhạt"><i></i><i></i><i></i><i></i></div></div></article>
-        <article className="guide-item"><p className="guide-index">Đường đến</p><div><h3>Hẹn bạn tại Tasco Mall Long Biên.</h3><p>Địa điểm tổ chức nằm tại số 7-9 Nguyễn Văn Linh. Khi đến nơi, bạn có thể gửi xe và theo biển chỉ dẫn của trung tâm thương mại.</p><a className="inline-link" href={wedding.venue.mapsUrl} target="_blank" rel="noreferrer">Mở chỉ đường <span>↗</span></a></div></article>
+        <article className="guide-item"><p className="guide-index">Đường đến</p><div><h3>Hẹn bạn tại Trống Đồng Palace Long Biên.</h3><p>Buổi tiệc diễn ra tại tầng 2, Tasco Mall, số 7-9 Nguyễn Văn Linh. Khi đến nơi, bạn có thể gửi xe và theo biển chỉ dẫn của trung tâm thương mại.</p><a className="inline-link" href={wedding.venue.mapsUrl} target="_blank" rel="noreferrer">Mở chỉ đường <span>↗</span></a></div></article>
       </div>
     </section>
   );
