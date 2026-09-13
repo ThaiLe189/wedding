@@ -1,4 +1,4 @@
-import engagementRing from '../design/assets/gallery/engagement-ring.jpg';
+import byTheLake from '../design/assets/gallery/by-the-lake.jpg';
 import proposal from '../design/assets/gallery/proposal.jpg';
 import imperialArch from '../design/assets/gallery/imperial-arch.jpg';
 import underTheParasol from '../design/assets/gallery/under-the-parasol.jpg';
@@ -44,7 +44,7 @@ export const schedule = [
 ];
 
 export const galleryPhotos = [
-  { image: engagementRing, alt: 'Chiếc nhẫn trong khoảnh khắc đôi bạn mỉm cười', layout: 'ring' },
+  { image: byTheLake, alt: 'Huyền Nhu và Hoàng Thái bên mặt hồ, dưới tán cây xanh', layout: 'ring' },
   { image: proposal, alt: 'Hoàng Thái trao nhẫn cho Huyền Nhu giữa khu vườn', layout: 'proposal' },
   { image: imperialArch, alt: 'Huyền Nhu và Hoàng Thái bên cổng vòm cổ', layout: 'arch' },
   { image: underTheParasol, alt: 'Cặp đôi dưới chiếc ô giấy trong nắng', layout: 'parasol' },
