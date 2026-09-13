@@ -13,8 +13,8 @@ export const wedding = {
   },
   date: {
     display: '22.11.2026',
-    calendarStart: '20261122T083000Z',
-    calendarEnd: '20261122T163000Z',
+    calendarStart: '20261122T030000Z',
+    calendarEnd: '20261122T060000Z',
     rsvpDeadline: '30.10.2026',
   },
   venue: {
@@ -26,20 +26,20 @@ export const wedding = {
 
 export const schedule = [
   {
-    time: '15:30',
-    title: 'Lễ thành hôn',
-    description: 'Gặp nhau tại khu vườn, cùng chứng kiến khoảnh khắc chúng mình nói lời đồng ý.',
+    time: '10:00',
+    title: 'Đón bạn',
+    description: 'Mời bạn đến sớm một chút, cùng trò chuyện và lưu lại những khoảnh khắc đầu ngày với chúng mình.',
   },
   {
-    time: '17:00',
-    title: 'Tiệc mừng',
-    description: 'Một bữa tối ấm áp, những lời chúc lành và thật nhiều tiếng cười.',
+    time: '10:30',
+    title: 'Lễ thành hôn',
+    description: 'Xin mời bạn cùng chứng kiến khoảnh khắc chúng mình nắm tay nhau và nói lời hẹn ước.',
     featured: true,
   },
   {
-    time: '23:30',
-    title: 'Tiệc đêm',
-    description: 'Dành cho những người bạn muốn cùng chúng mình giữ lại đêm vui lâu hơn một chút.',
+    time: '11:00',
+    title: 'Tiệc mừng',
+    description: 'Mời bạn ở lại chung vui trong bữa tiệc nhỏ, với những lời chúc lành và thật nhiều tiếng cười.',
   },
 ];
 

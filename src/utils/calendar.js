@@ -8,7 +8,7 @@ const calendarEvent = [
   `DTEND:${wedding.date.calendarEnd}`,
   `SUMMARY:Đám cưới ${wedding.couple.bride} & ${wedding.couple.groom}`,
   `LOCATION:${wedding.venue.name}, ${wedding.venue.address}`,
-  'DESCRIPTION:Lễ thành hôn lúc 15:30, sau đó là tiệc mừng.',
+  'DESCRIPTION:Đón bạn lúc 10:00, lễ thành hôn lúc 10:30 và tiệc mừng lúc 11:00.',
   'END:VEVENT',
   'END:VCALENDAR',
 ].join('\r\n');
