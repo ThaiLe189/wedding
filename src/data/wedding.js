@@ -18,9 +18,9 @@ export const wedding = {
     rsvpDeadline: '30.10.2026',
   },
   venue: {
-    name: 'Tasco Mall Long Biên',
-    address: 'Số 7-9 Nguyễn Văn Linh, Long Biên, Hà Nội',
-    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Tasco+Mall+Long+Bien%2C+7-9+Nguyen+Van+Linh%2C+Ha+Noi',
+    name: 'Trống Đồng Palace Long Biên',
+    address: 'Tầng 2, Tasco Mall, số 7-9 Nguyễn Văn Linh, Long Biên, Hà Nội',
+    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Trong+Dong+Palace+Long+Bien%2C+Tasco+Mall%2C+7-9+Nguyen+Van+Linh%2C+Ha+Noi',
   },
 };
 
