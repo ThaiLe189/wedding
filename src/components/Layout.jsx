@@ -1,20 +1,13 @@
 import React from 'react';
 import { wedding } from '../data/wedding.js';
+import invitationArtwork from '../design/assets/invitation-antique-gold.png';
 
 export function SiteIntro({ isOpening, onOpen }) {
   return (
     <section className={`site-intro${isOpening ? ' is-opening' : ''}`} aria-label="Thiệp mời cưới của Huyền Nhu và Hoàng Thái">
-      <button className="envelope" type="button" onClick={onOpen} disabled={isOpening}>
-        <span className="invite-card">
-          <span className="invite-cloud invite-cloud-one"></span><span className="invite-cloud invite-cloud-two"></span>
-          <span className="double-happiness">囍</span>
-          <span className="invite-kicker">Trân trọng kính mời</span>
-          <strong>{wedding.couple.bride} <i>&amp;</i> {wedding.couple.groom}</strong>
-          <span className="invite-date">22 · 11 · 2026</span>
-        </span>
-        <span className="envelope-flap"></span><span className="envelope-pocket"></span>
-        <span className="envelope-seal">囍</span>
-        <span className="open-invitation">{isOpening ? 'Thiệp đang mở...' : 'Chạm để mở thiệp'}</span>
+      <button className="invitation-cover" type="button" onClick={onOpen} disabled={isOpening}>
+        <span className="invitation-artwork"><img src={invitationArtwork} alt="Thiệp cưới Vàng đồng với họa tiết đôi hạc" /></span>
+        <span className="open-invitation">{isOpening ? 'Đang mở thiệp...' : 'Chạm để mở thiệp'}</span>
       </button>
     </section>
   );

@@ -1,15 +1,12 @@
 import React from 'react';
 
-export function PetalField({ placement }) {
+export function CraneField({ placement }) {
   return (
-    <div className={`petal-field petal-field-${placement}`} aria-hidden="true">
-      <i className="petal petal-one"></i>
-      <i className="petal petal-two"></i>
-      <i className="petal petal-three"></i>
-      <i className="petal petal-four"></i>
-      <i className="petal petal-five"></i>
-      <i className="butterfly butterfly-one"></i>
-      <i className="butterfly butterfly-two"></i>
+    <div className={`crane-field crane-field-${placement}`} aria-hidden="true">
+      <i className="crane crane-one"><b></b></i>
+      <i className="crane crane-two"><b></b></i>
+      <i className="crane crane-three"><b></b></i>
+      <i className="crane crane-four"><b></b></i>
     </div>
   );
 }

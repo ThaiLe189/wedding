@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { galleryPhotos, wedding, schedule } from '../data/wedding.js';
-import { PetalField, RsvpBloom } from './Decorations.jsx';
+import { CraneField, RsvpBloom } from './Decorations.jsx';
 
 export function HeroSection() {
   return (
     <section className="hero" aria-labelledby="hero-title">
-      <div className="hero-photo" role="img" aria-label="Huyền Nhu và Hoàng Thái trong khoảnh khắc làm lễ bên biển"><PetalField placement="hero" /></div>
+      <div className="hero-photo" role="img" aria-label="Huyền Nhu và Hoàng Thái trong khoảnh khắc làm lễ bên biển"><CraneField placement="hero" /></div>
       <div className="hero-copy">
         <p className="kicker">Save our date · {wedding.date.display}</p>
         <h1 id="hero-title"><span>{wedding.couple.bride}</span><em>&amp;</em><span>{wedding.couple.groom}</span></h1>
@@ -66,7 +66,7 @@ export function StaySection() {
   return (
     <section id="stay" className="stay" aria-labelledby="stay-title">
       <div className="stay-copy section-pad"><p className="section-number">03</p><p className="kicker">Một lời hẹn nhỏ</p><h2 id="stay-title">Hẹn bạn<br />trong <em>ngày vui.</em></h2><p>Một buổi chiều tháng mười một, thật nhiều tiếng cười, những cái ôm và lời chúc. Chúng mình mong được gặp bạn ở đó.</p><a className="inline-link" href="#rsvp">Gửi lời hồi đáp <span>↗</span></a></div>
-      <div className="stay-photo" role="img" aria-label="Huyền Nhu và Hoàng Thái trong khoảnh khắc làm lễ bên biển"><PetalField placement="stay" /></div>
+      <div className="stay-photo" role="img" aria-label="Huyền Nhu và Hoàng Thái trong khoảnh khắc làm lễ bên biển"><CraneField placement="stay" /></div>
     </section>
   );
 }
