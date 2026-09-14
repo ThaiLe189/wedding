@@ -27,7 +27,6 @@ nav a,.kicker,.section-number{letter-spacing:.13em}
 .hero-photo::before{position:absolute;inset:0;content:"";background:rgb(183 138 67/.08);mix-blend-mode:multiply;pointer-events:none}
 .hero-copy{position:relative;isolation:isolate;background:var(--paper)}
 .hero-copy::before{position:absolute;top:clamp(2rem,5vw,4.5rem);right:clamp(1.75rem,6vw,6rem);z-index:-1;width:4.75rem;height:4.75rem;display:grid;place-items:center;border:1px solid rgb(143 33 39/.78);border-radius:50%;color:var(--accent);content:"囍";font:500 2.35rem/1 var(--serif);opacity:.9}
-.hero-copy::after{position:absolute;right:clamp(1.75rem,6vw,6rem);bottom:clamp(2rem,7vw,5rem);z-index:-1;width:7.6rem;height:3.8rem;border:1px solid rgb(75 107 98/.32);border-top:0;border-radius:0 0 5rem 5rem;content:"";transform:rotate(-8deg)}
 .hero .kicker{color:var(--jade)}
 .hero h1{color:var(--accent-dark)}
 .hero h1 em,h2 em{color:var(--accent)}
