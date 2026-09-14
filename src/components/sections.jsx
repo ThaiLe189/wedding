@@ -170,14 +170,15 @@ export function RsvpSection() {
           <label>Gửi đôi lời đến chúng mình <span className="optional">(nếu bạn muốn)</span><input name="notes" placeholder="Một lời chúc nhỏ, hoặc điều chúng mình cần biết..." /></label>
           <div className="rsvp-submit-wrap"><button className="button button-primary" type="submit">Gửi lời hồi đáp <span>→</span></button>{rsvpMoment > 0 && <RsvpBloom key={rsvpMoment} />}</div><p id="form-message" className={formMessage ? 'form-message-visible' : ''} role="status" aria-live="polite">{formMessage}</p>
         </form>
-        {wishes.length > 0 && (
+        {/* Tạm ẩn sổ lưu bút công khai. Bỏ comment khối dưới để bật lại. */}
+        {/* {wishes.length > 0 && (
           <div className="guestbook">
             <p className="kicker">Lời chúc từ mọi người</p>
             <ul className="guestbook-list">
               {wishes.map((wish, index) => <li key={index}><p>&ldquo;{wish.notes}&rdquo;</p><span>— {wish.name}</span></li>)}
             </ul>
           </div>
-        )}
+        )} */}
       </div>
     </section>
   );

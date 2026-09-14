@@ -1,10 +1,12 @@
 import React from 'react';
 import { wedding } from '../data/wedding.js';
 import invitationArtwork from '../design/assets/invitation-antique-gold.webp';
+import { CraneField } from './Decorations.jsx';
 
 export function SiteIntro({ isOpening, onOpen }) {
   return (
     <section className={`site-intro${isOpening ? ' is-opening' : ''}`} aria-label="Thiệp mời cưới của Hoàng Thái và Huyền Nhu">
+      <CraneField placement="intro" />
       <button className="invitation-cover" type="button" onClick={onOpen} disabled={isOpening}>
         <span className="invitation-artwork"><img src={invitationArtwork} alt="Thiệp cưới Vàng đồng với họa tiết đôi hạc" /></span>
         <span className="open-invitation">{isOpening ? 'Đang mở thiệp...' : 'Chạm để mở thiệp'}</span>

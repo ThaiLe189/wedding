@@ -26,7 +26,7 @@ function App() {
     if (invitationOpening) return;
     setInvitationOpening(true);
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    window.setTimeout(() => setInvitationDismissed(true), reducedMotion ? 0 : 1500);
+    window.setTimeout(() => setInvitationDismissed(true), reducedMotion ? 0 : 800);
   };
 
   useScrollReveal(revealSelectors);
@@ -35,8 +35,7 @@ function App() {
 
   return (
     <>
-      {/* Tạm ẩn màn thiệp mở đầu. Bỏ comment dòng dưới để bật lại. */}
-      {/* {!invitationDismissed && <SiteIntro isOpening={invitationOpening} onOpen={openInvitation} />} */}
+      {!invitationDismissed && <SiteIntro isOpening={invitationOpening} onOpen={openInvitation} />}
       <SiteBackdrop />
       <Header
         menuOpen={menuOpen}
