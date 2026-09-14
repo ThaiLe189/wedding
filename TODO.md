@@ -13,7 +13,7 @@ Danh sách việc để trang thiệp ấn tượng hơn và sẵn sàng gửi k
 
 - [x] **Chữ hiện dần theo cuộn ở Story**: từng từ sáng dần khi cuộn qua, hook `src/hooks/useInkReveal.js`.
 - [x] **Lightbox cho album**: bấm ảnh xem lớn, next/prev, đóng bằng Esc hoặc bấm ra ngoài (native `<dialog>`).
-- [x] **Bật lại màn thiệp mở đầu**, tốc độ đóng 0.8s, redesign cho ấn tượng hơn: glow/vignette sau lưng, thiệp bay vào nghiêng nhẹ lúc xuất hiện rồi "thở" đều, hạc bay lượn quanh, nút mời fade-in rồi nhấp nháy, hover có vệt sáng lướt (desktop), bùng sáng vàng lúc chạm mở (`Layout.jsx`, `animations.css`). Ảnh thiệp giữ nguyên mẫu cũ.
+- [ ] **Bật lại màn thiệp mở đầu** — đã redesign xong (glow/vignette, thiệp bay vào rồi "thở" đều, hạc bay lượn quanh, nút mời fade-in rồi nhấp nháy, hover có vệt sáng lướt, bùng sáng vàng lúc chạm mở — `Layout.jsx`, `animations.css`), nhưng tạm giữ tắt theo yêu cầu (2026-09-14). Bỏ comment dòng render trong `App.jsx` để bật lại.
 - [ ] **Nhạc nền nhỏ có nút bật tắt** — chưa có file nhạc bản quyền hợp lệ, bỏ qua tới khi có.
 
 ## Tác động vừa, làm nếu có thời gian
