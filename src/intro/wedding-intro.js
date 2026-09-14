@@ -21,12 +21,22 @@
       *{box-sizing:border-box}button,a{font:inherit}button{cursor:pointer}button:disabled{cursor:wait}button:focus-visible,a:focus-visible{outline:2px solid #8b682f;outline-offset:5px}[hidden]{display:none!important}
       .invitation{position:relative;min-height:650px;height:100svh;overflow:hidden;background:radial-gradient(ellipse at 48% 36%,#fffcf4 0%,#efe4d2 67%,#dac7ab 100%);isolation:isolate}
       .invitation::before{content:'';position:absolute;inset:0;pointer-events:none;opacity:.24;background:repeating-linear-gradient(113deg,transparent 0 79px,#fffdf666 80px 82px,transparent 84px 140px);filter:blur(12px)}
-      .heading{position:absolute;z-index:5;inset:28px 0 auto;text-align:center;font:10px/1.5 Arial,sans-serif;letter-spacing:.3em;color:#897052}
-      .subheading{display:block;font:italic 18px/1.5 Georgia,serif;letter-spacing:0;color:#742d31;margin-top:7px}
+      /* Khi đặt trong site: sân khấu (nền, hạc, mây) do lớp ngoài vẽ, component chỉ vẽ thiệp. */
+      :host([transparent]) .invitation{background:transparent}
+      :host([transparent]) .invitation::before{display:none}
+      /* Chữ dùng đúng font/màu của web qua CSS custom property (xuyên được shadow DOM), có fallback. */
+      .heading{position:absolute;z-index:5;inset:30px 0 auto;text-align:center;font:500 .6rem/1.5 var(--mono,Arial,sans-serif);letter-spacing:.32em;text-transform:uppercase;color:#8a6f4c;opacity:0;animation:intro-fade .9s .35s cubic-bezier(.16,1,.3,1) forwards}
+      .subheading{display:block;font:italic 500 1.55rem/1.3 var(--serif,Georgia,serif);letter-spacing:0;text-transform:none;color:var(--accent-dark,#6e171c);margin-top:8px;opacity:0;animation:intro-fade .9s .6s cubic-bezier(.16,1,.3,1) forwards}
       .viewport{position:absolute;inset:104px 0 100px;perspective:1600px;display:grid;place-items:center;touch-action:pan-y;user-select:none}
+      /* .float: bay vào rồi lơ lửng (CSS animation). .tilt: nghiêng theo chuột/cảm biến (inline transform). */
+      .float{transform-style:preserve-3d;animation:intro-arrive 1.15s .15s cubic-bezier(.16,1,.3,1) both,intro-float 6.5s 1.3s ease-in-out infinite}
+      .tilt{transform-style:preserve-3d;transition:transform .7s cubic-bezier(.16,1,.3,1)}
       .book{position:relative;width:var(--bw,300px);height:var(--bh,440px);transform-style:preserve-3d;will-change:transform;transform:none}
+      @keyframes intro-arrive{from{opacity:0;transform:translateY(54px) rotateX(16deg) scale(.9)}to{opacity:1;transform:none}}
+      @keyframes intro-float{0%,100%{transform:translateY(0) rotateZ(0)}50%{transform:translateY(-10px) rotateZ(.5deg)}}
+      @keyframes intro-fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
       /* Các lớp giấy bo góc nhẹ, viền dịu, không kẻ khung bên trong để nhìn mềm như giấy thật. */
-      .floor{position:absolute;inset:0;background:#ede0c9;border-radius:4px;box-shadow:0 28px 44px #65492436,0 5px 8px #785b352e;transform:translateZ(-5px);border:1px solid #d6c5a6}
+      .floor{position:absolute;inset:0;background:#ede0c9;border-radius:4px;box-shadow:0 46px 70px #4a321a4a,0 10px 16px #785b3533;transform:translateZ(-5px);border:1px solid #d6c5a6}
       .edge{position:absolute;inset:0;background:#f5ebda;border-radius:4px;border:1px solid #dfd0b6;transform:translate3d(2px,2px,-3px)}
       .inside{position:absolute;inset:0;background:#f1ebe3;border-radius:4px;border:1px solid #e0d3bb;transform:translateZ(0px);box-shadow:inset 14px 0 18px -16px #72563655,inset -14px 0 18px -16px #72563655}
       .wing{position:absolute;top:0;height:100%;width:100%;transform-style:preserve-3d;will-change:transform}
@@ -58,10 +68,12 @@
       .crease{position:absolute;inset:0 auto 0 0;width:12px;background:linear-gradient(90deg,#6347232b,transparent);pointer-events:none;transform:translateZ(1px)}
       .wing-right .crease{left:auto;right:0;transform:rotateY(180deg)}
       .hit{position:absolute;inset:0;border:0;background:transparent;color:transparent;transform:translateZ(1px);width:100%;height:100%;padding:0}
-      .controls{position:absolute;z-index:10;bottom:24px;left:12px;right:12px;display:flex;flex-direction:column;align-items:center;gap:11px}
-      .primary{border:1px solid #9a795099;background:#fbf5e9bb;color:#775634;padding:13px 27px;font:10px/1.5 Arial,sans-serif;letter-spacing:.18em;min-height:44px;border-radius:0}
-      .primary:hover{background:#fffaf0;border-color:#866337}.primary:disabled{opacity:.6}
-      .hint{height:16px;font:11px/1.5 Arial,sans-serif;color:#887257;margin:0}
+      .controls{position:absolute;z-index:10;bottom:26px;left:12px;right:12px;display:flex;flex-direction:column;align-items:center;gap:12px;opacity:0;animation:intro-fade .9s 1.2s cubic-bezier(.16,1,.3,1) forwards}
+      .primary{border:1px solid var(--accent,#8f2127);background:var(--accent,#8f2127);color:#fff5e6;padding:0 30px;font:500 .66rem/1 var(--mono,Arial,sans-serif);letter-spacing:.16em;text-transform:uppercase;min-height:46px;border-radius:0;box-shadow:0 12px 26px rgb(74 30 26/.24);transition:transform .25s cubic-bezier(.16,1,.3,1),background .25s,box-shadow .25s}
+      .primary:not(:disabled){animation:intro-pulse 2.8s 2.2s ease-in-out infinite}
+      .primary:hover{background:var(--accent-dark,#6e171c);transform:translateY(-2px);box-shadow:0 16px 30px rgb(74 30 26/.28)}.primary:disabled{opacity:.55;animation:none}
+      @keyframes intro-pulse{0%,100%{box-shadow:0 12px 26px rgb(74 30 26/.24),0 0 0 0 rgb(143 33 39/.35)}50%{box-shadow:0 12px 26px rgb(74 30 26/.24),0 0 0 9px rgb(143 33 39/0)}}
+      .hint{height:16px;font:400 .68rem/1.5 var(--sans,Arial,sans-serif);color:#7c6448;margin:0}
       .end-actions{display:flex;gap:20px;align-items:center}
       .enter{display:inline-flex;align-items:center;min-height:44px;padding:12px 22px;background:#782d34;color:#fff8e9;text-decoration:none;font:11px/1.5 Arial,sans-serif;letter-spacing:.06em}
       .close{border:0;background:transparent;color:#806547;text-decoration:underline;text-underline-offset:4px;padding:12px 4px;font:11px Arial,sans-serif;min-height:44px}
@@ -69,11 +81,12 @@
       :host([contained]) .invitation{height:640px;min-height:640px}
       :host([overlay]){position:fixed;inset:0;z-index:99999}
       @media(max-width:420px){.heading{top:24px}.subheading{font-size:17px}.viewport{inset:90px 0 106px}.invitation{min-height:570px}}
-      @media(prefers-reduced-motion:reduce){.book,.wing{will-change:auto}}
+      @media(prefers-reduced-motion:reduce){.book,.wing{will-change:auto}.float,.heading,.subheading,.controls,.primary:not(:disabled){animation:none;opacity:1}.tilt{transition:none}}
       </style>
       <section class="invitation" aria-label="Thiệp cưới Hoàng Thái và Huyền Nhu">
         <div class="heading">TRÂN TRỌNG KÍNH MỜI<span class="subheading">Hoàng Thái & Huyền Nhu</span></div>
         <div class="viewport">
+          <div class="float"><div class="tilt">
           <div class="book">
             <div class="floor"></div><div class="edge"></div>
             <div class="inside"></div>
@@ -86,6 +99,7 @@
               <div class="face back"><div class="back-art"></div></div><div class="crease"></div>
             </div>
           </div>
+          </div></div>
         </div>
         <div class="controls"><button class="primary" disabled>MỞ THIỆP</button><div class="end-actions" hidden><button class="close">Khép thiệp</button><a class="enter">Vào website cưới →</a></div><p class="hint">Chạm vào bìa hoặc kéo sang hai bên</p></div>
         <p class="sr" role="status" aria-live="polite"></p>
@@ -124,7 +138,7 @@
         if(opened) this.dispatchEvent(new CustomEvent('invitation-open',{bubbles:true,composed:true}));
       };
       const animateTo=(to)=>{
-        cancelAnimationFrame(raf);busy=true;$('.primary').disabled=true;
+        cancelAnimationFrame(raf);busy=true;$('.primary').disabled=true;$('.tilt').style.transform='';
         const from=p,duration=reduced.matches?80:Math.max(400,Math.abs(to-from)*2350),t0=performance.now();
         const tick=now=>{const t=clamp((now-t0)/duration);draw(from+(to-from)*(t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2)); if(t<1)raf=requestAnimationFrame(tick);else settle();};
         raf=requestAnimationFrame(tick);
@@ -144,10 +158,21 @@
         tapInBook=e.composedPath().includes(book);
         const rect=viewport.getBoundingClientRect();startSide=e.clientX<rect.left+rect.width/2?-1:1;
       });
+      // Nghiêng thiệp theo vị trí chuột (desktop) hoặc cảm biến nghiêng (điện thoại) khi đang chờ mở.
+      const tilt=$('.tilt');
+      const setTilt=(nx,ny)=>{tilt.style.transform=(nx||ny)?`rotateY(${(nx*9).toFixed(2)}deg) rotateX(${(-ny*7).toFixed(2)}deg)`:''};
+      const idle=()=>ready&&!busy&&!dragging&&p<.05;
       viewport.addEventListener('pointermove',e=>{
-        if(!dragging)return;const dx=(e.clientX-dragStart)*startSide;
-        if(Math.abs(dx)>6){moved=true;viewport.setPointerCapture(e.pointerId);draw(startP+dx/(width*.65));}
+        if(!dragging){
+          if(idle()&&e.pointerType!=='touch'){const r=viewport.getBoundingClientRect();setTilt((e.clientX-r.left)/r.width-.5,(e.clientY-r.top)/r.height-.5);}
+          return;
+        }
+        const dx=(e.clientX-dragStart)*startSide;
+        if(Math.abs(dx)>6){moved=true;setTilt(0,0);viewport.setPointerCapture(e.pointerId);draw(startP+dx/(width*.65));}
       });
+      viewport.addEventListener('pointerleave',()=>setTilt(0,0));
+      this._onOrient=e=>{if(!idle()||e.gamma==null||e.beta==null)return;setTilt(clamp(e.gamma/40+.5,0,1)-.5,clamp((e.beta-45)/40+.5,0,1)-.5)};
+      if(!reduced.matches)addEventListener('deviceorientation',this._onOrient);
       const end=e=>{
         if(!dragging)return;dragging=false;
         if(moved)animateTo(p>.32?1:0);
@@ -171,7 +196,7 @@
       });
       draw(0);this._stop=()=>cancelAnimationFrame(raf);
     }
-    disconnectedCallback(){this._resize?.disconnect();this._stop?.()}
+    disconnectedCallback(){this._resize?.disconnect();this._stop?.();if(this._onOrient)removeEventListener('deviceorientation',this._onOrient)}
   }
   if(!customElements.get('wedding-intro'))customElements.define('wedding-intro',WeddingIntro);
 })();
