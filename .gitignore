@@ -23,3 +23,6 @@ artifacts/gallery-review/
 Thumbs.db
 .vscode/
 .idea/
+
+# Claude Code local overrides
+.claude/settings.local.json

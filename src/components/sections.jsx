@@ -1,6 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { galleryPhotos, wedding, schedule } from '../data/wedding.js';
 import { CraneField, RsvpBloom } from './Decorations.jsx';
+
+const RSVP_ENDPOINT = import.meta.env.VITE_RSVP_ENDPOINT;
+
+async function postRsvp(payload) {
+  if (!RSVP_ENDPOINT) return;
+  try {
+    await fetch(RSVP_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload),
+    });
+  } catch (error) {
+    console.error('Gửi RSVP thất bại', error);
+  }
+}
 
 export function HeroSection() {
   return (
@@ -45,19 +60,58 @@ export function GuestGuideSection() {
       <div className="guide-heading"><p className="kicker">Để ngày vui thật thảnh thơi</p><h2 id="guide-title">Một vài điều<br />nhỏ <em>cho bạn.</em></h2></div>
       <div className="guide-list">
         <article className="guide-item"><p className="guide-index">Trang phục</p><div><h3>Thanh lịch, và thật là bạn.</h3><p>Chúng mình rất vui khi bạn chọn một bộ trang phục lịch sự, thoải mái để cùng tận hưởng trọn vẹn buổi tiệc.</p><div className="colour-notes" aria-label="Gợi ý màu sắc: kem nhạt, hồng phấn, xanh xám và nâu nhạt"><i></i><i></i><i></i><i></i></div></div></article>
-        <article className="guide-item"><p className="guide-index">Đường đến</p><div><h3>Hẹn bạn tại Trống Đồng Palace Long Biên.</h3><p>Buổi tiệc diễn ra tại tầng 2, Tasco Mall, số 7-9 Nguyễn Văn Linh. Khi đến nơi, bạn có thể gửi xe và theo biển chỉ dẫn của trung tâm thương mại.</p><a className="inline-link" href={wedding.venue.mapsUrl} target="_blank" rel="noreferrer">Mở chỉ đường <span>↗</span></a></div></article>
+        <article className="guide-item"><p className="guide-index">Đường đến</p><div><h3>Hẹn bạn tại Trống Đồng Palace Long Biên.</h3><p>Buổi tiệc diễn ra tại tầng 2, Tasco Mall, số 7-9 Nguyễn Văn Linh. Khi đến nơi, bạn có thể gửi xe và theo biển chỉ dẫn của trung tâm thương mại.</p><div className="map-embed"><iframe title={`Bản đồ đến ${wedding.venue.name}`} src={`https://www.google.com/maps?q=${encodeURIComponent(`${wedding.venue.name}, ${wedding.venue.address}`)}&output=embed`} loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></div><a className="inline-link" href={wedding.venue.mapsUrl} target="_blank" rel="noreferrer">Mở chỉ đường <span>↗</span></a></div></article>
       </div>
     </section>
   );
 }
 
 export function GallerySection() {
+  const dialogRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const openPhoto = (index) => {
+    setActiveIndex(index);
+    dialogRef.current?.showModal();
+  };
+
+  const showRelative = (delta) => {
+    setActiveIndex((index) => (index === null ? index : (index + delta + galleryPhotos.length) % galleryPhotos.length));
+  };
+
+  const onDialogKeyDown = (event) => {
+    if (event.key === 'ArrowRight') showRelative(1);
+    if (event.key === 'ArrowLeft') showRelative(-1);
+  };
+
+  const onDialogClick = (event) => {
+    if (event.target === dialogRef.current) dialogRef.current.close();
+  };
+
+  const activePhoto = activeIndex === null ? null : galleryPhotos[activeIndex];
+
   return (
     <section id="gallery" className="gallery section-pad" aria-labelledby="gallery-title">
       <div className="gallery-intro scroll-reveal"><p className="kicker">Một ngày rất đỏ</p><h2 id="gallery-title">Những khung hình<br /><em>mình thương.</em></h2><p>Giữa nắng, những bậc đá và thật nhiều nụ cười.</p></div>
       <div className="gallery-grid scroll-reveal">
-        {galleryPhotos.map((photo) => <figure className={`gallery-photo gallery-photo--${photo.layout}`} key={photo.layout}><img src={photo.image} alt={photo.alt} loading="lazy" /></figure>)}
+        {galleryPhotos.map((photo, index) => (
+          <figure className={`gallery-photo gallery-photo--${photo.layout}`} key={photo.layout}>
+            <button type="button" className="gallery-photo-trigger" onClick={() => openPhoto(index)} aria-label={`Xem lớn: ${photo.alt}`}>
+              <img src={photo.image} alt={photo.alt} loading="lazy" />
+            </button>
+          </figure>
+        ))}
       </div>
+      <dialog ref={dialogRef} className="lightbox" onClose={() => setActiveIndex(null)} onClick={onDialogClick} onKeyDown={onDialogKeyDown}>
+        {activePhoto && (
+          <>
+            <button type="button" className="lightbox-close" onClick={() => dialogRef.current.close()} aria-label="Đóng">×</button>
+            <button type="button" className="lightbox-nav lightbox-prev" onClick={() => showRelative(-1)} aria-label="Ảnh trước">‹</button>
+            <img className="lightbox-image" src={activePhoto.image} alt={activePhoto.alt} />
+            <button type="button" className="lightbox-nav lightbox-next" onClick={() => showRelative(1)} aria-label="Ảnh sau">›</button>
+          </>
+        )}
+      </dialog>
     </section>
   );
 }
@@ -75,18 +129,32 @@ export function RsvpSection() {
   const [attendance, setAttendance] = useState('Có mặt');
   const [formMessage, setFormMessage] = useState('');
   const [rsvpMoment, setRsvpMoment] = useState(0);
+  const [wishes, setWishes] = useState([]);
+
+  useEffect(() => {
+    if (!RSVP_ENDPOINT) return;
+    fetch(RSVP_ENDPOINT)
+      .then((response) => response.json())
+      .then((data) => { if (data.ok) setWishes(data.wishes); })
+      .catch((error) => console.error('Không tải được sổ lưu bút', error));
+  }, []);
 
   const submitRsvp = (event) => {
     event.preventDefault();
     const form = event.currentTarget;
     const response = new FormData(form);
-    const name = String(response.get('name') || '').trim().split(/\s+/)[0];
-    const isAttending = response.get('attendance') === 'Có mặt';
+    const name = String(response.get('name') || '').trim();
+    const firstName = name.split(/\s+/)[0];
+    const isAttending = attendance === 'Có mặt';
+    const notes = String(response.get('notes') || '').trim();
+    const guestCount = isAttending ? String(response.get('guestCount') || '') : '';
 
     setFormMessage(isAttending
-      ? `Cảm ơn ${name}. Hẹn gặp bạn trong ngày vui của chúng mình nhé.`
-      : `Cảm ơn ${name}. Chúng mình rất trân trọng lời chúc của bạn.`);
+      ? `Cảm ơn ${firstName}. Hẹn gặp bạn trong ngày vui của chúng mình nhé.`
+      : `Cảm ơn ${firstName}. Chúng mình rất trân trọng lời chúc của bạn.`);
     setRsvpMoment((moment) => moment + 1);
+    if (isAttending && notes) setWishes((current) => [{ name, notes }, ...current]);
+    postRsvp({ name, attendance, guestCount, notes });
     form.reset();
     setAttendance('Có mặt');
   };
@@ -94,13 +162,23 @@ export function RsvpSection() {
   return (
     <section id="rsvp" className="rsvp section-pad" aria-labelledby="rsvp-title">
       <div className="rsvp-intro"><p className="section-number">04</p><p className="kicker">Một lời hồi đáp nhỏ</p><p className="handwritten">Có bạn, ngày vui sẽ đầy hơn.</p><h2 id="rsvp-title">Mình gặp nhau<br /><em>nhé?</em></h2><p>Vui lòng gửi lại lời hồi đáp trước ngày {wedding.date.rsvpDeadline} nhé.</p></div>
-      <form className="rsvp-form" onSubmit={submitRsvp}>
-        <label>Họ và tên<input required name="name" autoComplete="name" placeholder="Tên bạn là gì nhỉ?" /></label>
-        <fieldset><legend>Bạn sẽ đến chung vui với chúng mình chứ?</legend><label className="choice"><input type="radio" name="attendance" value="Có mặt" checked={attendance === 'Có mặt'} onChange={() => setAttendance('Có mặt')} /><span>Mình rất mong được có mặt</span></label><label className="choice"><input type="radio" name="attendance" value="Không thể tham dự" checked={attendance === 'Không thể tham dự'} onChange={() => setAttendance('Không thể tham dự')} /><span>Mình xin gửi lời chúc từ xa</span></label></fieldset>
-        {attendance === 'Có mặt' && <label className="guest-count-field">Bạn sẽ đi cùng bao nhiêu người?<select name="guestCount" aria-label="Số người tham dự" defaultValue="1"><option value="1">1 người</option><option value="2">2 người</option><option value="3">3 người</option><option value="4">4 người</option></select></label>}
-        <label>Gửi đôi lời đến chúng mình <span className="optional">(nếu bạn muốn)</span><input name="notes" placeholder="Một lời chúc nhỏ, hoặc điều chúng mình cần biết..." /></label>
-        <div className="rsvp-submit-wrap"><button className="button button-primary" type="submit">Gửi lời hồi đáp <span>→</span></button>{rsvpMoment > 0 && <RsvpBloom key={rsvpMoment} />}</div><p id="form-message" className={formMessage ? 'form-message-visible' : ''} role="status" aria-live="polite">{formMessage}</p>
-      </form>
+      <div className="rsvp-form-wrap">
+        <form className="rsvp-form" onSubmit={submitRsvp}>
+          <label>Họ và tên<input required name="name" autoComplete="name" placeholder="Tên bạn là gì nhỉ?" /></label>
+          <fieldset><legend>Bạn sẽ đến chung vui với chúng mình chứ?</legend><label className="choice"><input type="radio" name="attendance" value="Có mặt" checked={attendance === 'Có mặt'} onChange={() => setAttendance('Có mặt')} /><span>Mình rất mong được có mặt</span></label><label className="choice"><input type="radio" name="attendance" value="Không thể tham dự" checked={attendance === 'Không thể tham dự'} onChange={() => setAttendance('Không thể tham dự')} /><span>Mình xin gửi lời chúc từ xa</span></label></fieldset>
+          {attendance === 'Có mặt' && <label className="guest-count-field">Bạn sẽ đi cùng bao nhiêu người?<select name="guestCount" aria-label="Số người tham dự" defaultValue="1"><option value="1">1 người</option><option value="2">2 người</option><option value="3">3 người</option><option value="4">4 người</option></select></label>}
+          <label>Gửi đôi lời đến chúng mình <span className="optional">(nếu bạn muốn)</span><input name="notes" placeholder="Một lời chúc nhỏ, hoặc điều chúng mình cần biết..." /></label>
+          <div className="rsvp-submit-wrap"><button className="button button-primary" type="submit">Gửi lời hồi đáp <span>→</span></button>{rsvpMoment > 0 && <RsvpBloom key={rsvpMoment} />}</div><p id="form-message" className={formMessage ? 'form-message-visible' : ''} role="status" aria-live="polite">{formMessage}</p>
+        </form>
+        {wishes.length > 0 && (
+          <div className="guestbook">
+            <p className="kicker">Lời chúc từ mọi người</p>
+            <ul className="guestbook-list">
+              {wishes.map((wish, index) => <li key={index}><p>&ldquo;{wish.notes}&rdquo;</p><span>— {wish.name}</span></li>)}
+            </ul>
+          </div>
+        )}
+      </div>
     </section>
   );
 }

@@ -1,10 +1,13 @@
 /* Location-specific photo: Hồ Gươm, Hà Nội. */
-.stay-photo{background-image:linear-gradient(0deg,rgb(32 43 52/.28),transparent 58%),url("../assets/wedding-final.png");background-position:center 58%}
+.stay-photo{background-image:linear-gradient(0deg,rgb(32 43 52/.28),transparent 58%),url("../assets/wedding-final.webp");background-position:center 58%}
 
 /* Supplied couple photograph, cropped to retain both figures and bouquet. */
-.hero-photo{background-image:linear-gradient(0deg,rgb(32 43 52/.24),rgb(32 43 52/.03)),url("../assets/wedding-portrait.png");background-position:center 24%}
-.story-photo{height:210px;margin-top:3rem;background:url("../assets/wedding-hero.png") center/cover}
+.hero-photo{background-image:linear-gradient(0deg,rgb(32 43 52/.24),rgb(32 43 52/.03)),url("../assets/wedding-portrait.webp");background-position:center 24%}
+.story-photo{height:210px;margin-top:3rem;background:url("../assets/wedding-hero.webp") center/cover}
 @media(max-width:760px){.hero-photo{background-position:center 18%}.story-photo{height:250px;margin-top:2.2rem;background-position:center}}
+
+.map-embed{margin:1.4rem 0;border:1px solid var(--line);overflow:hidden}
+.map-embed iframe{display:block;width:100%;height:260px;border:0}
 
 .guest-guide{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:clamp(3rem,9vw,10rem);border-bottom:1px solid var(--line);background:var(--canvas)}
 .guide-heading h2{margin-bottom:0}.guide-list{border-top:1px solid var(--line)}.guide-item{display:grid;grid-template-columns:115px 1fr;gap:1.5rem;padding:2.4rem 0;border-bottom:1px solid var(--line)}.guide-item:last-child{border-bottom:0}.guide-index{margin:0;color:var(--accent);font:500 .62rem var(--mono);letter-spacing:.07em;text-transform:uppercase}.guide-item h3{margin:0 0 .7rem;font:400 clamp(1.5rem,2.2vw,2rem)/1.05 var(--serif);letter-spacing:-.045em}.guide-item div>p{max-width:430px;margin:0;color:var(--muted);font-size:.94rem}.guide-item .inline-link{margin-top:1.45rem}.colour-notes{display:flex;gap:7px;margin-top:1.5rem}.colour-notes i{display:block;width:25px;height:25px;border:1px solid rgb(32 43 52/.14)}.colour-notes i:nth-child(1){background:#f0eee7}.colour-notes i:nth-child(2){background:#d9b9bc}.colour-notes i:nth-child(3){background:#aab7ba}.colour-notes i:nth-child(4){background:#b6a18e}

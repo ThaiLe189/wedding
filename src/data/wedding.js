@@ -1,9 +1,9 @@
-import byTheLake from '../design/assets/gallery/by-the-lake.jpg';
-import proposal from '../design/assets/gallery/proposal.jpg';
-import imperialArch from '../design/assets/gallery/imperial-arch.jpg';
-import underTheParasol from '../design/assets/gallery/under-the-parasol.jpg';
-import onTheSteps from '../design/assets/gallery/on-the-steps.jpg';
-import togetherOnTheSteps from '../design/assets/gallery/together-on-the-steps.jpg';
+import byTheLake from '../design/assets/gallery/by-the-lake.webp';
+import proposal from '../design/assets/gallery/proposal.webp';
+import imperialArch from '../design/assets/gallery/imperial-arch.webp';
+import underTheParasol from '../design/assets/gallery/under-the-parasol.webp';
+import onTheSteps from '../design/assets/gallery/on-the-steps.webp';
+import togetherOnTheSteps from '../design/assets/gallery/together-on-the-steps.webp';
 
 export const wedding = {
   couple: {

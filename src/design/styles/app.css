@@ -23,7 +23,7 @@ nav a,.kicker,.section-number{letter-spacing:.13em}
 .nav-rsvp:hover{background:var(--accent-dark);color:var(--paper)}
 
 .hero{background:var(--paper)}
-.hero-photo{background-image:linear-gradient(0deg,rgb(71 46 22/.3),rgb(255 237 201/.02)),url("../assets/wedding-portrait.png");box-shadow:inset -1px 0 0 rgb(180 135 73/.48)}
+.hero-photo{background-image:linear-gradient(0deg,rgb(71 46 22/.3),rgb(255 237 201/.02)),url("../assets/wedding-portrait.webp");box-shadow:inset -1px 0 0 rgb(180 135 73/.48)}
 .hero-photo::before{position:absolute;inset:0;content:"";background:rgb(183 138 67/.08);mix-blend-mode:multiply;pointer-events:none}
 .hero-copy{position:relative;isolation:isolate;background:var(--paper)}
 .hero-copy::before{position:absolute;top:clamp(2rem,5vw,4.5rem);right:clamp(1.75rem,6vw,6rem);z-index:-1;width:4.75rem;height:4.75rem;display:grid;place-items:center;border:1px solid rgb(143 33 39/.78);border-radius:50%;color:var(--accent);content:"囍";font:500 2.35rem/1 var(--serif);opacity:.9}
@@ -58,7 +58,7 @@ nav a,.kicker,.section-number{letter-spacing:.13em}
 .gallery-photo{border:5px solid #fffaf0;background:#d9c8ad;box-shadow:0 10px 25px rgb(83 57 25/.1)}
 .gallery-photo:hover{box-shadow:0 16px 32px rgb(83 57 25/.18)}
 .stay-copy{background:#efe3d1}
-.stay-photo{background-image:linear-gradient(0deg,rgb(54 35 17/.35),transparent 58%),url("../assets/wedding-final.png")}
+.stay-photo{background-image:linear-gradient(0deg,rgb(54 35 17/.35),transparent 58%),url("../assets/wedding-final.webp")}
 .stay-photo span{color:#f7d799}
 .rsvp-form input:not([type=radio]),.rsvp-form select{border-color:#bfae92}
 .rsvp-form input:focus,.rsvp-form select:focus{border-color:var(--accent);box-shadow:0 2px 0 var(--accent)}
@@ -72,7 +72,7 @@ footer{border-color:var(--line);background:#eee1cd}
   gap:clamp(1.75rem,4vw,5.5rem);
   padding:clamp(3.5rem,6vw,6.5rem) clamp(2rem,7vw,8.5rem);
   overflow:hidden;
-  background:#f7f0e2 url("../assets/ornamental-crane-frame.png") center/cover no-repeat;
+  background:#f7f0e2 url("../assets/ornamental-crane-frame.webp") center/cover no-repeat;
 }
 
 .story::before{
@@ -139,3 +139,23 @@ footer{border-color:var(--line);background:#eee1cd}
     font-size:1.5rem;
   }
 }
+
+/* Gallery photos open in a native <dialog> lightbox: Esc and backdrop click close it for free. */
+.gallery-photo-trigger{display:block;width:100%;height:100%;padding:0;border:0;background:none;cursor:zoom-in}
+.lightbox{max-width:min(92vw,980px);max-height:88vh;padding:0;border:0;background:transparent}
+.lightbox[open]{display:flex;align-items:center;justify-content:center}
+.lightbox::backdrop{background:rgb(32 20 10/.82)}
+.lightbox-image{display:block;max-width:100%;max-height:88vh;object-fit:contain;box-shadow:0 20px 50px rgb(0 0 0/.4)}
+.lightbox-close,.lightbox-nav{position:fixed;display:grid;place-items:center;width:44px;height:44px;border:1px solid rgb(255 255 255/.4);border-radius:50%;background:rgb(0 0 0/.35);color:#fff;font:400 1.5rem/1 var(--sans);cursor:pointer}
+.lightbox-close{top:1.2rem;right:1.2rem}
+.lightbox-prev{left:1.2rem;top:50%;transform:translateY(-50%)}
+.lightbox-next{right:1.2rem;top:50%;transform:translateY(-50%)}
+@media(max-width:760px){.lightbox-close,.lightbox-nav{width:38px;height:38px;font-size:1.2rem}}
+
+/* RSVP form column also carries the public guestbook once wishes come back from the sheet. */
+.rsvp-form-wrap{display:flex;flex-direction:column;gap:2.75rem}
+.guestbook{padding-top:.5rem;border-top:1px solid var(--line)}
+.guestbook .kicker{margin:0 0 1.2rem}
+.guestbook-list{display:flex;flex-direction:column;gap:1.3rem;max-height:340px;margin:0;padding:0;list-style:none;overflow-y:auto}
+.guestbook-list li p{margin:0 0 .3rem;color:var(--ink);font:italic 1.02rem/1.6 var(--serif)}
+.guestbook-list li span{color:var(--muted);font:500 .62rem var(--mono);letter-spacing:.06em;text-transform:uppercase}

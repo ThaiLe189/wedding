@@ -11,6 +11,8 @@ import {
   StorySection,
 } from './components/sections.jsx';
 import { revealSelectors } from './data/wedding.js';
+import { useInkReveal } from './hooks/useInkReveal.js';
+import { useParallax } from './hooks/useParallax.js';
 import { useScrollReveal } from './hooks/useScrollReveal.js';
 import { downloadWeddingCalendar } from './utils/calendar.js';
 
@@ -28,6 +30,8 @@ function App() {
   };
 
   useScrollReveal(revealSelectors);
+  useInkReveal('.story-copy p');
+  useParallax('.site-backdrop');
 
   return (
     <>
