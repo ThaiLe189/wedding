@@ -1,17 +1,44 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { wedding } from '../data/wedding.js';
-import invitationArtwork from '../design/assets/invitation-antique-gold.webp';
-import { CraneField } from './Decorations.jsx';
+import introCard from '../design/assets/intro/mat-trai.webp';
+import introUnderlay from '../design/assets/intro/mat-phai.webp';
+import '../intro/wedding-intro.js';
 
-export function SiteIntro({ isOpening, onOpen }) {
+/**
+ * Màn thiệp mở đầu: bọc Web Component <wedding-intro> (src/intro/wedding-intro.js).
+ * Khách bấm/kéo bìa để mở thiệp 2.5D; thiệp mở xong thì component phát `invitation-enter`
+ * (chế độ auto-enter) và App fade màn này đi để vào web chính, không cần bấm thêm nút.
+ * Tạo phần tử bằng DOM API thay vì JSX để gán `assets` (object) trước khi component mount.
+ */
+export function SiteIntro({ isLeaving, onEnter }) {
+  const shellRef = useRef(null);
+  const onEnterRef = useRef(onEnter);
+  onEnterRef.current = onEnter;
+
+  useEffect(() => {
+    const shell = shellRef.current;
+    const intro = document.createElement('wedding-intro');
+    intro.assets = { card: introCard, underlay: introUnderlay };
+    intro.setAttribute('auto-enter', '');
+    const handleEnter = () => onEnterRef.current?.();
+    intro.addEventListener('invitation-enter', handleEnter);
+    shell.appendChild(intro);
+    document.body.classList.add('intro-active');
+    return () => {
+      intro.removeEventListener('invitation-enter', handleEnter);
+      intro.remove();
+      document.body.classList.remove('intro-active');
+    };
+  }, []);
+
   return (
-    <section className={`site-intro${isOpening ? ' is-opening' : ''}`} aria-label="Thiệp mời cưới của Hoàng Thái và Huyền Nhu">
-      <CraneField placement="intro" />
-      <button className="invitation-cover" type="button" onClick={onOpen} disabled={isOpening}>
-        <span className="invitation-artwork"><img src={invitationArtwork} alt="Thiệp cưới Vàng đồng với họa tiết đôi hạc" /></span>
-        <span className="open-invitation">{isOpening ? 'Đang mở thiệp...' : 'Chạm để mở thiệp'}</span>
-      </button>
-    </section>
+    <div
+      ref={shellRef}
+      className={`site-intro${isLeaving ? ' is-leaving' : ''}`}
+      role="dialog"
+      aria-modal="true"
+      aria-label={`Thiệp mời cưới của ${wedding.couple.groom} và ${wedding.couple.bride}`}
+    />
   );
 }
 

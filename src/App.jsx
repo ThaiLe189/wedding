@@ -18,15 +18,16 @@ import { downloadWeddingCalendar } from './utils/calendar.js';
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [invitationOpening, setInvitationOpening] = useState(false);
-  const [invitationDismissed, setInvitationDismissed] = useState(false);
+  const [introLeaving, setIntroLeaving] = useState(false);
+  const [introDismissed, setIntroDismissed] = useState(false);
   const closeMenu = () => setMenuOpen(false);
 
-  const openInvitation = () => {
-    if (invitationOpening) return;
-    setInvitationOpening(true);
+  // Thiệp mở xong -> fade màn intro rồi gỡ khỏi DOM để vào web chính.
+  const enterSite = () => {
+    if (introLeaving) return;
+    setIntroLeaving(true);
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    window.setTimeout(() => setInvitationDismissed(true), reducedMotion ? 0 : 800);
+    window.setTimeout(() => setIntroDismissed(true), reducedMotion ? 0 : 700);
   };
 
   useScrollReveal(revealSelectors);
@@ -35,8 +36,7 @@ function App() {
 
   return (
     <>
-      {/* Tạm ẩn màn thiệp mở đầu. Bỏ comment dòng dưới để bật lại. */}
-      {/* {!invitationDismissed && <SiteIntro isOpening={invitationOpening} onOpen={openInvitation} />} */}
+      {!introDismissed && <SiteIntro isLeaving={introLeaving} onEnter={enterSite} />}
       <SiteBackdrop />
       <Header
         menuOpen={menuOpen}

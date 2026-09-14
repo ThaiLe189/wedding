@@ -13,7 +13,7 @@ Danh sách việc để trang thiệp ấn tượng hơn và sẵn sàng gửi k
 
 - [x] **Chữ hiện dần theo cuộn ở Story**: từng từ sáng dần khi cuộn qua, hook `src/hooks/useInkReveal.js`.
 - [x] **Lightbox cho album**: bấm ảnh xem lớn, next/prev, đóng bằng Esc hoặc bấm ra ngoài (native `<dialog>`).
-- [ ] **Bật lại màn thiệp mở đầu** — đã redesign xong (glow/vignette, thiệp bay vào rồi "thở" đều, hạc bay lượn quanh, nút mời fade-in rồi nhấp nháy, hover có vệt sáng lướt, bùng sáng vàng lúc chạm mở — `Layout.jsx`, `animations.css`), nhưng tạm giữ tắt theo yêu cầu (2026-09-14). Bỏ comment dòng render trong `App.jsx` để bật lại.
+- [x] **Màn thiệp mở đầu** — thay bằng thiệp gấp 2.5D (Web Component `src/intro/wedding-intro.js`, ảnh `src/design/assets/intro/`): bìa trái lật rồi tấm phải mở, bên trong để trống theo yêu cầu (đã bỏ khung hạc pop-up, oval tên và chữ ở mặt sau). Chạm/bấm/kéo bìa hoặc bấm "MỞ THIỆP" để mở; mở xong là fade vào web chính ngay, không zoom, không cần bấm thêm (2026-09-14). Đã bỏ màn intro cũ (ảnh `invitation-antique-gold` không còn dùng). Tắt: comment dòng `<SiteIntro>` trong `App.jsx`.
 - [ ] **Nhạc nền nhỏ có nút bật tắt** — chưa có file nhạc bản quyền hợp lệ, bỏ qua tới khi có.
 
 ## Tác động vừa, làm nếu có thời gian
