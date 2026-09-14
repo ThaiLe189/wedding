@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
 
-/* Shifts a fixed background layer a fraction of scroll distance so it drifts slower than the content above it. */
-export function useParallax(selector, ratio = 0.175) {
+/* Shifts a fixed background layer a fraction of scroll distance so it drifts slower than the content above it.
+   The offset is capped: the layer is only as big as the viewport (see .site-backdrop), so an unbounded drift
+   would eventually uncover a strip of empty background at the translated edge. */
+export function useParallax(selector, ratio = 0.175, maxOffset = 40) {
   useEffect(() => {
     const element = document.querySelector(selector);
     if (!element) return undefined;
@@ -12,7 +14,8 @@ export function useParallax(selector, ratio = 0.175) {
     let frame = null;
     const update = () => {
       frame = null;
-      element.style.transform = `translate3d(0, ${-window.scrollY * ratio}px, 0)`;
+      const offset = Math.min(window.scrollY * ratio, maxOffset);
+      element.style.transform = `translate3d(0, ${-offset}px, 0)`;
     };
     const onScroll = () => {
       if (frame === null) frame = requestAnimationFrame(update);

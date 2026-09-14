@@ -14,7 +14,10 @@ body{background:#f7f0e2}
 
 .site-backdrop{
   position:fixed;
-  inset:0;
+  top:-60px;
+  right:0;
+  bottom:-60px;
+  left:0;
   z-index:-1;
   background:#f7f0e2 url("../assets/ornamental-crane-frame.webp") center/cover no-repeat;
   pointer-events:none;
