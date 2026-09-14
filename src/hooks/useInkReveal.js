@@ -45,7 +45,7 @@ export function useInkReveal(selector) {
         if (!words.length) return;
         const rect = element.getBoundingClientRect();
         const viewportHeight = window.innerHeight;
-        const progress = Math.min(1, Math.max(0, (viewportHeight - rect.top) / viewportHeight));
+        const progress = Math.min(1, Math.max(0, (viewportHeight - rect.top) / (viewportHeight * 0.6)));
         const litCount = Math.round(progress * words.length);
         words.forEach((word, index) => word.classList.toggle('is-lit', index < litCount));
       });

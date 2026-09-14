@@ -50,9 +50,9 @@ footer{background:var(--veil-soft)}
   text-shadow:0 0 6px #f7f0e2,0 0 14px #f7f0e2,0 0 26px rgb(247 240 226/.9);
 }
 /* Box-shadow halos keep the layout untouched while lifting the copy off the crane. */
-.story .story-copy p,.story .section-intro .kicker{
-  background:rgb(247 240 226/.78);
-  box-shadow:0 0 0 .9rem rgb(247 240 226/.78),0 0 2.2rem 1.6rem rgb(247 240 226/.78);
+.story .story-copy p,.story .section-intro .kicker,.story .section-intro .section-number{
+  background:rgb(247 240 226/.9);
+  box-shadow:0 0 0 .9rem rgb(247 240 226/.9),0 0 2.2rem 1.6rem rgb(247 240 226/.9);
 }
 
 /* Mobile: the landscape artwork is too wide, so show the left crane at the top and the right crane at the bottom. */
