@@ -29,7 +29,7 @@
       .subheading{display:block;font:italic 500 1.55rem/1.3 var(--serif,Georgia,serif);letter-spacing:0;text-transform:none;color:var(--accent-dark,#6e171c);margin-top:8px;opacity:0;animation:intro-fade .9s .6s cubic-bezier(.16,1,.3,1) forwards}
       .viewport{position:absolute;inset:104px 0 100px;perspective:1600px;display:grid;place-items:center;touch-action:pan-y;user-select:none}
       /* .float: bay vào rồi lơ lửng (CSS animation). .tilt: nghiêng theo chuột/cảm biến (inline transform). */
-      .float{transform-style:preserve-3d;animation:intro-arrive 1.15s .15s cubic-bezier(.16,1,.3,1) both,intro-float 6.5s 1.3s ease-in-out infinite}
+      .float{transform-style:preserve-3d;animation:intro-arrive 1.15s 1.5s cubic-bezier(.16,1,.3,1) both,intro-float 6.5s 2.65s ease-in-out infinite}
       .tilt{transform-style:preserve-3d;transition:transform .7s cubic-bezier(.16,1,.3,1)}
       .book{position:relative;width:var(--bw,300px);height:var(--bh,440px);transform-style:preserve-3d;will-change:transform;transform:none}
       @keyframes intro-arrive{from{opacity:0;transform:translateY(54px) rotateX(16deg) scale(.9)}to{opacity:1;transform:none}}
@@ -68,9 +68,9 @@
       .crease{position:absolute;inset:0 auto 0 0;width:12px;background:linear-gradient(90deg,#6347232b,transparent);pointer-events:none;transform:translateZ(1px)}
       .wing-right .crease{left:auto;right:0;transform:rotateY(180deg)}
       .hit{position:absolute;inset:0;border:0;background:transparent;color:transparent;transform:translateZ(1px);width:100%;height:100%;padding:0}
-      .controls{position:absolute;z-index:10;bottom:26px;left:12px;right:12px;display:flex;flex-direction:column;align-items:center;gap:12px;opacity:0;animation:intro-fade .9s 1.2s cubic-bezier(.16,1,.3,1) forwards}
+      .controls{position:absolute;z-index:10;bottom:26px;left:12px;right:12px;display:flex;flex-direction:column;align-items:center;gap:12px;opacity:0;animation:intro-fade .9s 2.55s cubic-bezier(.16,1,.3,1) forwards}
       .primary{border:1px solid var(--accent,#8f2127);background:var(--accent,#8f2127);color:#fff5e6;padding:0 30px;font:500 .66rem/1 var(--mono,Arial,sans-serif);letter-spacing:.16em;text-transform:uppercase;min-height:46px;border-radius:0;box-shadow:0 12px 26px rgb(74 30 26/.24);transition:transform .25s cubic-bezier(.16,1,.3,1),background .25s,box-shadow .25s}
-      .primary:not(:disabled){animation:intro-pulse 2.8s 2.2s ease-in-out infinite}
+      .primary:not(:disabled){animation:intro-pulse 2.8s 3.55s ease-in-out infinite}
       .primary:hover{background:var(--accent-dark,#6e171c);transform:translateY(-2px);box-shadow:0 16px 30px rgb(74 30 26/.28)}.primary:disabled{opacity:.55;animation:none}
       @keyframes intro-pulse{0%,100%{box-shadow:0 12px 26px rgb(74 30 26/.24),0 0 0 0 rgb(143 33 39/.35)}50%{box-shadow:0 12px 26px rgb(74 30 26/.24),0 0 0 9px rgb(143 33 39/0)}}
       .hint{height:16px;font:400 .68rem/1.5 var(--sans,Arial,sans-serif);color:#7c6448;margin:0}
