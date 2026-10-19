@@ -54,13 +54,51 @@ export function DetailsSection({ onDownloadCalendar }) {
   );
 }
 
+const mapEmbedUrl = `https://www.google.com/maps?q=${encodeURIComponent(`${wedding.venue.name}, ${wedding.venue.address}`)}&output=embed`;
+
+// 3D miniature of the neighbourhood (Three.js), loaded only when the guide scrolls near.
+// Falls back to the Google Maps embed when WebGL or the chunk fails.
+function VenueMap() {
+  const ref = useRef(null);
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    let cancelled = false;
+    let dispose;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      observer.disconnect();
+      import('../venue-map/venue-diorama.js')
+        .then(({ mountVenueDiorama }) => {
+          if (cancelled) return;
+          const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          dispose = mountVenueDiorama(el, { ...wedding.venue.map, welcome: `${wedding.couple.groom} & ${wedding.couple.bride}`, reducedMotion });
+        })
+        .catch(() => { if (!cancelled) setFailed(true); });
+    }, { rootMargin: '400px' });
+    observer.observe(el);
+    return () => { cancelled = true; observer.disconnect(); dispose?.(); };
+  }, []);
+
+  if (failed) {
+    return <div className="map-embed"><iframe title={`Bản đồ đến ${wedding.venue.name}`} src={mapEmbedUrl} loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></div>;
+  }
+  return (
+    <figure className="venue-diorama-frame">
+      <div ref={ref} className="venue-diorama" role="img" aria-label="Bản đồ 3D: từ Nguyễn Văn Cừ qua nút giao Long Biên, theo đường Nguyễn Văn Linh tới Tasco Mall, nơi có Trống Đồng Palace" />
+      <figcaption>Kéo để xoay (điện thoại: hai ngón) · Ctrl + cuộn để phóng to</figcaption>
+    </figure>
+  );
+}
+
 export function GuestGuideSection() {
   return (
     <section id="guide" className="guest-guide section-pad" aria-labelledby="guide-title">
       <div className="guide-heading"><p className="kicker">Để ngày vui thật thảnh thơi</p><h2 id="guide-title">Một vài điều<br />nhỏ <em>cho bạn.</em></h2></div>
       <div className="guide-list">
         <article className="guide-item"><p className="guide-index">Trang phục</p><div><h3>Thanh lịch, và thật là bạn.</h3><p>Chúng mình rất vui khi bạn chọn một bộ trang phục lịch sự, thoải mái để cùng tận hưởng trọn vẹn buổi tiệc.</p><div className="colour-notes" aria-label="Gợi ý màu sắc: kem nhạt, hồng phấn, xanh xám và nâu nhạt"><i></i><i></i><i></i><i></i></div></div></article>
-        <article className="guide-item"><p className="guide-index">Đường đến</p><div><h3>Hẹn bạn tại Trống Đồng Palace Long Biên.</h3><p>Buổi tiệc diễn ra tại tầng 2, Tasco Mall, số 7-9 Nguyễn Văn Linh. Khi đến nơi, bạn có thể gửi xe và theo biển chỉ dẫn của trung tâm thương mại.</p><div className="map-embed"><iframe title={`Bản đồ đến ${wedding.venue.name}`} src={`https://www.google.com/maps?q=${encodeURIComponent(`${wedding.venue.name}, ${wedding.venue.address}`)}&output=embed`} loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></div><a className="inline-link" href={wedding.venue.mapsUrl} target="_blank" rel="noreferrer">Mở chỉ đường <span>↗</span></a></div></article>
+        <article className="guide-item"><p className="guide-index">Đường đến</p><div><h3>Hẹn bạn tại Trống Đồng Palace Long Biên.</h3><p>Buổi tiệc diễn ra tại tầng 2, Tasco Mall, số 7-9 Nguyễn Văn Linh. Từ trung tâm, bạn qua cầu Chương Dương, theo Nguyễn Văn Cừ tới nút giao Long Biên rồi rẽ vào Nguyễn Văn Linh. Tasco Mall ở bên kia dải phân cách (bên tay trái), nên bạn đi tiếp qua toà nhà tới ngã ba phố Việt Hưng thì quay đầu, đi ngược lại vài chục mét là gặp cổng bãi ô tô ở góc phía nam, rẽ phải vào. Ô tô gửi ở bãi ngay trước mặt tiền; xe máy cũng quay đầu như trên, đi thẳng qua cổng bãi ô tô và hết dãy bãi xe rồi rẽ phải vào đường nhánh phía bắc toà nhà để vào bãi xe máy. Bấm "Bãi gửi xe" trên bản đồ để xem gần.</p><VenueMap /><a className="inline-link" href={wedding.venue.mapsUrl} target="_blank" rel="noreferrer">Mở chỉ đường <span>↗</span></a></div></article>
       </div>
     </section>
   );
