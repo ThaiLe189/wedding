@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Footer, Header, SiteIntro } from './components/Layout.jsx';
+import { Footer, Header, MusicToggle, SiteIntro } from './components/Layout.jsx';
 import { SiteBackdrop } from './components/Decorations.jsx';
 import {
   DetailsSection,
@@ -53,6 +53,7 @@ function App() {
         <RsvpSection />
       </main>
       <Footer />
+      <MusicToggle />
     </>
   );
 }

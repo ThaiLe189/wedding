@@ -158,3 +158,18 @@ footer{border-color:var(--line);background:#eee1cd}
 .guestbook-list{display:flex;flex-direction:column;gap:1.3rem;max-height:340px;margin:0;padding:0;list-style:none;overflow-y:auto}
 .guestbook-list li p{margin:0 0 .3rem;color:var(--ink);font:italic 1.02rem/1.6 var(--serif)}
 .guestbook-list li span{color:var(--muted);font:500 .62rem var(--mono);letter-spacing:.06em;text-transform:uppercase}
+
+/* Music toggle (MusicToggle in Layout.jsx): round button, four bars dance while playing */
+.music-toggle{position:fixed;right:clamp(14px,2.4vw,28px);bottom:clamp(14px,2.4vw,28px);z-index:30;display:grid;place-items:center;width:46px;height:46px;padding:0;border:1px solid var(--line);border-radius:50%;background:rgb(248 249 247/.88);backdrop-filter:blur(10px);box-shadow:0 8px 22px rgb(32 43 52/.14);color:var(--accent);cursor:pointer;transition:opacity .4s ease,transform .25s ease}
+.music-toggle:hover{transform:translateY(-2px)}
+.music-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.music-toggle span{display:flex;align-items:flex-end;gap:3px;height:16px}
+.music-toggle i{display:block;width:3px;height:5px;border-radius:2px;background:currentColor;transform-origin:bottom}
+.music-toggle:not(.is-playing) i{height:3px;opacity:.55}
+.music-toggle:not(.is-playing)::after{content:"";position:absolute;width:24px;height:1.5px;background:var(--accent);transform:rotate(-40deg);opacity:.7}
+.music-toggle.is-playing i{height:16px;animation:music-bar 1s ease-in-out infinite alternate}
+.music-toggle.is-playing i:nth-child(2){animation-delay:-.35s}.music-toggle.is-playing i:nth-child(3){animation-delay:-.7s}.music-toggle.is-playing i:nth-child(4){animation-delay:-.15s}
+@keyframes music-bar{from{transform:scaleY(.25)}to{transform:scaleY(1)}}
+body.intro-active .music-toggle{opacity:0;pointer-events:none}
+@media(prefers-reduced-motion:reduce){.music-toggle.is-playing i{animation:none;height:12px}}
+footer{padding-right:max(clamp(1.5rem,5vw,5.5rem),84px)}

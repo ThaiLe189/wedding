@@ -4,6 +4,7 @@ import imperialArch from '../design/assets/gallery/imperial-arch.webp';
 import underTheParasol from '../design/assets/gallery/under-the-parasol.webp';
 import onTheSteps from '../design/assets/gallery/on-the-steps.webp';
 import togetherOnTheSteps from '../design/assets/gallery/together-on-the-steps.webp';
+import satieGymnopedie from '../design/assets/music/satie-gymnopedie-1.mp3';
 
 export const wedding = {
   couple: {
@@ -48,6 +49,12 @@ export const wedding = {
     },
   },
 };
+
+// Nhạc nền: Gymnopédie No. 1 (Erik Satie), piano, Michael Laucke chơi. Public domain, không cần ghi công.
+// Đã cắt lặng đầu/cuối và chuẩn hoá âm lượng (nhỏ nhẹ). Nguồn:
+// https://commons.wikimedia.org/wiki/File:Satie_Gymnopedie_No_1_performed_by_Michael_Laucke.flac
+// Đổi bài: thay file trong src/design/assets/music/ (nhớ chọn bản không bắt buộc ghi công, hoặc thêm lại dòng ghi công).
+export const music = { src: satieGymnopedie };
 
 export const schedule = [
   {
