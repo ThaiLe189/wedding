@@ -1,9 +1,9 @@
 /* Location-specific photo: Hồ Gươm, Hà Nội. */
-.stay-photo{background-image:linear-gradient(0deg,rgb(32 43 52/.28),transparent 58%),url("../assets/wedding-final.webp");background-position:center 58%}
+.stay-photo{background-image:linear-gradient(0deg,rgb(32 43 52/.28),transparent 58%),url("../assets/stay-sunset.webp");background-position:center 62%}
 
 /* Supplied couple photograph, cropped to retain both figures and bouquet. */
-.hero-photo{background-image:linear-gradient(0deg,rgb(32 43 52/.24),rgb(32 43 52/.03)),url("../assets/wedding-portrait.webp");background-position:center 24%}
-.story-photo{height:210px;margin-top:3rem;background:url("../assets/wedding-hero.webp") center/cover}
+.hero-photo{background-image:linear-gradient(0deg,rgb(32 43 52/.24),rgb(32 43 52/.03)),url("../assets/hero-couple.webp");background-position:center 34%}
+.story-photo{height:210px;margin-top:3rem;background:url("../assets/story-together.webp") 62% 30%/cover}
 @media(max-width:760px){.hero-photo{background-position:center 18%}.story-photo{height:250px;margin-top:2.2rem;background-position:center}}
 
 .map-embed{margin:1.4rem 0;border:1px solid var(--line);overflow:hidden}

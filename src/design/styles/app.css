@@ -23,7 +23,7 @@ nav a,.kicker,.section-number{letter-spacing:.13em}
 .nav-rsvp:hover{background:var(--accent-dark);color:var(--paper)}
 
 .hero{background:var(--paper)}
-.hero-photo{background-image:linear-gradient(0deg,rgb(71 46 22/.3),rgb(255 237 201/.02)),url("../assets/wedding-portrait.webp");box-shadow:inset -1px 0 0 rgb(180 135 73/.48)}
+.hero-photo{background-image:linear-gradient(0deg,rgb(71 46 22/.3),rgb(255 237 201/.02)),url("../assets/hero-couple.webp");box-shadow:inset -1px 0 0 rgb(180 135 73/.48)}
 .hero-photo::before{position:absolute;inset:0;content:"";background:rgb(183 138 67/.08);mix-blend-mode:multiply;pointer-events:none}
 .hero-copy{position:relative;isolation:isolate;background:var(--paper)}
 .hero-copy::before{position:absolute;top:clamp(2rem,5vw,4.5rem);right:clamp(1.75rem,6vw,6rem);z-index:-1;width:4.75rem;height:4.75rem;display:grid;place-items:center;border:1px solid rgb(143 33 39/.78);border-radius:50%;color:var(--accent);content:"囍";font:500 2.35rem/1 var(--serif);opacity:.9}
@@ -57,7 +57,7 @@ nav a,.kicker,.section-number{letter-spacing:.13em}
 .gallery-photo{border:5px solid #fffaf0;background:#d9c8ad;box-shadow:0 10px 25px rgb(83 57 25/.1)}
 .gallery-photo:hover{box-shadow:0 16px 32px rgb(83 57 25/.18)}
 .stay-copy{background:#efe3d1}
-.stay-photo{background-image:linear-gradient(0deg,rgb(54 35 17/.35),transparent 58%),url("../assets/wedding-final.webp")}
+.stay-photo{background-image:linear-gradient(0deg,rgb(54 35 17/.35),transparent 58%),url("../assets/stay-sunset.webp")}
 .stay-photo span{color:#f7d799}
 .rsvp-form input:not([type=radio]),.rsvp-form select{border-color:#bfae92}
 .rsvp-form input:focus,.rsvp-form select:focus{border-color:var(--accent);box-shadow:0 2px 0 var(--accent)}

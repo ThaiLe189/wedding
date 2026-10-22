@@ -20,7 +20,7 @@ async function postRsvp(payload) {
 export function HeroSection() {
   return (
     <section className="hero" aria-labelledby="hero-title">
-      <div className="hero-photo" role="img" aria-label="Hoàng Thái và Huyền Nhu trong khoảnh khắc làm lễ bên biển"><CraneField placement="hero" /></div>
+      <div className="hero-photo" role="img" aria-label="Hoàng Thái và Huyền Nhu đứng bên bờ vịnh, giữa những khóm hoa"><CraneField placement="hero" /></div>
       <div className="hero-copy">
         <p className="kicker">Save our date · {wedding.date.display}</p>
         <h1 id="hero-title"><span>{wedding.couple.groom}</span><em>&amp;</em><span>{wedding.couple.bride}</span></h1>
@@ -36,7 +36,7 @@ export function StorySection() {
   return (
     <section id="story" className="story section-pad" aria-labelledby="story-title">
       <div className="section-intro"><p className="section-number">01</p><p className="kicker">Chuyện của chúng mình</p></div>
-      <div className="story-heading"><p className="handwritten">Có những điều giản dị,</p><h2 id="story-title">rồi bỗng trở thành<br /><em>cả một đời.</em></h2><div className="story-photo" role="img" aria-label="Khoảnh khắc cặp đôi trao lời hứa bên hoa"></div></div>
+      <div className="story-heading"><p className="handwritten">Có những điều giản dị,</p><h2 id="story-title">rồi bỗng trở thành<br /><em>cả một đời.</em></h2><div className="story-photo" role="img" aria-label="Hoàng Thái khẽ hôn lên trán Huyền Nhu bên bờ biển"></div></div>
       <div className="story-copy"><p>Từ những cuộc hẹn vô tình đến những bữa cơm đầy tiếng cười, chúng mình đã chọn nắm tay nhau đi tiếp. Và sẽ thật trọn vẹn nếu ngày vui ấy có bạn ở đó.</p><a className="inline-link" href="#rsvp">Đến chung vui cùng chúng mình <span>↗</span></a></div>
     </section>
   );
@@ -158,7 +158,7 @@ export function StaySection() {
   return (
     <section id="stay" className="stay" aria-labelledby="stay-title">
       <div className="stay-copy section-pad"><p className="section-number">03</p><p className="kicker">Một lời hẹn nhỏ</p><h2 id="stay-title">Hẹn bạn<br />trong <em>ngày vui.</em></h2><p>Một buổi chiều tháng mười một, thật nhiều tiếng cười, những cái ôm và lời chúc. Chúng mình mong được gặp bạn ở đó.</p><a className="inline-link" href="#rsvp">Gửi lời hồi đáp <span>↗</span></a></div>
-      <div className="stay-photo" role="img" aria-label="Hoàng Thái và Huyền Nhu trong khoảnh khắc làm lễ bên biển"><CraneField placement="stay" /></div>
+      <div className="stay-photo" role="img" aria-label="Bóng Hoàng Thái và Huyền Nhu trong hoàng hôn trên vịnh"><CraneField placement="stay" /></div>
     </section>
   );
 }
