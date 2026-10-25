@@ -3,7 +3,7 @@ import proposal from '../design/assets/gallery/proposal.webp';
 import imperialArch from '../design/assets/gallery/imperial-arch.webp';
 import underTheParasol from '../design/assets/gallery/under-the-parasol.webp';
 import onTheSteps from '../design/assets/gallery/on-the-steps.webp';
-import togetherOnTheSteps from '../design/assets/gallery/together-on-the-steps.webp';
+import onTheBridge from '../design/assets/gallery/on-the-bridge.webp';
 import satieGymnopedie from '../design/assets/music/satie-gymnopedie-1.mp3';
 
 export const wedding = {
@@ -75,13 +75,15 @@ export const schedule = [
   },
 ];
 
+// `focus` là object-position cho ảnh trong lưới gallery (desktop crop ảnh khá mạnh ở các ô ngang):
+// chỉnh để không cắt mất mặt. Bỏ trống = canh giữa.
 export const galleryPhotos = [
   { image: byTheLake, alt: 'Hoàng Thái và Huyền Nhu bên mặt hồ, dưới tán cây xanh', layout: 'ring' },
-  { image: proposal, alt: 'Hoàng Thái trao nhẫn cho Huyền Nhu giữa khu vườn', layout: 'proposal' },
+  { image: proposal, alt: 'Hoàng Thái trao nhẫn cho Huyền Nhu giữa khu vườn', layout: 'proposal', focus: '50% 15%' },
   { image: imperialArch, alt: 'Hoàng Thái và Huyền Nhu bên cổng vòm cổ', layout: 'arch' },
-  { image: underTheParasol, alt: 'Cặp đôi dưới chiếc ô giấy trong nắng', layout: 'parasol' },
+  { image: underTheParasol, alt: 'Cặp đôi nhìn nhau dưới chiếc ô giấy bên lan can cầu gỗ', layout: 'parasol', focus: '50% 40%' },
   { image: onTheSteps, alt: 'Khoảnh khắc thân mật của cặp đôi trên bậc thềm', layout: 'steps' },
-  { image: togetherOnTheSteps, alt: 'Hoàng Thái và Huyền Nhu ngồi bên nhau giữa những bậc đá', layout: 'together' },
+  { image: onTheBridge, alt: 'Hoàng Thái và Huyền Nhu sánh bước trên cây cầu gỗ bắc qua hồ', layout: 'together', focus: '50% 55%' },
 ];
 
 export const revealSelectors = [

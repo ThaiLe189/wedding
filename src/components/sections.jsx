@@ -135,7 +135,7 @@ export function GallerySection() {
         {galleryPhotos.map((photo, index) => (
           <figure className={`gallery-photo gallery-photo--${photo.layout}`} key={photo.layout}>
             <button type="button" className="gallery-photo-trigger" onClick={() => openPhoto(index)} aria-label={`Xem lớn: ${photo.alt}`}>
-              <img src={photo.image} alt={photo.alt} loading="lazy" />
+              <img src={photo.image} alt={photo.alt} loading="lazy" style={photo.focus ? { objectPosition: photo.focus } : undefined} />
             </button>
           </figure>
         ))}
