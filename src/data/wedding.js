@@ -16,7 +16,6 @@ export const wedding = {
     display: '22.11.2026',
     calendarStart: '20261122T030000Z',
     calendarEnd: '20261122T060000Z',
-    rsvpDeadline: '30.10.2026',
   },
   venue: {
     name: 'Trống Đồng Palace Long Biên',

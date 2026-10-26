@@ -198,7 +198,7 @@ export function RsvpSection() {
 
   return (
     <section id="rsvp" className="rsvp section-pad" aria-labelledby="rsvp-title">
-      <div className="rsvp-intro"><p className="section-number">04</p><p className="kicker">Một lời hồi đáp nhỏ</p><p className="handwritten">Có bạn, ngày vui sẽ đầy hơn.</p><h2 id="rsvp-title">Mình gặp nhau<br /><em>nhé?</em></h2><p>Vui lòng gửi lại lời hồi đáp trước ngày {wedding.date.rsvpDeadline} nhé.</p></div>
+      <div className="rsvp-intro"><p className="section-number">04</p><p className="kicker">Một lời hồi đáp nhỏ</p><p className="handwritten">Có bạn, ngày vui sẽ đầy hơn.</p><h2 id="rsvp-title">Mình gặp nhau<br /><em>nhé?</em></h2></div>
       <div className="rsvp-form-wrap">
         <form className="rsvp-form" onSubmit={submitRsvp}>
           <label>Họ và tên<input required name="name" autoComplete="name" placeholder="Tên bạn là gì nhỉ?" /></label>
