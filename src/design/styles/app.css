@@ -42,7 +42,6 @@ nav a,.kicker,.section-number{letter-spacing:.13em}
 .story-photo{outline:5px solid rgb(255 250 240/.78);outline-offset:7px;box-shadow:0 14px 30px rgb(83 57 25/.14)}
 .handwritten{color:var(--accent)}
 .guide-index,.time{color:var(--accent-dark)}
-.colour-notes i:nth-child(1){background:#fff8e8}.colour-notes i:nth-child(2){background:#c69a58}.colour-notes i:nth-child(3){background:#59786d}.colour-notes i:nth-child(4){background:#8f2127}
 
 .details{position:relative;overflow:hidden}
 .details::after{position:absolute;right:-3.5rem;bottom:-3rem;width:15rem;height:7rem;border:1px solid rgb(75 107 98/.26);border-top:0;border-radius:0 0 9rem 9rem;content:"";transform:rotate(-12deg);pointer-events:none}

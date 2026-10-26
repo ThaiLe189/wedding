@@ -25,10 +25,10 @@ export const wedding = {
     // 3D map in the "Đường đến" guide item. Coordinates are metres from Tasco Mall (x = east, z = south),
     // same frame as src/venue-map/venue-map.json. Points follow the OSM carriageway centrelines.
     // Car route: Nguyễn Văn Cừ → Long Biên interchange → southbound Nguyễn Văn Linh past Tasco (it is across the
-    // median) → U-turn in the left-turn lanes at the Phố Việt Hưng junction → northbound frontage → first right, into the car park's south corner gate → aisle up to the doors.
+    // median) → U-turn in the left-turn lanes at the Phố Việt Hưng junction → northbound frontage → first right, through the car gate in the middle of the fence (just right of the plaza) → up the lane beside the plaza to the doors.
     // Labels with view: 'parking' / 'entrance' (or an array of views) only show in that camera preset.
     map: {
-      route: [[-640, -365], [-595, -412], [-548, -428], [-493, -364], [-440, -289], [-379, -208], [-263, -42], [-175, 92], [-159, 100], [-137, 135], [-124, 155], [-104, 188], [-95, 202], [-84, 205], [-78, 192], [-88, 168], [-93, 145], [-84, 126], [-54, 104], [-23, 84], [-33, 68], [-42, 50], [-48, 30]],
+      route: [[-640, -365], [-595, -412], [-548, -428], [-493, -364], [-440, -289], [-379, -208], [-263, -42], [-175, 92], [-159, 100], [-137, 135], [-124, 155], [-104, 188], [-95, 202], [-84, 205], [-78, 192], [-88, 168], [-102, 149], [-112, 133], [-130, 104], [-129, 92], [-119, 83], [-93, 67], [-59, 46], [-50, 38], [-48, 30]],
       // Motorbikes: same U-turn, then north on Nguyễn Văn Linh and right into the slip lane to the bike lot (north-west corner)
       motoRoute: [[-88, 168], [-102, 149], [-150, 75], [-193, 8], [-185, 3], [-167, -10], [-142, -26], [-115, -42], [-92, -50]],
       labels: [
@@ -38,12 +38,12 @@ export const wedding = {
         { text: 'Nguyễn Văn Linh', at: [-330, -160], h: 4, tone: 'road' },
         { text: 'Vũ Đức Thận', at: [-150, -460], h: 4, tone: 'road' },
         { text: 'Gửi ô tô', at: [-105, 55], h: 6, tone: 'parking', view: 'parking' },
-        { text: 'Gửi xe máy', at: [-82, -46], h: 6, tone: 'parking', view: 'parking' },
+        { text: 'Cổng xe máy', at: [-82, -46], h: 6, tone: 'turn', view: ['overview', 'parking'], gate: true },
         { text: 'Bãi ô tô phụ', at: [75, 95], h: 1, tone: 'parking', view: 'parking' },
         { text: 'Bãi đỗ trên mái', at: [35, 30], h: 19, tone: 'parking', view: 'parking' },
         { text: 'Nguyễn Văn Linh', at: [-215, 60], h: 4, tone: 'road', view: 'parking' },
         { text: '↶ Quay đầu ở ngã ba Việt Hưng', at: [-80, 225], h: 1, tone: 'turn', view: ['overview', 'parking'] },
-        { text: 'Cổng ô tô', at: [-105, 125], h: 14, tone: 'turn', view: 'parking' },
+        { text: 'Cổng ô tô', at: [-119, 83], h: 14, tone: 'turn', view: ['overview', 'parking'], gate: true },
         { text: 'Thảm đỏ · cổng hoa', at: [-66, 34], h: 1, view: 'entrance' },
       ],
     },

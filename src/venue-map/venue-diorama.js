@@ -94,9 +94,9 @@ function buildTags(container, labels) {
   const layer = document.createElement('div');
   layer.className = 'venue-diorama-tags';
   layer.setAttribute('aria-hidden', 'true');
-  const tags = labels.map(({ text, at, h = 0, tone = 'place', view = 'overview' }) => {
+  const tags = labels.map(({ text, at, h = 0, tone = 'place', view = 'overview', gate = false }) => {
     const el = document.createElement('span');
-    el.className = `venue-diorama-tag venue-diorama-tag--${tone}`;
+    el.className = `venue-diorama-tag venue-diorama-tag--${tone}${gate ? ' venue-diorama-tag--gate' : ''}`;
     el.dataset.view = view;
     el.textContent = text;
     layer.append(el);
@@ -141,7 +141,7 @@ function buildViewSwitch(container, onPick) {
 
 /**
  * @param {HTMLElement} container
- * @param {{ route: number[][], motoRoute: number[][], welcome?: string, labels: { text: string, at: number[], h?: number, tone?: string, view?: string }[], reducedMotion?: boolean }} options
+ * @param {{ route: number[][], motoRoute: number[][], welcome?: string, labels: { text: string, at: number[], h?: number, tone?: string, view?: string | string[], gate?: boolean }[], reducedMotion?: boolean }} options
  * @returns {() => void} cleanup
  */
 export function mountVenueDiorama(container, { route, motoRoute, labels, welcome = '', reducedMotion = false }) {

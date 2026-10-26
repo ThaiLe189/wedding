@@ -5,7 +5,7 @@
 // Nguyễn Văn Linh — plus the wedding touches at the doors: canopy, red carpet, flower arch, couple, guests.
 import * as THREE from 'three';
 import {
-  MAP, SCALE, LIFT, PROP, VENUE_HEIGHT, VENUE_FOOTPRINT, ENTRANCE, PLAZA, entranceAhead, toWorld, metres,
+  MAP, SCALE, LIFT, PROP, VENUE_HEIGHT, VENUE_FOOTPRINT, ENTRANCE, PLAZA, CAR_GATE, entranceAhead, toWorld, metres,
   smooth, rng, hash, signedArea, centroid, insidePolygon, pushUp, fillPolygon, meshFrom, std, instanced,
   mergeColoured, box, walker, canvasTexture, onPlaza,
 } from './geometry.js';
@@ -40,49 +40,68 @@ function glassBay(g, x, y, w, h, pxPerM, light = false) {
   for (const f of [0.35, 0.68]) g.fillRect(x, y + h * f, w, 3);
 }
 
-// One canvas for the whole entrance facade; u runs left → right as seen from the car park
+// One canvas for the whole entrance facade; u runs left → right as seen from the car park.
+// Layout follows the real front: slanted glass wings at both ends, a clad block of square tenant
+// boards either side, and four full-height glass bays in the middle with an LED screen up top.
 function frontTexture(widthM, heightM) {
   const W = 2048, H = 320, px = W / widthM, py = H / heightM;
   return canvasTexture(W, H, (g) => {
     cladding(g, 0, 0, W, H);
-    const centre = 26, side = (widthM - centre) / 2;
-    const segments = [];
-    for (let acc = 0, k = 0; acc < side - 0.1; k++) {
-      const w = Math.min(k % 2 ? 9 : 11, side - acc);
-      segments.push({ x: acc, w, kind: k % 2 ? 'panel' : 'glass' });
-      acc += w;
-    }
-    const mirrored = segments.map((s) => ({ ...s, x: widthM - s.x - s.w }));
     const top = 1.6 * py, bottom = H - 0.7 * py;
-    [...segments, ...mirrored].forEach((s, i) => {
-      if (s.kind === 'glass') glassBay(g, s.x * px + 4, top, s.w * px - 8, bottom - top, px);
-      else {
-        const [label, colour] = TENANTS[i % TENANTS.length];
+    const wing = 9, centre = 46, block = (widthM - centre) / 2 - wing;
+    // Mirror each feature onto both halves: x is metres from the nearest end
+    const both = (x, w, draw) => { draw(x * px, w * px); draw((widthM - x - w) * px, w * px); };
+
+    // Wings: glass trapezoids leaning out towards the ends, wider at the top
+    for (const flip of [false, true]) {
+      const edge = (m) => (flip ? widthM - m : m) * px;
+      g.save();
+      g.beginPath();
+      g.moveTo(edge(0.4), top);
+      g.lineTo(edge(wing - 0.6), top);
+      g.lineTo(edge(wing - 0.6), bottom);
+      g.lineTo(edge(3.2), bottom);
+      g.closePath();
+      g.clip();
+      glassBay(g, Math.min(edge(0), edge(wing)), top, wing * px, bottom - top, px, true);
+      g.restore();
+    }
+
+    // Clad blocks: two big square boards on floors 2–3, a narrow glazed slot, shop windows below
+    let n = 0;
+    both(wing, block, (x, w) => {
+      for (const f of [0.14, 0.46]) {
+        const [label, colour] = TENANTS[n++ % TENANTS.length];
+        const bx = x + w * f, bw = 5.4 * px;
         g.fillStyle = colour;
-        g.fillRect((s.x + 1.2) * px, 3.2 * py, (s.w - 2.4) * px, 3.6 * py);
+        g.fillRect(bx, 3.6 * py, bw, 5 * py);
         g.fillStyle = '#ffffff';
-        g.font = `bold ${Math.round(1.6 * py)}px sans-serif`;
+        g.font = `bold ${Math.round(1.05 * py)}px sans-serif`;
         g.textAlign = 'center';
-        g.fillText(label, (s.x + s.w / 2) * px, 5.6 * py);
-        glassBay(g, (s.x + 1) * px, H - 4.6 * py, (s.w - 2) * px, 3.9 * py, px, true); // shop window
+        g.fillText(label, bx + bw / 2, 6.5 * py);
       }
+      glassBay(g, x + w * 0.8, top, 2.4 * px, bottom - top - 4.4 * py, px);
+      glassBay(g, x + 0.8 * px, H - 4.6 * py, w - 1.6 * px, 3.9 * py, px, true);
     });
-    // Glazed centre entrance between white columns, with the Trống Đồng Palace banner on floor 2–3
-    const cx = side * px, cw = centre * px;
-    glassBay(g, cx, top, cw, bottom - top, px, true);
-    g.fillStyle = '#eef0f0';
-    for (let k = 0; k <= centre; k += centre / 6) g.fillRect(cx + k * px - 4, top, 8, bottom - top);
+
+    // Centre: four tall glass bays between clad pilasters
+    const cx = (wing + block) * px, bay = (centre - 5 * 2) / 4;
+    for (let k = 0; k < 4; k++) glassBay(g, cx + (2 + k * (bay + 2)) * px, top, bay * px, bottom - top, px, k === 1 || k === 2);
+    // LED screen across the middle two bays, showing the Trống Đồng Palace banner
+    const sx = cx + (2 + bay * 0.55) * px, sw = (centre - 4 - bay * 1.1) * px;
+    g.fillStyle = '#14181c';
+    g.fillRect(sx, 2 * py, sw, 4.4 * py);
     g.fillStyle = '#8f2d26';
-    g.fillRect(cx + 2 * px, 2.4 * py, cw - 4 * px, 3.4 * py);
+    g.fillRect(sx + 0.4 * px, 2.3 * py, sw - 0.8 * px, 3.8 * py);
     g.strokeStyle = '#e8c79a';
     g.lineWidth = 3;
-    g.strokeRect(cx + 2.3 * px, 2.7 * py, cw - 4.6 * px, 2.8 * py);
+    g.strokeRect(sx + 0.8 * px, 2.6 * py, sw - 1.6 * px, 3.2 * py);
     g.fillStyle = '#f6dcae';
     g.textAlign = 'center';
     g.font = `600 ${Math.round(1.5 * py)}px Georgia, serif`;
-    g.fillText('TRỐNG ĐỒNG PALACE', cx + cw / 2, 4.3 * py);
+    g.fillText('TRỐNG ĐỒNG PALACE', sx + sw / 2, 4.4 * py);
     g.font = `500 ${Math.round(0.75 * py)}px sans-serif`;
-    g.fillText('TIỆC CƯỚI · TẦNG 2', cx + cw / 2, 5.4 * py);
+    g.fillText('TIỆC CƯỚI · TẦNG 2', sx + sw / 2, 5.5 * py);
     g.fillStyle = '#3a3f44';
     g.fillRect(0, bottom, W, H - bottom);
   });
@@ -230,7 +249,7 @@ function buildForecourt() {
     if (inx * (lcx - a[0]) + inz * (lcz - a[1]) < 0) { inx = -inx; inz = -inz; }
     for (let d = 1.5; d < len; d += 3) {
       const p = [a[0] + ux * d, a[1] + uz * d];
-      if (onPlaza([p[0] + inx * 2, p[1] + inz * 2])) continue;
+      if (onPlaza([p[0] + inx * 2, p[1] + inz * 2]) || Math.hypot(p[0] - CAR_GATE[0], p[1] - CAR_GATE[1]) < 4.5) continue;
       fence.push({ at: toWorld(p), yaw: Math.atan2(ux, uz), s: [0.14 * SCALE, metres(1.1), 3 * SCALE] });
       if (Math.round(d / 3) % 3 === 0) palms.push([p[0] + inx * 2.5, p[1] + inz * 2.5]);
     }

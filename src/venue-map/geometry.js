@@ -60,6 +60,8 @@ export const ENTRANCE = (() => {
 export const entranceAhead = (m, side = 0) => [ENTRANCE.at[0] + ENTRANCE.normal[0] * m + ENTRANCE.along[0] * side, ENTRANCE.at[1] + ENTRANCE.normal[1] * m + ENTRANCE.along[1] * side];
 // Pedestrian plaza from the doors straight out towards the road
 export const PLAZA = { width: 14, length: 95 };
+// Sliding car gate in the road fence, just right of the plaza as seen from the road
+export const CAR_GATE = entranceAhead(91, 14);
 export function onPlaza([x, z]) {
   const dx = x - ENTRANCE.at[0], dz = z - ENTRANCE.at[1];
   const ahead = dx * ENTRANCE.normal[0] + dz * ENTRANCE.normal[1], side = dx * ENTRANCE.along[0] + dz * ENTRANCE.along[1];
