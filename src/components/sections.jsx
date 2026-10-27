@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { galleryPhotos, wedding, schedule } from '../data/wedding.js';
-import { CraneField, RsvpBloom } from './Decorations.jsx';
+import { RsvpBloom } from './Decorations.jsx';
 
 const RSVP_ENDPOINT = import.meta.env.VITE_RSVP_ENDPOINT;
 
@@ -20,7 +20,7 @@ async function postRsvp(payload) {
 export function HeroSection() {
   return (
     <section className="hero" aria-labelledby="hero-title">
-      <div className="hero-photo" role="img" aria-label="Hoàng Thái và Huyền Nhu đứng bên bờ vịnh, giữa những khóm hoa"><CraneField placement="hero" /></div>
+      <div className="hero-photo" role="img" aria-label="Hoàng Thái và Huyền Nhu đứng bên bờ vịnh, giữa những khóm hoa"></div>
       <div className="hero-copy">
         <p className="kicker">Save our date · {wedding.date.display}</p>
         <h1 id="hero-title"><span>{wedding.couple.groom}</span><em>&amp;</em><span>{wedding.couple.bride}</span></h1>
@@ -157,7 +157,7 @@ export function StaySection() {
   return (
     <section id="stay" className="stay" aria-labelledby="stay-title">
       <div className="stay-copy section-pad"><p className="section-number">03</p><p className="kicker">Một lời hẹn nhỏ</p><h2 id="stay-title">Hẹn bạn<br />trong <em>ngày vui.</em></h2><p>Một buổi chiều tháng mười một, thật nhiều tiếng cười, những cái ôm và lời chúc. Chúng mình mong được gặp bạn ở đó.</p><a className="inline-link" href="#rsvp">Gửi lời hồi đáp <span>↗</span></a></div>
-      <div className="stay-photo" role="img" aria-label="Bóng Hoàng Thái và Huyền Nhu trong hoàng hôn trên vịnh"><CraneField placement="stay" /></div>
+      <div className="stay-photo" role="img" aria-label="Bóng Hoàng Thái và Huyền Nhu trong hoàng hôn trên vịnh"></div>
     </section>
   );
 }

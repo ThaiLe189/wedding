@@ -3,7 +3,6 @@ import { music, wedding } from '../data/wedding.js';
 import introCard from '../design/assets/intro/mat-trai.webp';
 import introUnderlay from '../design/assets/intro/mat-phai.webp';
 import '../intro/wedding-intro.js';
-import { CraneField } from './Decorations.jsx';
 
 /**
  * Màn thiệp mở đầu: bọc Web Component <wedding-intro> (src/intro/wedding-intro.js).
@@ -40,7 +39,6 @@ export function SiteIntro({ isLeaving, onEnter }) {
       aria-modal="true"
       aria-label={`Thiệp mời cưới của ${wedding.couple.groom} và ${wedding.couple.bride}`}
     >
-      <CraneField placement="intro" />
       <span className="intro-cloud intro-cloud-one" aria-hidden="true"></span>
       <span className="intro-cloud intro-cloud-two" aria-hidden="true"></span>
       <span className="intro-cloud intro-cloud-three" aria-hidden="true"></span>
@@ -164,6 +162,7 @@ export function Footer() {
       <a className="monogram" href="#top">HT<span>×</span>HN</a>
       <p>Được chuẩn bị bằng tất cả yêu thương.</p>
       <a href="#rsvp">Xác nhận tham dự ↗</a>
+      {music.credit && <small className="music-credit"><a href={music.credit.href} target="_blank" rel="noreferrer">{music.credit.text}</a></small>}
     </footer>
   );
 }

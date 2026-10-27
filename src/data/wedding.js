@@ -4,7 +4,7 @@ import imperialArch from '../design/assets/gallery/imperial-arch.webp';
 import underTheParasol from '../design/assets/gallery/under-the-parasol.webp';
 import onTheSteps from '../design/assets/gallery/on-the-steps.webp';
 import togetherOnTheSteps from '../design/assets/gallery/together-on-the-steps.webp';
-import satieGymnopedie from '../design/assets/music/satie-gymnopedie-1.mp3';
+import debussyArabesque from '../design/assets/music/debussy-arabesque-1.mp3';
 
 export const wedding = {
   couple: {
@@ -49,11 +49,17 @@ export const wedding = {
   },
 };
 
-// Nhạc nền: Gymnopédie No. 1 (Erik Satie), piano, Michael Laucke chơi. Public domain, không cần ghi công.
-// Đã cắt lặng đầu/cuối và chuẩn hoá âm lượng (nhỏ nhẹ). Nguồn:
-// https://commons.wikimedia.org/wiki/File:Satie_Gymnopedie_No_1_performed_by_Michael_Laucke.flac
-// Đổi bài: thay file trong src/design/assets/music/ (nhớ chọn bản không bắt buộc ghi công, hoặc thêm lại dòng ghi công).
-export const music = { src: satieGymnopedie };
+// Nhạc nền: Première Arabesque (Claude Debussy), piano, Patrizia Prati chơi. Bản thu CC BY-SA 4.0 nên BẮT BUỘC ghi công
+// (dòng `credit` hiện ở footer). Đã cắt lặng đầu/cuối, fade cuối bài và chuẩn hoá âm lượng (nhỏ nhẹ). Nguồn:
+// https://commons.wikimedia.org/wiki/File:Claude_Debussy_-_Premi%C3%A8re_Arabesque_-_Patrizia_Prati.ogg
+// Đổi bài: thay file trong src/design/assets/music/ và sửa `credit` (bản public domain thì để credit null).
+export const music = {
+  src: debussyArabesque,
+  credit: {
+    text: 'Nhạc nền: Debussy – Première Arabesque, Patrizia Prati chơi (CC BY-SA 4.0)',
+    href: 'https://commons.wikimedia.org/wiki/File:Claude_Debussy_-_Premi%C3%A8re_Arabesque_-_Patrizia_Prati.ogg',
+  },
+};
 
 export const schedule = [
   {

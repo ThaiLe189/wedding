@@ -60,7 +60,8 @@ nav a,.kicker,.section-number{letter-spacing:.13em}
 .stay-photo span{color:#f7d799}
 .rsvp-form input:not([type=radio]),.rsvp-form select{border-color:#bfae92}
 .rsvp-form input:focus,.rsvp-form select:focus{border-color:var(--accent);box-shadow:0 2px 0 var(--accent)}
-footer{border-color:var(--line);background:#eee1cd}
+footer{border-color:var(--line);background:#eee1cd;flex-wrap:wrap}
+.music-credit{flex-basis:100%;margin-top:.9rem;font:400 .58rem var(--mono);letter-spacing:.04em;opacity:.7}.music-credit a{color:var(--muted);text-decoration:none}.music-credit a:hover{text-decoration:underline}
 
 /* The story becomes the invitation's illustrated centre spread. */
 .story{
