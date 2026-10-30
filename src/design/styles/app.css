@@ -42,7 +42,6 @@ nav a,.kicker,.section-number{letter-spacing:.13em}
 .story-photo{outline:5px solid rgb(255 250 240/.78);outline-offset:7px;box-shadow:0 14px 30px rgb(83 57 25/.14)}
 .handwritten{color:var(--accent)}
 .guide-index,.time{color:var(--accent-dark)}
-.colour-notes i:nth-child(1){background:#fff8e8}.colour-notes i:nth-child(2){background:#c69a58}.colour-notes i:nth-child(3){background:#59786d}.colour-notes i:nth-child(4){background:#8f2127}
 
 .details{position:relative;overflow:hidden}
 .details::after{position:absolute;right:-3.5rem;bottom:-3rem;width:15rem;height:7rem;border:1px solid rgb(75 107 98/.26);border-top:0;border-radius:0 0 9rem 9rem;content:"";transform:rotate(-12deg);pointer-events:none}
@@ -61,7 +60,8 @@ nav a,.kicker,.section-number{letter-spacing:.13em}
 .stay-photo span{color:#f7d799}
 .rsvp-form input:not([type=radio]),.rsvp-form select{border-color:#bfae92}
 .rsvp-form input:focus,.rsvp-form select:focus{border-color:var(--accent);box-shadow:0 2px 0 var(--accent)}
-footer{border-color:var(--line);background:#eee1cd}
+footer{border-color:var(--line);background:#eee1cd;flex-wrap:wrap}
+.music-credit{flex-basis:100%;margin-top:.9rem;font:400 .58rem var(--mono);letter-spacing:.04em;opacity:.7}.music-credit a{color:var(--muted);text-decoration:none}.music-credit a:hover{text-decoration:underline}
 
 /* The story becomes the invitation's illustrated centre spread. */
 .story{
