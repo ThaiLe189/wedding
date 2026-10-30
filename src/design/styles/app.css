@@ -8,7 +8,6 @@
   --accent-dark:#66141b;
   --gold:#b48749;
   --jade:#4b6b62;
-  --serif:"Cormorant Garamond",Georgia,serif;
 }
 
 #root{min-height:100dvh}
@@ -61,7 +60,7 @@ nav a,.kicker,.section-number{letter-spacing:.13em}
 .rsvp-form input:not([type=radio]),.rsvp-form select{border-color:#bfae92}
 .rsvp-form input:focus,.rsvp-form select:focus{border-color:var(--accent);box-shadow:0 2px 0 var(--accent)}
 footer{border-color:var(--line);background:#eee1cd;flex-wrap:wrap}
-.music-credit{flex-basis:100%;margin-top:.9rem;font:400 .58rem var(--mono);letter-spacing:.04em;opacity:.7}.music-credit a{color:var(--muted);text-decoration:none}.music-credit a:hover{text-decoration:underline}
+.music-credit{flex-basis:100%;margin-top:.9rem;font:400 .58rem var(--sans);letter-spacing:.04em;opacity:.7}.music-credit a{color:var(--muted);text-decoration:none}.music-credit a:hover{text-decoration:underline}
 
 /* The story becomes the invitation's illustrated centre spread. */
 .story{
@@ -157,7 +156,7 @@ footer{border-color:var(--line);background:#eee1cd;flex-wrap:wrap}
 .guestbook .kicker{margin:0 0 1.2rem}
 .guestbook-list{display:flex;flex-direction:column;gap:1.3rem;max-height:340px;margin:0;padding:0;list-style:none;overflow-y:auto}
 .guestbook-list li p{margin:0 0 .3rem;color:var(--ink);font:italic 1.02rem/1.6 var(--serif)}
-.guestbook-list li span{color:var(--muted);font:500 .62rem var(--mono);letter-spacing:.06em;text-transform:uppercase}
+.guestbook-list li span{color:var(--muted);font:500 .62rem var(--sans);letter-spacing:.06em;text-transform:uppercase}
 
 /* Music toggle (MusicToggle in Layout.jsx): round button, four bars dance while playing */
 .music-toggle{position:fixed;right:clamp(14px,2.4vw,28px);bottom:clamp(14px,2.4vw,28px);z-index:30;display:grid;place-items:center;width:46px;height:46px;padding:0;border:1px solid var(--line);border-radius:50%;background:rgb(248 249 247/.88);backdrop-filter:blur(10px);box-shadow:0 8px 22px rgb(32 43 52/.14);color:var(--accent);cursor:pointer;transition:opacity .4s ease,transform .25s ease}
@@ -173,3 +172,8 @@ footer{border-color:var(--line);background:#eee1cd;flex-wrap:wrap}
 body.intro-active .music-toggle{opacity:0;pointer-events:none}
 @media(prefers-reduced-motion:reduce){.music-toggle.is-playing i{animation:none;height:12px}}
 footer{padding-right:max(clamp(1.5rem,5vw,5.5rem),84px)}
+
+.details-heading > .kicker{
+  font-size:clamp(1rem,1.5vw,1.25rem);
+  line-height:1.5;
+}

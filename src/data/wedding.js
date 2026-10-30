@@ -64,19 +64,19 @@ export const music = {
 export const schedule = [
   {
     time: '10:00',
-    title: 'Đón bạn',
-    description: 'Mời bạn đến sớm một chút, cùng trò chuyện và lưu lại những khoảnh khắc đầu ngày với chúng mình.',
+    title: 'Đón khách',
+    description: 'Đón tiếp và chụp ảnh cùng cô dâu, chú rể trước giờ làm lễ.',
   },
   {
     time: '10:30',
     title: 'Lễ thành hôn',
-    description: 'Xin mời bạn cùng chứng kiến khoảnh khắc chúng mình nắm tay nhau và nói lời hẹn ước.',
+    description: 'Cùng hai gia đình chứng kiến nghi thức thành hôn của chúng mình.',
     featured: true,
   },
   {
     time: '11:00',
     title: 'Tiệc mừng',
-    description: 'Mời bạn ở lại chung vui trong bữa tiệc nhỏ, với những lời chúc lành và thật nhiều tiếng cười.',
+    description: 'Mời bạn dùng bữa và nâng ly chúc mừng cùng hai gia đình.',
   },
 ];
 

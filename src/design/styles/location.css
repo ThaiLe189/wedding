@@ -10,7 +10,7 @@
 .map-embed iframe{display:block;width:100%;height:260px;border:0}
 
 .guest-guide{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:clamp(3rem,9vw,10rem);border-bottom:1px solid var(--line);background:var(--canvas)}
-.guide-heading h2{margin-bottom:0}.guide-list{border-top:1px solid var(--line)}.guide-item{display:grid;grid-template-columns:115px minmax(0,1fr);gap:1.5rem;padding:2.4rem 0;border-bottom:1px solid var(--line)}.guide-item:last-child{border-bottom:0}.guide-index{margin:0;color:var(--accent);font:500 .62rem var(--mono);letter-spacing:.07em;text-transform:uppercase}.guide-item h3{margin:0 0 .7rem;font:400 clamp(1.5rem,2.2vw,2rem)/1.05 var(--serif);letter-spacing:-.045em}.guide-item div>p{max-width:430px;margin:0;color:var(--muted);font-size:.94rem}.guide-item .inline-link{margin-top:1.45rem}
+.guide-heading h2{margin-bottom:0}.guide-list{border-top:1px solid var(--line)}.guide-item{display:grid;grid-template-columns:115px minmax(0,1fr);gap:1.5rem;padding:2.4rem 0;border-bottom:1px solid var(--line)}.guide-item:last-child{border-bottom:0}.guide-index{margin:0;color:var(--accent);font:500 .62rem var(--sans);letter-spacing:.07em;text-transform:uppercase}.guide-item h3{margin:0 0 .7rem;font:400 clamp(1.5rem,2.2vw,2rem)/1.05 var(--serif);letter-spacing:-.045em}.guide-item div>p{max-width:430px;margin:0;color:var(--muted);font-size:.94rem}.guide-item .inline-link{margin-top:1.45rem}
 @media(max-width:760px){.guest-guide{grid-template-columns:minmax(0,1fr);gap:2.4rem}.guide-item{grid-template-columns:minmax(0,1fr);gap:.8rem;padding:1.8rem 0}}
 
 .rsvp-form select{display:block;width:100%;margin-top:10px;padding:10px 30px 10px 0;border:0;border-bottom:1px solid #9ca8a8;border-radius:0;background:transparent;color:var(--ink);font:400 1rem var(--sans);outline:none}.rsvp-form select:focus{border-color:var(--accent);box-shadow:0 2px 0 var(--accent)}.guest-count-field[hidden]{display:none!important}
@@ -23,7 +23,7 @@
 .venue-diorama{position:relative;height:clamp(320px,42vw,440px);overflow:hidden;border:1px solid var(--line);background:radial-gradient(ellipse at 50% 40%,#fbf6ec 0,#efe4d1 70%,#e6d7bf 100%);cursor:grab}
 .venue-diorama:active{cursor:grabbing}
 .venue-diorama canvas{display:block}
-.venue-diorama-frame figcaption{margin-top:.55rem;color:var(--muted);font:500 .58rem var(--mono);letter-spacing:.06em;text-transform:uppercase}
+.venue-diorama-frame figcaption{margin-top:.55rem;color:var(--muted);font:500 .58rem var(--sans);letter-spacing:.06em;text-transform:uppercase}
 .venue-diorama-tags{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .8s ease}
 .venue-diorama.is-ready .venue-diorama-tags{opacity:1}
 .venue-diorama-tag{position:absolute;left:0;top:0;padding:4px 8px;white-space:nowrap;border:1px solid var(--line);border-radius:999px;background:rgb(248 249 247/.82);backdrop-filter:blur(8px);color:var(--ink);font:500 .72rem var(--sans);will-change:transform;transition:opacity .3s}

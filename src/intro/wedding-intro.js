@@ -1,3 +1,5 @@
+import waxSeal from '../design/assets/intro/wax-seal-tn.webp';
+
 /* Wedding invitation: scalloped left overlay above an intact rectangular right sheet and raised die-cut layers. */
 (() => {
   const script = document.currentScript?.src;
@@ -17,7 +19,7 @@
       catch { destination = new URL('https://thai-nhu-wedding.hoangthaile.com/'); }
       root.innerHTML = `
       <style>
-      :host{display:block;color:#742d31;font-family:Georgia,'Times New Roman',serif;-webkit-tap-highlight-color:transparent}
+      :host{display:block;color:#742d31;font-family:var(--sans,Arial,sans-serif);-webkit-tap-highlight-color:transparent}
       *{box-sizing:border-box}button,a{font:inherit}button{cursor:pointer}button:disabled{cursor:wait}button:focus-visible,a:focus-visible{outline:2px solid #8b682f;outline-offset:5px}[hidden]{display:none!important}
       .invitation{position:relative;min-height:650px;height:100svh;overflow:hidden;background:radial-gradient(ellipse at 48% 36%,#fffcf4 0%,#efe4d2 67%,#dac7ab 100%);isolation:isolate}
       .invitation::before{content:'';position:absolute;inset:0;pointer-events:none;opacity:.24;background:repeating-linear-gradient(113deg,transparent 0 79px,#fffdf666 80px 82px,transparent 84px 140px);filter:blur(12px)}
@@ -25,7 +27,7 @@
       :host([transparent]) .invitation{background:transparent}
       :host([transparent]) .invitation::before{display:none}
       /* Chữ dùng đúng font/màu của web qua CSS custom property (xuyên được shadow DOM), có fallback. */
-      .heading{position:absolute;z-index:5;inset:30px 0 auto;text-align:center;font:500 .6rem/1.5 var(--mono,Arial,sans-serif);letter-spacing:.32em;text-transform:uppercase;color:#8a6f4c;opacity:0;animation:intro-fade .9s .35s cubic-bezier(.16,1,.3,1) forwards}
+      .heading{position:absolute;z-index:5;inset:30px 0 auto;text-align:center;font:500 .6rem/1.5 var(--sans,Arial,sans-serif);letter-spacing:.32em;text-transform:uppercase;color:#8a6f4c;opacity:0;animation:intro-fade .9s .35s cubic-bezier(.16,1,.3,1) forwards}
       .subheading{display:block;font:italic 500 1.55rem/1.3 var(--serif,Georgia,serif);letter-spacing:0;text-transform:none;color:var(--accent-dark,#6e171c);margin-top:8px;opacity:0;animation:intro-fade .9s .6s cubic-bezier(.16,1,.3,1) forwards}
       .viewport{position:absolute;inset:104px 0 100px;perspective:1600px;display:grid;place-items:center;touch-action:pan-y;user-select:none}
       /* .float: bay vào rồi lơ lửng (CSS animation). .tilt: nghiêng theo chuột/cảm biến (inline transform). */
@@ -67,16 +69,21 @@
       .back .back-art{display:none}
       .crease{position:absolute;inset:0 auto 0 0;width:12px;background:linear-gradient(90deg,#6347232b,transparent);pointer-events:none;transform:translateZ(1px)}
       .wing-right .crease{left:auto;right:0;transform:rotateY(180deg)}
+      /* Đai giấy can ôm cả hai cánh; ấn sáp nằm nổi trên đai như thiệp thật. */
+      .belly-band{position:absolute;left:-.6%;top:34%;width:101.2%;height:26%;transform:translateZ(15px);pointer-events:none}
+      .vellum{position:absolute;inset:0;border-top:1px solid #fffaf081;border-bottom:1px solid #a18b6d38;background:linear-gradient(90deg,#cbbba16b 0%,#f4ebdc8c 3%,#f8efe185 48%,#f3e8d68c 97%,#baa78c70 100%);-webkit-backdrop-filter:blur(2.5px);backdrop-filter:blur(2.5px);box-shadow:0 3px 5px #4b321b1c,inset 0 1px 1px #fffdf044}
+      .vellum::after{content:'';position:absolute;inset:0;opacity:.18;background:repeating-linear-gradient(7deg,#fff9ee30 0 1px,transparent 1px 3px),repeating-linear-gradient(97deg,#a28b7018 0 1px,transparent 1px 4px)}
+      .wax-seal{position:absolute;left:50%;top:50%;display:block;width:29%;height:auto;aspect-ratio:1;object-fit:contain;transform:translate(-50%,-50%);filter:drop-shadow(1px 3px 1px #421a135c) drop-shadow(2px 5px 4px #50321f38)}
       .hit{position:absolute;inset:0;border:0;background:transparent;color:transparent;transform:translateZ(1px);width:100%;height:100%;padding:0}
       .controls{position:absolute;z-index:10;bottom:26px;left:12px;right:12px;display:flex;flex-direction:column;align-items:center;gap:12px;opacity:0;animation:intro-fade .9s 2.55s cubic-bezier(.16,1,.3,1) forwards}
-      .primary{border:1px solid var(--accent,#8f2127);background:var(--accent,#8f2127);color:#fff5e6;padding:0 30px;font:500 .66rem/1 var(--mono,Arial,sans-serif);letter-spacing:.16em;text-transform:uppercase;min-height:46px;border-radius:0;box-shadow:0 12px 26px rgb(74 30 26/.24);transition:transform .25s cubic-bezier(.16,1,.3,1),background .25s,box-shadow .25s}
+      .primary{border:1px solid var(--accent,#8f2127);background:var(--accent,#8f2127);color:#fff5e6;padding:0 30px;font:500 .66rem/1 var(--sans,Arial,sans-serif);letter-spacing:.16em;text-transform:uppercase;min-height:46px;border-radius:0;box-shadow:0 12px 26px rgb(74 30 26/.24);transition:transform .25s cubic-bezier(.16,1,.3,1),background .25s,box-shadow .25s}
       .primary:not(:disabled){animation:intro-pulse 2.8s 3.55s ease-in-out infinite}
       .primary:hover{background:var(--accent-dark,#6e171c);transform:translateY(-2px);box-shadow:0 16px 30px rgb(74 30 26/.28)}.primary:disabled{opacity:.55;animation:none}
       @keyframes intro-pulse{0%,100%{box-shadow:0 12px 26px rgb(74 30 26/.24),0 0 0 0 rgb(143 33 39/.35)}50%{box-shadow:0 12px 26px rgb(74 30 26/.24),0 0 0 9px rgb(143 33 39/0)}}
       .hint{height:16px;font:400 .68rem/1.5 var(--sans,Arial,sans-serif);color:#7c6448;margin:0}
       .end-actions{display:flex;gap:20px;align-items:center}
-      .enter{display:inline-flex;align-items:center;min-height:44px;padding:12px 22px;background:#782d34;color:#fff8e9;text-decoration:none;font:11px/1.5 Arial,sans-serif;letter-spacing:.06em}
-      .close{border:0;background:transparent;color:#806547;text-decoration:underline;text-underline-offset:4px;padding:12px 4px;font:11px Arial,sans-serif;min-height:44px}
+      .enter{display:inline-flex;align-items:center;min-height:44px;padding:12px 22px;background:#782d34;color:#fff8e9;text-decoration:none;font:400 11px/1.5 var(--sans,Arial,sans-serif);letter-spacing:.06em}
+      .close{border:0;background:transparent;color:#806547;text-decoration:underline;text-underline-offset:4px;padding:12px 4px;font:400 11px var(--sans,Arial,sans-serif);min-height:44px}
       .sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
       :host([contained]) .invitation{height:640px;min-height:640px}
       :host([overlay]){position:fixed;inset:0;z-index:99999}
@@ -98,6 +105,10 @@
               <div class="face front"><img class="right-card-asset" alt="Tấm thiệp bên phải hình chữ nhật nguyên vẹn"><button class="hit" aria-label="Mở cánh phải thiệp" disabled></button></div>
               <div class="face back"><div class="back-art"></div></div><div class="crease"></div>
             </div>
+            <div class="belly-band" aria-hidden="true">
+              <div class="vellum"></div>
+              <img class="wax-seal" alt="" draggable="false">
+            </div>
           </div>
           </div></div>
         </div>
@@ -107,6 +118,7 @@
       const $ = s=>root.querySelector(s), $$=s=>[...root.querySelectorAll(s)];
       $$('.card-asset').forEach(el=>el.src=card);
       $('.right-card-asset').src=underlay;
+      $('.wax-seal').src=assets.seal || waxSeal;
       $$('.back-art').forEach(el=>el.style.backgroundImage=`url("${card}")`);
       $('.enter').href=destination.href;
       let p=0, raf=0, ready=false, dragging=false, dragStart=0, startP=0, startSide=1, moved=false, width=300, fit=.8, busy=false;
@@ -115,7 +127,13 @@
       const reduced=matchMedia('(prefers-reduced-motion: reduce)');
       const draw=(value)=>{
         // Bên trong thiệp để trống theo yêu cầu: chỉ có hai cánh giấy lật, không còn lớp pop-up.
-        p=clamp(value); const q=smooth(p), left=smooth(p/.56), right=smooth((p-.50)/.50);
+        p=clamp(value);
+        // Tháo đai trước khi lật; dùng cùng tiến độ để kéo ngược/khép thiệp cũng khôi phục đai.
+        const band=smooth(p/.22), unfold=clamp((p-.22)/.78);
+        const q=smooth(unfold), left=smooth(unfold/.56), right=smooth((unfold-.50)/.50);
+        $('.belly-band').style.transform=reduced.matches?'translateZ(15px)':`translate3d(${width*.12*band}px,${width*.72*band}px,${15+24*band}px) rotateZ(${8*band}deg)`;
+        $('.belly-band').style.opacity=1-smooth((p-.09)/.13);
+        $('.belly-band').style.visibility=p>=.22?'hidden':'visible';
         $('.book').style.transform=`scale(${1+(fit-1)*q}) translateX(${-width*.045*q}px)`;
         $('.wing-left').style.transform=`translateZ(8px) rotateY(${-168*left}deg)`;
         $('.wing-right').style.transform=`translateZ(7px) rotateY(${168*right}deg)`;
@@ -123,7 +141,7 @@
         $('.wing-right').style.setProperty('--shade',Math.sin(right*Math.PI)*.75);
         // auto-enter: vừa lật xong cánh trái, cánh phải mới hé là báo App fade vào web ngay,
         // để phần còn lại của hoạt ảnh chạy chồng lên fade, không kịp thấy màn trắng bên trong.
-        if(autoEnter&&!this._entered&&p>=.62){
+        if(autoEnter&&!this._entered&&unfold>=.62){
           this._entered=true;
           this.dispatchEvent(new CustomEvent('invitation-enter',{bubbles:true,composed:true}));
         }
