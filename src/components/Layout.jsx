@@ -19,6 +19,7 @@ export function SiteIntro({ isLeaving, onEnter }) {
     const mount = mountRef.current;
     const intro = document.createElement('wedding-intro');
     intro.assets = { card: introCard, underlay: introUnderlay };
+    intro.setAttribute('recipient', new URLSearchParams(window.location.search).get('to') || '');
     intro.setAttribute('auto-enter', '');
     intro.setAttribute('transparent', ''); // sân khấu (nền, hạc, mây) do .site-intro vẽ
     const handleEnter = () => onEnterRef.current?.();
@@ -44,6 +45,63 @@ export function SiteIntro({ isLeaving, onEnter }) {
       <span className="intro-cloud intro-cloud-three" aria-hidden="true"></span>
       <div ref={mountRef} className="intro-card-mount" />
     </div>
+  );
+}
+
+export function InvitationComposer() {
+  const mountRef = useRef(null);
+  const introRef = useRef(null);
+  const linkRef = useRef(null);
+  const [name, setName] = useState(() => (new URLSearchParams(window.location.search).get('to') || '').slice(0, 60));
+  const [message, setMessage] = useState('');
+  const recipient = name.replace(/\s+/g, ' ').trim();
+  const link = new URL(window.location.pathname, window.location.origin);
+  if (recipient) link.searchParams.set('to', recipient);
+
+  useEffect(() => {
+    const intro = document.createElement('wedding-intro');
+    intro.assets = { card: introCard, underlay: introUnderlay };
+    intro.setAttribute('transparent', '');
+    intro.setAttribute('contained', '');
+    intro.setAttribute('preview', '');
+    mountRef.current.appendChild(intro);
+    introRef.current = intro;
+    return () => { intro.remove(); introRef.current = null; };
+  }, []);
+
+  useEffect(() => {
+    introRef.current?.setAttribute('recipient', recipient || 'Tên người nhận');
+  }, [recipient]);
+
+  const copyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(link.href);
+      setMessage('Đã sao chép. Bạn có thể gửi link này cho khách.');
+    } catch {
+      linkRef.current?.focus();
+      linkRef.current?.select();
+      setMessage('Hãy sao chép đường link đã được chọn bên dưới.');
+    }
+  };
+
+  return (
+    <main className="invitation-composer">
+      <div ref={mountRef} className="composer-preview" aria-label="Xem trước tên trên thiệp" />
+      <section className="composer-panel" aria-labelledby="composer-title">
+        <p className="kicker">{wedding.couple.groom} &amp; {wedding.couple.bride}</p>
+        <h1 id="composer-title">Gửi thiệp mời</h1>
+        <p>Nhập tên như bạn muốn ghi trên thiệp, rồi sao chép link để gửi riêng cho người nhận.</p>
+        <div className="composer-recipient-line" aria-live="polite"><span>TRÂN TRỌNG KÍNH MỜI:</span><strong>{recipient || 'Tên người được mời'}</strong></div>
+        <label htmlFor="recipient-name">Tên người được mời</label>
+        <input id="recipient-name" value={name} maxLength={60} placeholder="Ví dụ: Anh Minh Hiệp và gia đình" onChange={(event) => { setName(event.target.value); setMessage(''); }} />
+        <div className="composer-actions">
+          <button className="button button-primary" type="button" disabled={!recipient} onClick={copyLink}>Sao chép link thiệp</button>
+          {recipient && <a className="inline-link" href={link.href} target="_blank" rel="noreferrer">Xem thử <span>↗</span></a>}
+        </div>
+        {recipient && <><label htmlFor="invitation-link">Link dành cho người nhận</label><input ref={linkRef} id="invitation-link" readOnly value={link.href} onFocus={(event) => event.target.select()} /></>}
+        <p className="composer-status" role="status">{message}</p>
+      </section>
+    </main>
   );
 }
 

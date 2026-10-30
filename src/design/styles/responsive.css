@@ -1,5 +1,7 @@
 /* The story headline keeps its editorial scale without forcing words outside mobile viewports. */
 @media (max-width: 760px) {
+  .invitation-composer{grid-template-columns:minmax(0,1fr);padding:28px 16px;gap:12px}
+  .composer-panel{order:-1;max-width:none}
   .hero h1 {
     font-size: clamp(3rem, 13vw, 4.2rem);
     line-height: .9;

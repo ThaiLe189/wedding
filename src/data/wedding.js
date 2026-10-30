@@ -4,7 +4,7 @@ import imperialArch from '../design/assets/gallery/imperial-arch.webp';
 import underTheParasol from '../design/assets/gallery/under-the-parasol.webp';
 import onTheSteps from '../design/assets/gallery/on-the-steps.webp';
 import onTheBridge from '../design/assets/gallery/on-the-bridge.webp';
-import debussyArabesque from '../design/assets/music/debussy-arabesque-1.mp3';
+import moiDuyenVang from '../design/assets/music/moi-duyen-vang.mp3';
 
 export const wedding = {
   couple: {
@@ -49,16 +49,10 @@ export const wedding = {
   },
 };
 
-// Nhạc nền: Première Arabesque (Claude Debussy), piano, Patrizia Prati chơi. Bản thu CC BY-SA 4.0 nên BẮT BUỘC ghi công
-// (dòng `credit` hiện ở footer). Đã cắt lặng đầu/cuối, fade cuối bài và chuẩn hoá âm lượng (nhỏ nhẹ). Nguồn:
-// https://commons.wikimedia.org/wiki/File:Claude_Debussy_-_Premi%C3%A8re_Arabesque_-_Patrizia_Prati.ogg
-// Đổi bài: thay file trong src/design/assets/music/ và sửa `credit` (bản public domain thì để credit null).
+// Nhạc nền cho thiệp; người xem có thể bật/tắt ở góc dưới màn hình, kể cả lúc đang mở thiệp.
 export const music = {
-  src: debussyArabesque,
-  credit: {
-    text: 'Nhạc nền: Debussy – Première Arabesque, Patrizia Prati chơi (CC BY-SA 4.0)',
-    href: 'https://commons.wikimedia.org/wiki/File:Claude_Debussy_-_Premi%C3%A8re_Arabesque_-_Patrizia_Prati.ogg',
-  },
+  src: moiDuyenVang,
+  credit: null,
 };
 
 export const schedule = [

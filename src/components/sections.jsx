@@ -18,12 +18,14 @@ async function postRsvp(payload) {
 }
 
 export function HeroSection() {
+  const recipient = new URLSearchParams(window.location.search).get('to')?.replace(/\s+/g, ' ').trim().slice(0, 60);
   return (
     <section className="hero" aria-labelledby="hero-title">
       <div className="hero-photo" role="img" aria-label="Hoàng Thái và Huyền Nhu đứng bên bờ vịnh, giữa những khóm hoa"></div>
       <div className="hero-copy">
         <p className="kicker">Lễ thành hôn · {wedding.date.display}</p>
         <h1 id="hero-title"><span>{wedding.couple.groom}</span><em>&amp;</em><span>{wedding.couple.bride}</span></h1>
+        {recipient && <p className="hero-recipient"><span>Trân trọng kính mời:</span><strong>{recipient}</strong></p>}
         <p className="hero-sub">Trân trọng mời bạn đến dự lễ thành hôn và chung vui cùng hai gia đình.</p>
         <div className="hero-actions"><a className="button button-primary" href="#rsvp">Xác nhận tham dự <span>→</span></a><a className="quiet-link" href="#details">Xem lịch trình</a></div>
       </div>

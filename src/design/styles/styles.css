@@ -1,4 +1,19 @@
 /* Self-hosted fonts, including Vietnamese glyphs. Font tokens are defined only here. */
+@font-face {
+  font-family: 'Great Vibes';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../assets/fonts/great-vibes-vietnamese.ttf) format('truetype');
+}
+/* Bickham Script Pro Vietnamese version. */
+@font-face {
+  font-family: 'Bickham Script Pro';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../assets/fonts/bickham-script-pro-vietnamese.ttf) format('truetype');
+}
 /* Be Vietnam Pro: vietnamese */
 @font-face {
   font-family: 'Be Vietnam Pro';

@@ -5,6 +5,28 @@ import waxSeal from '../design/assets/intro/wax-seal-tn.webp';
   const script = document.currentScript?.src;
   const baseURL = script ? new URL('.', script).href : new URL('.', location.href).href;
   class WeddingIntro extends HTMLElement {
+    static get observedAttributes() { return ['recipient']; }
+    attributeChangedCallback() { this.updateRecipient(); }
+    updateRecipient() {
+      const label = this.shadowRoot?.querySelector('.recipient');
+      if (!label) return;
+      const name = (this.getAttribute('recipient') || '').replace(/\s+/g, ' ').trim().slice(0, 60);
+      label.hidden = !name;
+      label.querySelector('.recipient-name').textContent = name;
+      this.fitRecipient();
+    }
+    fitRecipient() {
+      const label = this.shadowRoot?.querySelector('.recipient');
+      if (!label || label.hidden) return;
+      const name = label.querySelector('.recipient-name');
+      const width = this.shadowRoot.querySelector('.book').offsetWidth;
+      let size = width * .072;
+      name.style.fontSize = `${size}px`;
+      while ((name.scrollHeight > name.clientHeight + 1 || name.scrollWidth > name.clientWidth + 1) && size > width * .03) {
+        size -= .5;
+        name.style.fontSize = `${size}px`;
+      }
+    }
     connectedCallback() {
       if (this.shadowRoot) return;
       const root = this.attachShadow({mode:'open'});
@@ -14,6 +36,7 @@ import waxSeal from '../design/assets/intro/wax-seal-tn.webp';
       const underlay = assets.underlay || new URL('mat-phai.png', base).href;
       // auto-enter: khi thiệp mở xong thì tự phát invitation-enter, không hiện nút "Vào website cưới" / "Khép thiệp".
       const autoEnter = this.hasAttribute('auto-enter');
+      const preview = this.hasAttribute('preview');
       let destination;
       try { destination = new URL(this.getAttribute('target') || 'https://thai-nhu-wedding.hoangthaile.com/', location.href); if(!/^https?:$/.test(destination.protocol)) throw Error(); }
       catch { destination = new URL('https://thai-nhu-wedding.hoangthaile.com/'); }
@@ -69,11 +92,14 @@ import waxSeal from '../design/assets/intro/wax-seal-tn.webp';
       .back .back-art{display:none}
       .crease{position:absolute;inset:0 auto 0 0;width:12px;background:linear-gradient(90deg,#6347232b,transparent);pointer-events:none;transform:translateZ(1px)}
       .wing-right .crease{left:auto;right:0;transform:rotateY(180deg)}
+      .recipient{position:absolute;left:4.5%;top:85%;width:58%;height:12%;display:flex;flex-direction:column;gap:4px;text-align:center;pointer-events:none;color:#794f29}
+      .recipient-label{font:500 calc(var(--bw,300px)*.032)/1.2 var(--serif,Georgia,serif);letter-spacing:.045em;color:#5f5549;text-transform:uppercase}
+      .recipient-name{flex:1;min-height:0;align-content:center;color:#b48749;font:400 calc(var(--bw,300px)*.14)/.82 "Bickham Script Pro","Charm",cursive;letter-spacing:.01em;overflow-wrap:anywhere;text-wrap:balance;text-shadow:.35px .45px 0 #f5dfad,-.25px -.2px 0 #80602f}
       /* Đai giấy can ôm cả hai cánh; ấn sáp nằm nổi trên đai như thiệp thật. */
       .belly-band{position:absolute;left:-.6%;top:34%;width:101.2%;height:26%;transform:translateZ(15px);pointer-events:none}
       .vellum{position:absolute;inset:0;border-top:1px solid #fffaf081;border-bottom:1px solid #a18b6d38;background:linear-gradient(90deg,#cbbba16b 0%,#f4ebdc8c 3%,#f8efe185 48%,#f3e8d68c 97%,#baa78c70 100%);-webkit-backdrop-filter:blur(2.5px);backdrop-filter:blur(2.5px);box-shadow:0 3px 5px #4b321b1c,inset 0 1px 1px #fffdf044}
       .vellum::after{content:'';position:absolute;inset:0;opacity:.18;background:repeating-linear-gradient(7deg,#fff9ee30 0 1px,transparent 1px 3px),repeating-linear-gradient(97deg,#a28b7018 0 1px,transparent 1px 4px)}
-      .wax-seal{position:absolute;left:50%;top:50%;display:block;width:29%;height:auto;aspect-ratio:1;object-fit:contain;transform:translate(-50%,-50%);filter:drop-shadow(1px 3px 1px #421a135c) drop-shadow(2px 5px 4px #50321f38)}
+      .wax-seal{position:absolute;left:50%;top:50%;display:block;width:29%;height:auto;aspect-ratio:1;object-fit:contain;transform:translate(-50%,-50%);filter:brightness(1.18) saturate(1.08) drop-shadow(1px 3px 1px #421a135c) drop-shadow(2px 5px 4px #50321f38)}
       .hit{position:absolute;inset:0;border:0;background:transparent;color:transparent;transform:translateZ(1px);width:100%;height:100%;padding:0}
       .controls{position:absolute;z-index:10;bottom:26px;left:12px;right:12px;display:flex;flex-direction:column;align-items:center;gap:12px;opacity:0;animation:intro-fade .9s 2.55s cubic-bezier(.16,1,.3,1) forwards}
       .primary{border:1px solid var(--accent,#8f2127);background:var(--accent,#8f2127);color:#fff5e6;padding:0 30px;font:500 .66rem/1 var(--sans,Arial,sans-serif);letter-spacing:.16em;text-transform:uppercase;min-height:46px;border-radius:0;box-shadow:0 12px 26px rgb(74 30 26/.24);transition:transform .25s cubic-bezier(.16,1,.3,1),background .25s,box-shadow .25s}
@@ -86,6 +112,9 @@ import waxSeal from '../design/assets/intro/wax-seal-tn.webp';
       .close{border:0;background:transparent;color:#806547;text-decoration:underline;text-underline-offset:4px;padding:12px 4px;font:400 11px var(--sans,Arial,sans-serif);min-height:44px}
       .sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
       :host([contained]) .invitation{height:640px;min-height:640px}
+      :host([preview]) .controls{display:none}
+      :host([preview]) .viewport{inset:90px 0 28px;pointer-events:none}
+      :host([preview]) .float,:host([preview]) .heading,:host([preview]) .subheading{animation:none;opacity:1}
       :host([overlay]){position:fixed;inset:0;z-index:99999}
       @media(max-width:420px){.heading{top:24px}.subheading{font-size:17px}.viewport{inset:90px 0 106px}.invitation{min-height:570px}}
       @media(prefers-reduced-motion:reduce){.book,.wing{will-change:auto}.float,.heading,.subheading,.controls,.primary:not(:disabled){animation:none;opacity:1}.tilt{transition:none}}
@@ -98,7 +127,7 @@ import waxSeal from '../design/assets/intro/wax-seal-tn.webp';
             <div class="floor"></div><div class="edge"></div>
             <div class="inside"></div>
             <div class="wing wing-left">
-              <div class="face front"><img class="card-asset" alt="Bìa thiệp cưới màu ngà, họa tiết hạc và mây vàng"><button class="hit" aria-label="Mở cánh trái thiệp" disabled></button></div>
+              <div class="face front"><img class="card-asset" alt="Bìa thiệp cưới màu ngà, họa tiết hạc và mây vàng"><div class="recipient" hidden><span class="recipient-label">Trân trọng kính mời:</span><span class="recipient-name"></span></div><button class="hit" aria-label="Mở cánh trái thiệp" disabled></button></div>
               <div class="face back"><div class="back-art"></div></div><div class="crease"></div>
             </div>
             <div class="wing wing-right">
@@ -121,6 +150,8 @@ import waxSeal from '../design/assets/intro/wax-seal-tn.webp';
       $('.wax-seal').src=assets.seal || waxSeal;
       $$('.back-art').forEach(el=>el.style.backgroundImage=`url("${card}")`);
       $('.enter').href=destination.href;
+      this.updateRecipient();
+      document.fonts?.ready.then(() => { if (this.isConnected) this.fitRecipient(); });
       let p=0, raf=0, ready=false, dragging=false, dragStart=0, startP=0, startSide=1, moved=false, width=300, fit=.8, busy=false;
       const clamp=x=>Math.max(0,Math.min(1,x));
       const smooth=x=>{x=clamp(x);return x*x*(3-2*x)};
@@ -151,7 +182,7 @@ import waxSeal from '../design/assets/intro/wax-seal-tn.webp';
         $('.primary').hidden=opened;$('.primary').disabled=!ready;
         $('.end-actions').hidden=!opened||autoEnter;
         $('.hint').textContent=opened?'': 'Chạm vào bìa hoặc kéo sang hai bên';
-        $$('.hit').forEach(el=>el.disabled=!ready||opened);
+        $$('.hit').forEach(el=>el.disabled=preview||!ready||opened);
         $('.sr').textContent=opened?'Thiệp đã mở. Hoàng Thái và Huyền Nhu trân trọng kính mời.':'Thiệp đang khép.';
         if(opened) this.dispatchEvent(new CustomEvent('invitation-open',{bubbles:true,composed:true}));
       };
@@ -161,7 +192,7 @@ import waxSeal from '../design/assets/intro/wax-seal-tn.webp';
         const tick=now=>{const t=clamp((now-t0)/duration);draw(from+(to-from)*(t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2)); if(t<1)raf=requestAnimationFrame(tick);else settle();};
         raf=requestAnimationFrame(tick);
       };
-      this.open=()=>{if(ready&&!busy)animateTo(1)};
+      this.open=()=>{if(!preview&&ready&&!busy)animateTo(1)};
       this.close=()=>{if(ready&&!busy)animateTo(0)};
       $('.primary').addEventListener('click',()=>this.open());
       $('.close').addEventListener('click',()=>this.close());
@@ -200,7 +231,7 @@ import waxSeal from '../design/assets/intro/wax-seal-tn.webp';
       this._resize=new ResizeObserver(()=>{
         const rect=$('.invitation').getBoundingClientRect(),available=$('.viewport').getBoundingClientRect().height;
         width=Math.min(380,rect.width*.82,available*.63);fit=Math.min(.9,(rect.width-36)/(width*3.04));
-        $('.book').style.setProperty('--bw',width+'px');$('.book').style.setProperty('--bh',(width*1.5)+'px');draw(p);
+        $('.book').style.setProperty('--bw',width+'px');$('.book').style.setProperty('--bh',(width*1.5)+'px');draw(p);this.fitRecipient();
       });this._resize.observe($('.invitation'));
       Promise.all($$('img').map(img=>img.decode().catch(()=>{}))).then(()=>{
         if(!this.isConnected)return;ready=$$('img').every(img=>img.naturalWidth>0);

@@ -169,7 +169,7 @@ footer{border-color:var(--line);background:#eee1cd;flex-wrap:wrap}
 .music-toggle.is-playing i{height:16px;animation:music-bar 1s ease-in-out infinite alternate}
 .music-toggle.is-playing i:nth-child(2){animation-delay:-.35s}.music-toggle.is-playing i:nth-child(3){animation-delay:-.7s}.music-toggle.is-playing i:nth-child(4){animation-delay:-.15s}
 @keyframes music-bar{from{transform:scaleY(.25)}to{transform:scaleY(1)}}
-body.intro-active .music-toggle{opacity:0;pointer-events:none}
+body.intro-active .music-toggle{z-index:50;opacity:1;pointer-events:auto}
 @media(prefers-reduced-motion:reduce){.music-toggle.is-playing i{animation:none;height:12px}}
 footer{padding-right:max(clamp(1.5rem,5vw,5.5rem),84px)}
 
@@ -177,3 +177,25 @@ footer{padding-right:max(clamp(1.5rem,5vw,5.5rem),84px)}
   font-size:clamp(1rem,1.5vw,1.25rem);
   line-height:1.5;
 }
+
+.hero-recipient{display:flex;flex-direction:column;gap:4px;margin:1.35rem 0 0;color:#5f5549}
+.hero-recipient span{font:500 .68rem/1.2 var(--serif);letter-spacing:.08em;text-transform:uppercase}
+.hero-recipient strong{color:var(--gold);font:400 clamp(2.45rem,4.6vw,4rem)/.86 "Bickham Script Pro","Charm",cursive;overflow-wrap:anywhere}
+.venue .kicker{color:var(--accent-dark);font-size:1.05rem;letter-spacing:.1em}
+.venue strong{color:var(--accent-dark);font-size:1.12em;font-weight:650}
+
+.invitation-composer{min-height:100svh;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);align-items:center;gap:clamp(24px,5vw,80px);padding:32px clamp(24px,5vw,80px);background:#f4eadb}
+.composer-preview{min-width:0;background:radial-gradient(ellipse,#fffaf0,#e9d7b8);border:1px solid var(--line)}
+.composer-panel{width:100%;max-width:470px}
+.composer-panel h1{font:500 clamp(2.5rem,4vw,4rem)/1.1 var(--serif);margin-bottom:20px}
+.composer-panel > p:not(.kicker){color:var(--muted);font-size:.94rem}
+.composer-recipient-line{display:flex;flex-direction:column;gap:3px;margin-top:24px;padding:14px 16px;border:1px solid #d9c39e;background:#fffaf0;color:#5f5549}
+.composer-recipient-line span{font:500 .68rem/1.2 var(--serif);letter-spacing:.07em}
+.composer-recipient-line strong{color:var(--gold);font:400 2.15rem/.9 "Bickham Script Pro","Charm",cursive;overflow-wrap:anywhere}
+.composer-panel label{display:block;margin:24px 0 8px;font-weight:500;font-size:.85rem}
+.composer-panel input{width:100%;min-height:48px;padding:12px;border:1px solid var(--line);border-radius:0;background:#fffaf0;color:var(--ink);font:400 1rem var(--sans)}
+.composer-panel input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.composer-panel input[readonly]{font-size:.8rem}
+.composer-actions{display:flex;flex-wrap:wrap;align-items:center;gap:24px;margin-top:24px}
+.composer-actions button:disabled{opacity:.5;cursor:default;transform:none;box-shadow:none}
+.composer-status{min-height:3em;margin:16px 0 0}
