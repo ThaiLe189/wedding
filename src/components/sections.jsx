@@ -133,12 +133,16 @@ export function GallerySection() {
     <section id="gallery" className="gallery section-pad" aria-labelledby="gallery-title">
       <div className="gallery-intro scroll-reveal"><h2 id="gallery-title">Album<br /><em>của chúng tôi</em></h2></div>
       <div className="gallery-grid scroll-reveal">
+        <p className="gallery-ao-dai-caption"><span>Nét xưa dịu dàng</span></p>
         {galleryPhotos.map((photo, index) => (
-          <figure className={`gallery-photo gallery-photo--${photo.layout}`} key={photo.layout}>
-            <button type="button" className="gallery-photo-trigger" onClick={() => openPhoto(index)} aria-label={`Xem lớn: ${photo.alt}`}>
-              <img src={photo.image} alt={photo.alt} loading="lazy" style={photo.focus ? { objectPosition: photo.focus } : undefined} />
-            </button>
-          </figure>
+          <React.Fragment key={photo.layout}>
+            {index === 6 && <p className="gallery-sea-caption"><span>Một ngày bên biển</span></p>}
+            <figure className={`gallery-photo gallery-photo--${photo.layout}`}>
+              <button type="button" className="gallery-photo-trigger" onClick={() => openPhoto(index)} aria-label={`Xem lớn: ${photo.alt}`}>
+                <img src={photo.image} alt={photo.alt} loading="lazy" style={photo.focus ? { objectPosition: photo.focus } : undefined} />
+              </button>
+            </figure>
+          </React.Fragment>
         ))}
       </div>
       <dialog ref={dialogRef} className="lightbox" onClose={() => setActiveIndex(null)} onClick={onDialogClick} onKeyDown={onDialogKeyDown}>

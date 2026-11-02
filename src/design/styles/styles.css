@@ -6,13 +6,13 @@
   font-display: swap;
   src: url(../assets/fonts/great-vibes-vietnamese.ttf) format('truetype');
 }
-/* Bickham Script Pro Vietnamese version. */
+/* Dancing Script Vietnamese version. */
 @font-face {
-  font-family: 'Bickham Script Pro';
+  font-family: 'Dancing Script';
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   font-display: swap;
-  src: url(../assets/fonts/bickham-script-pro-vietnamese.ttf) format('truetype');
+  src: url(../assets/fonts/dancing-script-vietnamese.ttf) format('truetype');
 }
 /* Be Vietnam Pro: vietnamese */
 @font-face {

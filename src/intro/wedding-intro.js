@@ -20,7 +20,7 @@ import waxSeal from '../design/assets/intro/wax-seal-tn.webp';
       if (!label || label.hidden) return;
       const name = label.querySelector('.recipient-name');
       const width = this.shadowRoot.querySelector('.book').offsetWidth;
-      let size = width * .072;
+      let size = width * .1;
       name.style.fontSize = `${size}px`;
       while ((name.scrollHeight > name.clientHeight + 1 || name.scrollWidth > name.clientWidth + 1) && size > width * .03) {
         size -= .5;
@@ -92,9 +92,9 @@ import waxSeal from '../design/assets/intro/wax-seal-tn.webp';
       .back .back-art{display:none}
       .crease{position:absolute;inset:0 auto 0 0;width:12px;background:linear-gradient(90deg,#6347232b,transparent);pointer-events:none;transform:translateZ(1px)}
       .wing-right .crease{left:auto;right:0;transform:rotateY(180deg)}
-      .recipient{position:absolute;left:4.5%;top:85%;width:58%;height:12%;display:flex;flex-direction:column;gap:4px;text-align:center;pointer-events:none;color:#794f29}
+      .recipient{position:absolute;left:1%;top:84%;width:70%;height:14%;display:flex;flex-direction:column;gap:4px;text-align:center;pointer-events:none;color:#794f29}
       .recipient-label{font:500 calc(var(--bw,300px)*.032)/1.2 var(--serif,Georgia,serif);letter-spacing:.045em;color:#5f5549;text-transform:uppercase}
-      .recipient-name{flex:1;min-height:0;align-content:center;color:#b48749;font:400 calc(var(--bw,300px)*.14)/.82 "Bickham Script Pro","Charm",cursive;letter-spacing:.01em;overflow-wrap:anywhere;text-wrap:balance;text-shadow:.35px .45px 0 #f5dfad,-.25px -.2px 0 #80602f}
+      .recipient-name{flex:1;min-height:0;align-content:center;color:#b48749;font:500 calc(var(--bw,300px)*.19)/.78 "Dancing Script",cursive;letter-spacing:.045em;overflow-wrap:anywhere;text-wrap:balance;text-shadow:.35px .45px 0 #f5dfad,-.25px -.2px 0 #80602f}
       /* Đai giấy can ôm cả hai cánh; ấn sáp nằm nổi trên đai như thiệp thật. */
       .belly-band{position:absolute;left:-.6%;top:34%;width:101.2%;height:26%;transform:translateZ(15px);pointer-events:none}
       .vellum{position:absolute;inset:0;border-top:1px solid #fffaf081;border-bottom:1px solid #a18b6d38;background:linear-gradient(90deg,#cbbba16b 0%,#f4ebdc8c 3%,#f8efe185 48%,#f3e8d68c 97%,#baa78c70 100%);-webkit-backdrop-filter:blur(2.5px);backdrop-filter:blur(2.5px);box-shadow:0 3px 5px #4b321b1c,inset 0 1px 1px #fffdf044}

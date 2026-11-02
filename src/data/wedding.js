@@ -3,7 +3,10 @@ import proposal from '../design/assets/gallery/proposal.webp';
 import imperialArch from '../design/assets/gallery/imperial-arch.webp';
 import underTheParasol from '../design/assets/gallery/under-the-parasol.webp';
 import onTheSteps from '../design/assets/gallery/on-the-steps.webp';
-import onTheBridge from '../design/assets/gallery/on-the-bridge.webp';
+import seaIntimate from '../design/assets/gallery/sea-intimate.webp';
+import seaBrideFlowers from '../design/assets/gallery/sea-bride-flowers.webp';
+import seaCouple from '../design/assets/gallery/sea-couple.webp';
+import seaGroom from '../design/assets/gallery/sea-groom.webp';
 import moiDuyenVang from '../design/assets/music/moi-duyen-vang.mp3';
 
 export const wedding = {
@@ -83,6 +86,10 @@ export const galleryPhotos = [
   { image: underTheParasol, alt: 'Cặp đôi nhìn nhau dưới chiếc ô giấy bên lan can cầu gỗ', layout: 'parasol', focus: '50% 40%' },
   { image: onTheSteps, alt: 'Khoảnh khắc thân mật của cặp đôi trên bậc thềm', layout: 'steps' },
   { image: onTheBridge, alt: 'Hoàng Thái và Huyền Nhu sánh bước trên cây cầu gỗ bắc qua hồ', layout: 'together', focus: '50% 55%' },
+  { image: seaIntimate, alt: 'Khoảnh khắc thân mật của Hoàng Thái và Huyền Nhu bên vịnh biển', layout: 'sea-intimate', focus: '50% 48%' },
+  { image: seaBrideFlowers, alt: 'Huyền Nhu bên những đóa hoa, cạnh mặt biển', layout: 'sea-bride', focus: '50% 38%' },
+  { image: seaCouple, alt: 'Hoàng Thái và Huyền Nhu trước vịnh biển và núi đá', layout: 'sea-couple', focus: '50% 42%' },
+  { image: seaGroom, alt: 'Hoàng Thái bên vịnh biển trong ngày chụp ảnh cưới', layout: 'sea-boutonniere', focus: '50% 42%' },
 ];
 
 export const revealSelectors = [
@@ -99,3 +106,4 @@ export const revealSelectors = [
   '.stay > *',
   '.rsvp > *',
 ].join(', ');
+import onTheBridge from '../design/assets/gallery/on-the-bridge.webp';
