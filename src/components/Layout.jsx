@@ -53,10 +53,14 @@ export function InvitationComposer() {
   const introRef = useRef(null);
   const linkRef = useRef(null);
   const [name, setName] = useState(() => (new URLSearchParams(window.location.search).get('to') || '').slice(0, 60));
+  const [companion, setCompanion] = useState(() => (new URLSearchParams(window.location.search).get('with') || '').slice(0, 60));
   const [message, setMessage] = useState('');
   const recipient = name.replace(/\s+/g, ' ').trim();
+  const companionName = companion.replace(/\s+/g, ' ').trim();
+  const invitedGuests = [recipient, companionName].filter(Boolean).join(' và ');
   const link = new URL(window.location.pathname, window.location.origin);
   if (recipient) link.searchParams.set('to', recipient);
+  if (companionName) link.searchParams.set('with', companionName);
 
   useEffect(() => {
     const intro = document.createElement('wedding-intro');
@@ -90,10 +94,12 @@ export function InvitationComposer() {
       <section className="composer-panel" aria-labelledby="composer-title">
         <p className="kicker">{wedding.couple.groom} &amp; {wedding.couple.bride}</p>
         <h1 id="composer-title">Gửi thiệp mời</h1>
-        <p>Nhập tên như bạn muốn ghi trên thiệp, rồi sao chép link để gửi riêng cho người nhận.</p>
-        <div className="composer-recipient-line" aria-live="polite"><span>TRÂN TRỌNG KÍNH MỜI:</span><strong>{recipient || 'Tên người được mời'}</strong></div>
-        <label htmlFor="recipient-name">Tên người được mời</label>
-        <input id="recipient-name" value={name} maxLength={60} placeholder="Ví dụ: Anh Minh Hiệp và gia đình" onChange={(event) => { setName(event.target.value); setMessage(''); }} />
+        <p>Nhập tên người nhận ở ngoài thiệp và người thân đi cùng để ghi đầy đủ ở bên trong.</p>
+        <div className="composer-recipient-line" aria-live="polite"><span>TRÂN TRỌNG KÍNH MỜI:</span><strong>{invitedGuests || 'Tên người được mời'}</strong></div>
+        <label htmlFor="recipient-name">Tên người nhận thiệp</label>
+        <input id="recipient-name" value={name} maxLength={60} placeholder="Ví dụ: Anh Nguyên" onChange={(event) => { setName(event.target.value); setMessage(''); }} />
+        <label htmlFor="recipient-companion">Người thân đi cùng</label>
+        <input id="recipient-companion" value={companion} maxLength={60} placeholder="Ví dụ: người thương" onChange={(event) => { setCompanion(event.target.value); setMessage(''); }} />
         <div className="composer-actions">
           <button className="button button-primary" type="button" disabled={!recipient} onClick={copyLink}>Sao chép link thiệp</button>
           {recipient && <a className="inline-link" href={link.href} target="_blank" rel="noreferrer">Xem thử <span>↗</span></a>}
