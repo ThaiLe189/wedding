@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Footer, Header, InvitationComposer, MusicToggle, SiteIntro } from './components/Layout.jsx';
 import { SiteBackdrop } from './components/Decorations.jsx';
 import {
@@ -61,13 +61,7 @@ function WeddingPage() {
 export default function App() {
   const params = new URLSearchParams(window.location.search);
   const isComposer = params.has('soan-thiep');
-  const hasRecipient = params.has('to');
-
-  useEffect(() => {
-    if (!isComposer && !hasRecipient) window.location.replace(`${window.location.pathname}?soan-thiep`);
-  }, [hasRecipient, isComposer]);
 
   if (isComposer) return <InvitationComposer />;
-  if (hasRecipient) return <WeddingPage />;
-  return null;
+  return <WeddingPage />;
 }

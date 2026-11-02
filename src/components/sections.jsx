@@ -175,6 +175,10 @@ export function RsvpSection() {
   const [formMessage, setFormMessage] = useState('');
   const [rsvpMoment, setRsvpMoment] = useState(0);
   const [wishes, setWishes] = useState([]);
+  const params = new URLSearchParams(window.location.search);
+  const recipient = params.get('to')?.replace(/\s+/g, ' ').trim().slice(0, 60);
+  const companion = params.get('with')?.replace(/\s+/g, ' ').trim().slice(0, 60);
+  const invitedGuests = [recipient, companion].filter(Boolean).join(' và ');
 
   useEffect(() => {
     if (!RSVP_ENDPOINT) return;
@@ -188,7 +192,7 @@ export function RsvpSection() {
     event.preventDefault();
     const form = event.currentTarget;
     const response = new FormData(form);
-    const name = String(response.get('name') || '').trim();
+    const name = String(response.get('name') || invitedGuests || '').trim();
     const isAttending = attendance === 'Có mặt';
     const notes = String(response.get('notes') || '').trim();
     const guestCount = isAttending ? String(response.get('guestCount') || '') : '';
@@ -208,8 +212,8 @@ export function RsvpSection() {
       <div className="rsvp-intro"><h2 id="rsvp-title">Bạn sẽ<br /><em>tham dự chứ?</em></h2><p>Bạn cho chúng mình biết số người tham dự để hai gia đình chuẩn bị đón tiếp chu đáo nhé.</p></div>
       <div className="rsvp-form-wrap">
         <form className="rsvp-form" onSubmit={submitRsvp}>
-          <label>Họ và tên<input required name="name" autoComplete="name" placeholder="Nhập họ và tên của bạn" /></label>
-          <fieldset><legend>Xác nhận tham dự</legend><label className="choice"><input type="radio" name="attendance" value="Có mặt" checked={attendance === 'Có mặt'} onChange={() => setAttendance('Có mặt')} /><span>Mình sẽ tham dự</span></label><label className="choice"><input type="radio" name="attendance" value="Không thể tham dự" checked={attendance === 'Không thể tham dự'} onChange={() => setAttendance('Không thể tham dự')} /><span>Mình không thể tham dự</span></label></fieldset>
+          {!invitedGuests && <label>Họ và tên<input required name="name" autoComplete="name" placeholder="Nhập họ và tên của bạn" /></label>}
+          <fieldset><legend>Xác nhận tham dự</legend><label className="choice"><input type="radio" name="attendance" value="Có mặt" checked={attendance === 'Có mặt'} onChange={() => setAttendance('Có mặt')} /><span>Mình sẽ tham dự</span></label><label className="choice"><input type="radio" name="attendance" value="Xin phép vắng mặt" checked={attendance === 'Xin phép vắng mặt'} onChange={() => setAttendance('Xin phép vắng mặt')} /><span>Xin phép vắng mặt</span></label></fieldset>
           {attendance === 'Có mặt' && <label className="guest-count-field">Số người tham dự <span className="optional">(tính cả bạn)</span><select name="guestCount" defaultValue="1"><option value="1">1 người</option><option value="2">2 người</option><option value="3">3 người</option><option value="4">4 người</option></select></label>}
           <label>Lời chúc cho cô dâu, chú rể <span className="optional">(không bắt buộc)</span><input name="notes" placeholder="Viết lời chúc của bạn" /></label>
           <div className="rsvp-submit-wrap"><button className="button button-primary" type="submit">Gửi lời hồi đáp <span>→</span></button>{rsvpMoment > 0 && <RsvpBloom key={rsvpMoment} />}</div><p id="form-message" className={formMessage ? 'form-message-visible' : ''} role="status" aria-live="polite">{formMessage}</p>
