@@ -141,6 +141,11 @@ export const galleryAlbums = [
   },
 ];
 
+// Giữ album gọn, mỗi phần chỉ hiển thị bốn khung hình tiêu biểu.
+galleryAlbums.forEach((album) => {
+  album.photos = album.photos.slice(0, 4);
+});
+
 export const galleryPhotos = galleryAlbums.flatMap((album) => album.photos);
 
 export const revealSelectors = [

@@ -223,7 +223,7 @@ footer{padding-right:max(clamp(1.5rem,5vw,5.5rem),84px)}
 @media(min-width:761px){
   nav a,.kicker,.section-number{font-size:clamp(.74rem,.75vw,.84rem)}
   .hero .hero-date{font-size:clamp(1.08rem,1.25vw,1.28rem)}
-  .hero-sub p{font-size:clamp(1.28rem,1.43vw,1.42rem)}
+  .hero-sub p{font-size:1.2rem}
   .quiet-link,.inline-link,.button{font-size:clamp(.74rem,.78vw,.84rem)}
   .story-copy p{font-size:clamp(1.32rem,1.38vw,1.46rem);line-height:1.72}
   .schedule-item p:last-child{max-width:none;font-size:clamp(1.24rem,1.34vw,1.4rem)}
