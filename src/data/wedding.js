@@ -1,12 +1,27 @@
-import byTheLake from '../design/assets/gallery/by-the-lake.webp';
-import proposal from '../design/assets/gallery/proposal.webp';
-import imperialArch from '../design/assets/gallery/imperial-arch.webp';
-import underTheParasol from '../design/assets/gallery/under-the-parasol.webp';
-import onTheSteps from '../design/assets/gallery/on-the-steps.webp';
-import seaIntimate from '../design/assets/gallery/sea-intimate.webp';
-import seaBrideFlowers from '../design/assets/gallery/sea-bride-flowers.webp';
-import seaCouple from '../design/assets/gallery/sea-couple.webp';
-import seaGroom from '../design/assets/gallery/sea-groom.webp';
+import sea01 from '../design/assets/gallery/sea/01.webp';
+import sea02 from '../design/assets/gallery/sea/02.webp';
+import sea03 from '../design/assets/gallery/sea/03.webp';
+import sea04 from '../design/assets/gallery/sea/04.webp';
+import sea05 from '../design/assets/gallery/sea/05.webp';
+import sea06 from '../design/assets/gallery/sea/06.webp';
+import sea07 from '../design/assets/gallery/sea/07.webp';
+import studio01 from '../design/assets/gallery/studio/01.webp';
+import studio02 from '../design/assets/gallery/studio/02.webp';
+import studio03 from '../design/assets/gallery/studio/03.webp';
+import studio04 from '../design/assets/gallery/studio/04.webp';
+import studio05 from '../design/assets/gallery/studio/05.webp';
+import studio06 from '../design/assets/gallery/studio/06.webp';
+import studio07 from '../design/assets/gallery/studio/07.webp';
+import heritage01 from '../design/assets/gallery/heritage/01.webp';
+import heritage02 from '../design/assets/gallery/heritage/02.webp';
+import heritage03 from '../design/assets/gallery/heritage/03.webp';
+import heritage05 from '../design/assets/gallery/heritage/05.webp';
+import heritage06 from '../design/assets/gallery/heritage/06.webp';
+import heritage07 from '../design/assets/gallery/heritage/07.webp';
+import heritage08 from '../design/assets/gallery/heritage/08.webp';
+import heritage10 from '../design/assets/gallery/heritage/10.webp';
+import heritage11 from '../design/assets/gallery/heritage/11.webp';
+import heritage12 from '../design/assets/gallery/heritage/12.webp';
 import moiDuyenVang from '../design/assets/music/moi-duyen-vang.mp3';
 
 export const wedding = {
@@ -17,6 +32,7 @@ export const wedding = {
   },
   date: {
     display: '22.11.2026',
+    longDisplay: 'Chủ nhật, 22 tháng 11 năm 2026',
     calendarStart: '20261122T030000Z',
     calendarEnd: '20261122T060000Z',
   },
@@ -62,35 +78,70 @@ export const schedule = [
   {
     time: '10:00',
     title: 'Đón khách',
-    description: 'Đón tiếp và chụp ảnh cùng cô dâu, chú rể trước giờ làm lễ.',
+    description: 'Đón tiếp và chụp ảnh cùng cô dâu, chú rể trước giờ làm lễ.',
   },
   {
     time: '10:30',
     title: 'Lễ thành hôn',
-    description: 'Cùng hai gia đình chứng kiến nghi thức thành hôn của chúng mình.',
+    description: 'Cùng hai gia đình chứng kiến nghi thức thành hôn của chúng mình.',
     featured: true,
   },
   {
     time: '11:00',
     title: 'Tiệc mừng',
-    description: 'Mời bạn dùng bữa và nâng ly chúc mừng cùng hai gia đình.',
+    description: 'Mời bạn dùng bữa và nâng ly chúc mừng cùng hai gia đình.',
   },
 ];
 
-// `focus` là object-position cho ảnh trong lưới gallery (desktop crop ảnh khá mạnh ở các ô ngang):
-// chỉnh để không cắt mất mặt. Bỏ trống = canh giữa.
-export const galleryPhotos = [
-  { image: byTheLake, alt: 'Hoàng Thái và Huyền Nhu bên mặt hồ, dưới tán cây xanh', layout: 'ring' },
-  { image: proposal, alt: 'Hoàng Thái trao nhẫn cho Huyền Nhu giữa khu vườn', layout: 'proposal', focus: '50% 15%' },
-  { image: imperialArch, alt: 'Hoàng Thái và Huyền Nhu bên cổng vòm cổ', layout: 'arch' },
-  { image: underTheParasol, alt: 'Cặp đôi nhìn nhau dưới chiếc ô giấy bên lan can cầu gỗ', layout: 'parasol', focus: '50% 40%' },
-  { image: onTheSteps, alt: 'Khoảnh khắc thân mật của cặp đôi trên bậc thềm', layout: 'steps' },
-  { image: onTheBridge, alt: 'Hoàng Thái và Huyền Nhu sánh bước trên cây cầu gỗ bắc qua hồ', layout: 'together', focus: '50% 55%' },
-  { image: seaIntimate, alt: 'Khoảnh khắc thân mật của Hoàng Thái và Huyền Nhu bên vịnh biển', layout: 'sea-intimate', focus: '50% 48%' },
-  { image: seaBrideFlowers, alt: 'Huyền Nhu bên những đóa hoa, cạnh mặt biển', layout: 'sea-bride', focus: '50% 38%' },
-  { image: seaCouple, alt: 'Hoàng Thái và Huyền Nhu trước vịnh biển và núi đá', layout: 'sea-couple', focus: '50% 42%' },
-  { image: seaGroom, alt: 'Hoàng Thái bên vịnh biển trong ngày chụp ảnh cưới', layout: 'sea-boutonniere', focus: '50% 42%' },
+export const galleryAlbums = [
+  {
+    id: 'sea',
+    title: 'Lời hẹn bên Vịnh',
+    caption: 'Gió biển, nắng chiều và những khoảnh khắc đầu tiên của hành trình chung đôi.',
+    photos: [
+      { image: sea01, alt: 'Hoàng Thái và Huyền Nhu trao nhau bó hoa bên bờ vịnh' },
+      { image: sea02, alt: 'Hoàng Thái và Huyền Nhu khiêu vũ giữa khung cảnh biển trời' },
+      { image: sea03, alt: 'Cặp đôi đọc lời hẹn ước bên biển và những khóm hoa' },
+      { image: sea04, alt: 'Khoảnh khắc Huyền Nhu mỉm cười trong vòng tay Hoàng Thái' },
+      { image: sea05, alt: 'Nụ hôn dưới khăn voan bên bờ vịnh' },
+      { image: sea06, alt: 'Chân dung Huyền Nhu bên hoa và ghềnh đá' },
+      { image: sea07, alt: 'Đôi tay nắm nhau giữa hoa cưới và nắng biển' },
+      { image: studio02, alt: 'Cặp đôi dưới khăn voan trong ánh hoàng hôn bên vịnh' },
+      { image: studio07, alt: 'Chân dung Hoàng Thái cầm hoa bên bờ vịnh' },
+    ],
+  },
+  {
+    id: 'studio',
+    title: 'Vườn hoa trong nắng',
+    caption: 'Một khoảng trời trong trẻo, nơi bình yên bắt đầu từ ánh mắt dành cho nhau.',
+    photos: [
+      { image: studio01, alt: 'Hoàng Thái hôn tay Huyền Nhu giữa không gian studio ngập sáng' },
+      { image: studio03, alt: 'Hoàng Thái và Huyền Nhu nắm tay, mỉm cười trong studio' },
+      { image: studio04, alt: 'Chân dung Huyền Nhu giữa khu vườn hoa trắng và hồng' },
+      { image: studio05, alt: 'Hoàng Thái ôm Huyền Nhu từ phía sau bên bó hoa cưới' },
+      { image: studio06, alt: 'Cặp đôi đứng đối diện nhau giữa hai cụm hoa' },
+    ],
+  },
+  {
+    id: 'heritage',
+    title: 'Nét xưa dịu dàng',
+    caption: 'Sắc son truyền thống giữa nét trầm mặc của Cố đô.',
+    photos: [
+      { image: heritage01, alt: 'Hoàng Thái và Huyền Nhu trong áo dài đỏ bên cổng thành cổ' },
+      { image: heritage02, alt: 'Cặp đôi áo dài đỏ đứng bên mặt hồ cổ kính' },
+      { image: heritage03, alt: 'Chân dung Huyền Nhu và Hoàng Thái trong sắc áo dài đỏ' },
+      { image: heritage05, alt: 'Cặp đôi sánh bước trên cầu giữa không gian xanh' },
+      { image: heritage06, alt: 'Hoàng Thái và Huyền Nhu bên cổng điện cổ' },
+      { image: heritage07, alt: 'Cặp đôi ngồi bên bậc đá chạm hình rồng' },
+      { image: heritage08, alt: 'Khoảnh khắc thân mật của cặp đôi trên bậc thềm đá' },
+      { image: heritage10, alt: 'Cặp đôi trò chuyện dưới chiếc ô giấy' },
+      { image: heritage11, alt: 'Cặp đôi nắm tay dưới cổng vòm nhìn ra tháp cổ' },
+      { image: heritage12, alt: 'Hoàng Thái trao nhẫn cho Huyền Nhu giữa đồi xanh' },
+    ],
+  },
 ];
+
+export const galleryPhotos = galleryAlbums.flatMap((album) => album.photos);
 
 export const revealSelectors = [
   '.story > .section-intro',
@@ -102,8 +153,7 @@ export const revealSelectors = [
   '.guest-guide > .guide-heading',
   '.guide-item',
   '.gallery > .gallery-intro',
-  '.gallery > .gallery-grid',
+  '.gallery-album',
   '.stay > *',
   '.rsvp > *',
 ].join(', ');
-import onTheBridge from '../design/assets/gallery/on-the-bridge.webp';

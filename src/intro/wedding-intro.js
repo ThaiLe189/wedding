@@ -20,9 +20,9 @@ import waxSeal from '../design/assets/intro/wax-seal-tn.webp';
       if (!label || label.hidden) return;
       const name = label.querySelector('.recipient-name');
       const width = this.shadowRoot.querySelector('.book').offsetWidth;
-      let size = width * .1;
+      let size = width * .072;
       name.style.fontSize = `${size}px`;
-      while ((name.scrollHeight > name.clientHeight + 1 || name.scrollWidth > name.clientWidth + 1) && size > width * .03) {
+      while ((name.scrollHeight > name.clientHeight + 1 || name.scrollWidth > name.clientWidth + 1) && size > width * .027) {
         size -= .5;
         name.style.fontSize = `${size}px`;
       }
@@ -50,8 +50,7 @@ import waxSeal from '../design/assets/intro/wax-seal-tn.webp';
       :host([transparent]) .invitation{background:transparent}
       :host([transparent]) .invitation::before{display:none}
       /* Chữ dùng đúng font/màu của web qua CSS custom property (xuyên được shadow DOM), có fallback. */
-      .heading{position:absolute;z-index:5;inset:30px 0 auto;text-align:center;font:500 .6rem/1.5 var(--sans,Arial,sans-serif);letter-spacing:.32em;text-transform:uppercase;color:#8a6f4c;opacity:0;animation:intro-fade .9s .35s cubic-bezier(.16,1,.3,1) forwards}
-      .subheading{display:block;font:italic 500 1.55rem/1.3 var(--serif,Georgia,serif);letter-spacing:0;text-transform:none;color:var(--accent-dark,#6e171c);margin-top:8px;opacity:0;animation:intro-fade .9s .6s cubic-bezier(.16,1,.3,1) forwards}
+      .heading{position:absolute;z-index:5;inset:28px 0 auto;text-align:center;font:italic 500 clamp(2rem,4.2vw,3.25rem)/1.08 var(--serif,Georgia,serif);letter-spacing:-.025em;color:var(--accent-dark,#6e171c);opacity:0;animation:intro-fade .9s .35s cubic-bezier(.16,1,.3,1) forwards}
       .viewport{position:absolute;inset:104px 0 100px;perspective:1600px;display:grid;place-items:center;touch-action:pan-y;user-select:none}
       /* .float: bay vào rồi lơ lửng (CSS animation). .tilt: nghiêng theo chuột/cảm biến (inline transform). */
       .float{transform-style:preserve-3d;animation:intro-arrive 1.15s 1.5s cubic-bezier(.16,1,.3,1) both,intro-float 6.5s 2.65s ease-in-out infinite}
@@ -94,7 +93,7 @@ import waxSeal from '../design/assets/intro/wax-seal-tn.webp';
       .wing-right .crease{left:auto;right:0;transform:rotateY(180deg)}
       .recipient{position:absolute;left:1%;top:84%;width:70%;height:14%;display:flex;flex-direction:column;gap:4px;text-align:center;pointer-events:none;color:#794f29}
       .recipient-label{font:500 calc(var(--bw,300px)*.032)/1.2 var(--serif,Georgia,serif);letter-spacing:.045em;color:#5f5549;text-transform:uppercase}
-      .recipient-name{flex:1;min-height:0;align-content:center;color:#b48749;font:500 calc(var(--bw,300px)*.19)/.78 "Dancing Script",cursive;letter-spacing:.045em;overflow-wrap:anywhere;text-wrap:balance;text-shadow:.35px .45px 0 #f5dfad,-.25px -.2px 0 #80602f}
+      .recipient-name{flex:1;min-height:0;align-content:center;color:#b48749;font:500 calc(var(--bw,300px)*.072)/.9 "Dancing Script",cursive;letter-spacing:.035em;overflow-wrap:anywhere;text-wrap:balance;text-shadow:.35px .45px 0 #f5dfad,-.25px -.2px 0 #80602f}
       /* Đai giấy can ôm cả hai cánh; ấn sáp nằm nổi trên đai như thiệp thật. */
       .belly-band{position:absolute;left:-.6%;top:34%;width:101.2%;height:26%;transform:translateZ(15px);pointer-events:none}
       .vellum{position:absolute;inset:0;border-top:1px solid #fffaf081;border-bottom:1px solid #a18b6d38;background:linear-gradient(90deg,#cbbba16b 0%,#f4ebdc8c 3%,#f8efe185 48%,#f3e8d68c 97%,#baa78c70 100%);-webkit-backdrop-filter:blur(2.5px);backdrop-filter:blur(2.5px);box-shadow:0 3px 5px #4b321b1c,inset 0 1px 1px #fffdf044}
@@ -114,13 +113,13 @@ import waxSeal from '../design/assets/intro/wax-seal-tn.webp';
       :host([contained]) .invitation{height:640px;min-height:640px}
       :host([preview]) .controls{display:none}
       :host([preview]) .viewport{inset:90px 0 28px;pointer-events:none}
-      :host([preview]) .float,:host([preview]) .heading,:host([preview]) .subheading{animation:none;opacity:1}
+      :host([preview]) .float,:host([preview]) .heading{animation:none;opacity:1}
       :host([overlay]){position:fixed;inset:0;z-index:99999}
-      @media(max-width:420px){.heading{top:24px}.subheading{font-size:17px}.viewport{inset:90px 0 106px}.invitation{min-height:570px}}
-      @media(prefers-reduced-motion:reduce){.book,.wing{will-change:auto}.float,.heading,.subheading,.controls,.primary:not(:disabled){animation:none;opacity:1}.tilt{transition:none}}
+      @media(max-width:420px){.heading{top:24px;font-size:2rem}.viewport{inset:90px 0 106px}.invitation{min-height:570px}}
+      @media(prefers-reduced-motion:reduce){.book,.wing{will-change:auto}.float,.heading,.controls,.primary:not(:disabled){animation:none;opacity:1}.tilt{transition:none}}
       </style>
       <section class="invitation" aria-label="Thiệp cưới Hoàng Thái và Huyền Nhu">
-        <div class="heading">TRÂN TRỌNG KÍNH MỜI<span class="subheading">Hoàng Thái & Huyền Nhu</span></div>
+        <div class="heading">Hoàng Thái &amp; Huyền Nhu</div>
         <div class="viewport">
           <div class="float"><div class="tilt">
           <div class="book">

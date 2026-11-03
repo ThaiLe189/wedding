@@ -14,6 +14,7 @@
 
 /* Vàng đồng: warm paper, oxblood ink, and the muted jade of the invitation's clouds. */
 body{background:var(--canvas);color:var(--ink)}
+h2{font-size:clamp(2.85rem,5vw,5.25rem);line-height:.96}
 .site-header{border-color:var(--line);background:rgb(255 250 240/.94)}
 .monogram{color:var(--accent-dark);letter-spacing:-.07em}
 .monogram span{color:var(--gold)}
@@ -27,14 +28,22 @@ nav a,.kicker,.section-number{letter-spacing:.13em}
 .hero-copy{position:relative;isolation:isolate;background:var(--paper)}
 .hero-copy::before{position:absolute;top:clamp(2rem,5vw,4.5rem);right:clamp(1.75rem,6vw,6rem);z-index:-1;width:4.75rem;height:4.75rem;display:grid;place-items:center;border:1px solid rgb(143 33 39/.78);border-radius:50%;color:var(--accent);content:"囍";font:500 2.35rem/1 var(--serif);opacity:.9}
 .hero .kicker{color:var(--jade)}
-.hero h1{color:var(--accent-dark)}
+.hero .hero-date{display:flex;flex-wrap:wrap;gap:.18rem .65rem;max-width:42rem;margin-bottom:1.45rem;padding-right:5.5rem;color:#a36b22;font-size:clamp(1rem,1.15vw,1.16rem);font-weight:600;line-height:1.45;letter-spacing:.1em}
+.hero .hero-weekday::before{margin-right:.65rem;content:"·"}
+.hero h1{color:var(--accent-dark);font-size:clamp(3.5rem,6.15vw,6.35rem)}
 .hero h1 em,h2 em{color:var(--accent)}
 .hero-sub{color:var(--muted)}
+.hero-sub{max-width:31rem;margin:1.55rem 0 1.8rem}
+.hero-sub p{margin:0;font-size:clamp(1.04rem,1.2vw,1.16rem);line-height:1.72}
+.hero-sub p+p{margin-top:.7rem}
+.hero-actions .button,.hero-actions .quiet-link{font-size:clamp(.72rem,.8vw,.8rem)}
 .button-primary{border-color:var(--accent);background:var(--accent);color:#fff8ed}
 .button-primary:hover{background:var(--accent-dark)}
 .quiet-link,.inline-link{border-color:var(--gold)}
 .hero-stamp{color:#fff9ef;text-shadow:0 1px 14px rgb(42 24 9/.48)}
-.hero-stamp b{color:#ffe6b3}
+.hero-stamp{gap:14px}
+.hero-stamp b{color:#ffe6b3;font-size:clamp(4.35rem,5.5vw,5.4rem)}
+.hero-stamp span{font-size:clamp(.68rem,.85vw,.82rem);line-height:1.45;letter-spacing:.1em}
 
 .story,.guest-guide{background:#f3eadb}
 .details,.rsvp,.gallery{background:var(--paper)}
@@ -55,6 +64,9 @@ nav a,.kicker,.section-number{letter-spacing:.13em}
 .gallery-photo{border:5px solid #fffaf0;background:#d9c8ad;box-shadow:0 10px 25px rgb(83 57 25/.1)}
 .gallery-photo:hover{box-shadow:0 16px 32px rgb(83 57 25/.18)}
 .stay-copy{background:#efe3d1}
+.stay-message{max-width:34rem;color:#4a4036}
+.stay-message p{margin:0;font-size:clamp(.94rem,1.05vw,1.02rem);line-height:1.72}
+.stay-message p+p{margin-top:.85rem}
 .stay-photo{background-image:linear-gradient(0deg,rgb(54 35 17/.35),transparent 58%),url("../assets/stay-sunset.webp")}
 .stay-photo span{color:#f7d799}
 .rsvp-form input:not([type=radio]),.rsvp-form select{border-color:#bfae92}
@@ -118,15 +130,23 @@ footer{border-color:var(--line);background:#eee1cd;flex-wrap:wrap}
 .rsvp-bloom i{background:linear-gradient(135deg,rgb(255 243 208),rgb(180 135 73))}
 
 /* Make each time marker scannable before guests read the supporting copy. */
+.schedule-item{
+  justify-content:flex-start;
+}
+
 .schedule .time{
   width:max-content;
   margin-bottom:1.65rem;
   padding-bottom:.7rem;
   border-bottom:1px solid color-mix(in srgb,var(--accent) 55%,transparent);
   color:var(--accent-dark);
-  font:500 clamp(1.35rem,1.8vw,1.9rem)/.9 var(--serif);
+  font:600 clamp(1.55rem,2.1vw,2.05rem)/1 var(--serif);
   font-variant-numeric:tabular-nums;
-  letter-spacing:-.045em;
+  letter-spacing:.01em;
+}
+
+.schedule-item p:last-child{
+  font:italic 500 clamp(1rem,1.12vw,1.08rem)/1.62 var(--serif);
 }
 
 @media(max-width:760px){
@@ -134,12 +154,12 @@ footer{border-color:var(--line);background:#eee1cd;flex-wrap:wrap}
     margin:0;
     padding-bottom:0;
     border-bottom:0;
-    font-size:1.5rem;
+    font-size:1.8rem;
   }
 }
 
 /* Gallery photos open in a native <dialog> lightbox: Esc and backdrop click close it for free. */
-.gallery-photo-trigger{display:block;width:100%;height:100%;padding:0;border:0;background:none;cursor:zoom-in}
+.gallery-photo-trigger{display:block;width:100%;height:auto;padding:0;border:0;background:none;cursor:zoom-in}
 .lightbox{max-width:min(92vw,980px);max-height:88vh;padding:0;border:0;background:transparent}
 .lightbox[open]{display:flex;align-items:center;justify-content:center}
 .lightbox::backdrop{background:rgb(32 20 10/.82)}
@@ -174,15 +194,45 @@ body.intro-active .music-toggle{z-index:50;opacity:1;pointer-events:auto}
 footer{padding-right:max(clamp(1.5rem,5vw,5.5rem),84px)}
 
 .details-heading > .kicker{
-  font-size:clamp(1rem,1.5vw,1.25rem);
+  color:#a36b22;
+  font-size:clamp(1.35rem,2.1vw,1.85rem);
+  font-weight:600;
   line-height:1.5;
+  letter-spacing:.07em;
 }
 
 .hero-recipient{display:flex;flex-direction:column;gap:4px;margin:1.35rem 0 0;color:#5f5549}
 .hero-recipient span{font:500 .68rem/1.2 var(--serif);letter-spacing:.08em;text-transform:uppercase}
-.hero-recipient strong{color:var(--gold);font:500 clamp(2.2rem,4.1vw,3.6rem)/.86 "Dancing Script",cursive;overflow-wrap:anywhere}
+.hero-recipient strong{color:var(--gold);font:500 clamp(1.55rem,2.7vw,2.35rem)/.95 "Dancing Script",cursive;overflow-wrap:anywhere}
+.rsvp-copy{max-width:25rem;color:#4a4036}
+.rsvp-copy p{margin:0;line-height:1.72}
+.rsvp-copy p+p{margin-top:.85rem}
+.rsvp-form .choice{align-items:flex-start;line-height:1.55}
+.rsvp-form .choice input{flex:0 0 auto;margin-top:.28em}
 .venue .kicker{color:var(--accent-dark);font-size:1.05rem;letter-spacing:.1em}
-.venue strong{color:var(--accent-dark);font-size:1.12em;font-weight:650}
+.venue .venue-name{margin:0;color:var(--accent-dark);font:600 clamp(1.35rem,2vw,1.8rem)/1.25 var(--sans);letter-spacing:-.025em}
+.venue p.venue-address{max-width:42rem;margin:.6rem 0 0;color:#4a4036;font:italic 500 clamp(1.02rem,1.25vw,1.16rem)/1.62 var(--serif)}
+
+@media(max-width:760px){
+  h2{font-size:clamp(2.75rem,12vw,4.2rem)}
+  #top,.hero{scroll-margin-top:68px}
+  .hero .hero-date{display:grid;gap:.28rem;margin-bottom:1.6rem;padding-right:4.75rem;font-size:clamp(.9rem,4vw,1rem);line-height:1.35}
+  .hero .hero-weekday::before{content:none}
+}
+
+@media(min-width:761px){
+  nav a,.kicker,.section-number{font-size:clamp(.74rem,.75vw,.84rem)}
+  .hero .hero-date{font-size:clamp(1.08rem,1.25vw,1.28rem)}
+  .hero-sub p{font-size:clamp(1.28rem,1.43vw,1.42rem)}
+  .quiet-link,.inline-link,.button{font-size:clamp(.74rem,.78vw,.84rem)}
+  .story-copy p{font-size:clamp(1.32rem,1.38vw,1.46rem);line-height:1.72}
+  .schedule-item p:last-child{max-width:none;font-size:clamp(1.24rem,1.34vw,1.4rem)}
+  .guide-item div>p,.stay-message p,.rsvp-copy p{font-size:clamp(1.3rem,1.36vw,1.42rem)}
+  .venue p.venue-address{font-size:clamp(1.26rem,1.36vw,1.4rem)}
+  .gallery-album-heading p{font-size:clamp(1.36rem,1.43vw,1.5rem)}
+  .rsvp-form .choice,.rsvp-form input:not([type=radio]),.rsvp-form select{font-size:1.06rem}
+  .rsvp-form label:not(.choice),legend{font-size:.74rem}
+}
 
 .invitation-composer{min-height:100svh;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);align-items:center;gap:clamp(24px,5vw,80px);padding:32px clamp(24px,5vw,80px);background:#f4eadb}
 .composer-preview{min-width:0;background:radial-gradient(ellipse,#fffaf0,#e9d7b8);border:1px solid var(--line)}

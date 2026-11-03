@@ -44,7 +44,7 @@ footer{background:var(--veil-soft)}
 .schedule-item.featured{background:rgb(180 135 73/.1)}
 
 /* Legibility: darker body copy, and a soft paper halo behind text that sits directly on the artwork. */
-.hero-sub,.story-copy,.stay-copy>p:not(.section-number):not(.kicker),.rsvp-intro>p:last-child,
+.hero-sub,.story-copy,.stay-message,.rsvp-copy,
 .schedule-item p:last-child,.guide-item div>p,.gallery-intro>p:last-child,.venue p:last-child{color:#4a4036}
 .story .section-intro,.story .story-heading>*:not(.story-photo),.story .story-copy{
   text-shadow:0 0 6px #f7f0e2,0 0 14px #f7f0e2,0 0 26px rgb(247 240 226/.9);

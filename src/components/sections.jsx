@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { galleryPhotos, wedding, schedule } from '../data/wedding.js';
+import { galleryAlbums, galleryPhotos, wedding, schedule } from '../data/wedding.js';
+import venuePhoto from '../design/assets/venue-trong-dong-clean.jpg';
 import { RsvpBloom } from './Decorations.jsx';
 
 const RSVP_ENDPOINT = import.meta.env.VITE_RSVP_ENDPOINT;
@@ -25,13 +26,16 @@ export function HeroSection() {
     <section className="hero" aria-labelledby="hero-title">
       <div className="hero-photo" role="img" aria-label="Hoàng Thái và Huyền Nhu đứng bên bờ vịnh, giữa những khóm hoa"></div>
       <div className="hero-copy">
-        <p className="kicker">Lễ thành hôn · {wedding.date.display}</p>
+        <p className="kicker hero-date"><span className="hero-event">Tiệc mời</span><span className="hero-weekday">Chủ nhật</span><span className="hero-date-value">22 tháng 11 năm 2026</span></p>
         <h1 id="hero-title"><span>{wedding.couple.groom}</span><em>&amp;</em><span>{wedding.couple.bride}</span></h1>
         {invitedGuests && <p className="hero-recipient"><span>Trân trọng kính mời:</span><strong>{invitedGuests}</strong></p>}
-        <p className="hero-sub">Trân trọng mời bạn đến dự lễ thành hôn và chung vui cùng hai gia đình.</p>
+        <div className="hero-sub">
+          <p>Ngày vui sẽ thêm trọn vẹn khi có sự hiện diện của gia đình, người thân và bạn bè.</p>
+          <p>Chúng tôi rất mong được đón mọi người đến chung vui, cùng chia sẻ những khoảnh khắc ý nghĩa trong ngày đặc biệt này.</p>
+        </div>
         <div className="hero-actions"><a className="button button-primary" href="#rsvp">Xác nhận tham dự <span>→</span></a><a className="quiet-link" href="#details">Xem lịch trình</a></div>
       </div>
-      <div className="hero-stamp" aria-label="Hà Nội, Việt Nam"><b>22</b><span>Tháng mười một<br />năm 2026</span></div>
+      <div className="hero-stamp" aria-label={wedding.date.longDisplay}><b>22</b><span>Chủ nhật<br />Tháng mười một<br />năm 2026</span></div>
     </section>
   );
 }
@@ -41,7 +45,11 @@ export function StorySection() {
     <section id="story" className="story section-pad" aria-labelledby="story-title">
       <div className="section-intro"><p className="section-number">01</p><p className="kicker">Chuyện của chúng mình</p></div>
       <div className="story-heading"><p className="handwritten">Có những điều giản dị,</p><h2 id="story-title">rồi bỗng trở thành<br /><em>cả một đời.</em></h2><div className="story-photo" role="img" aria-label="Hoàng Thái khẽ hôn lên trán Huyền Nhu bên bờ biển"></div></div>
-      <div className="story-copy"><p>Từ những cuộc hẹn vô tình đến những bữa cơm đầy tiếng cười, chúng mình đã chọn nắm tay nhau đi tiếp. Và sẽ thật trọn vẹn nếu ngày vui ấy có bạn ở đó.</p><a className="inline-link" href="#rsvp">Đến chung vui cùng chúng mình <span>↗</span></a></div>
+      <div className="story-copy">
+        <p>Từ những cuộc hẹn đầu tiên đến những bữa cơm đầy tiếng cười, chúng tôi đã cùng nhau đi qua những tháng năm bình dị và chọn nắm tay nhau bước tiếp.</p>
+        <p>Hạnh phúc ấy sẽ càng ý nghĩa hơn khi có gia đình, người thân và bạn bè ở bên, cùng sẻ chia niềm vui trong ngày đặc biệt này.</p>
+        <a className="inline-link" href="#rsvp">Đến chung vui cùng chúng mình <span>↗</span></a>
+      </div>
     </section>
   );
 }
@@ -49,11 +57,11 @@ export function StorySection() {
 export function DetailsSection({ onDownloadCalendar }) {
   return (
     <section id="details" className="details section-pad" aria-labelledby="details-title">
-      <div className="details-heading"><p className="kicker">Ngày {wedding.date.display}</p><h2 id="details-title">Lễ thành hôn<br />&amp; <em>tiệc mừng.</em></h2></div>
+      <div className="details-heading"><p className="kicker details-date">{wedding.date.longDisplay}</p><h2 id="details-title">Tiệc mời<br />&amp; <em>ngày chung vui.</em></h2></div>
       <div className="schedule">
         {schedule.map((item) => <article className={`schedule-item${item.featured ? ' featured' : ''}`} key={item.time}><p className="time">{item.time}</p><div><h3>{item.title}</h3><p>{item.description}</p></div></article>)}
       </div>
-      <div className="venue"><div><p className="kicker">Địa điểm</p><p><strong>{wedding.venue.name}</strong><br />{wedding.venue.address}</p></div><button className="button button-outline" type="button" onClick={onDownloadCalendar}>Thêm vào lịch <span>↗</span></button></div>
+      <div className="venue"><div><p className="kicker">Địa điểm</p><p className="venue-name">{wedding.venue.name}</p><p className="venue-address">{wedding.venue.address}</p></div><button className="button button-outline" type="button" onClick={onDownloadCalendar}>Thêm vào lịch <span>↗</span></button></div>
     </section>
   );
 }
@@ -101,7 +109,7 @@ export function GuestGuideSection() {
     <section id="guide" className="guest-guide section-pad" aria-labelledby="guide-title">
       <div className="guide-heading"><h2 id="guide-title">Đường đến<br /><em>tiệc cưới.</em></h2></div>
       <div className="guide-list">
-        <article className="guide-item"><p className="guide-index">Địa điểm &amp; gửi xe</p><div><h3>{wedding.venue.name}</h3><p>{wedding.venue.address}. Chọn “Bãi gửi xe” trên bản đồ để xem lối vào cho ô tô và xe máy.</p><VenueMap /><a className="inline-link" href={wedding.venue.mapsUrl} target="_blank" rel="noreferrer">Chỉ đường trên Google Maps <span>↗</span></a></div></article>
+        <article className="guide-item"><p className="guide-index">Địa điểm &amp; gửi xe</p><div><h3>{wedding.venue.name}</h3><p>{wedding.venue.address}. Chọn “Bãi gửi xe” trên bản đồ để xem lối vào cho ô tô và xe máy.</p><div className="venue-visuals"><figure className="venue-photo"><img src={venuePhoto} alt="Không gian sân khấu tiệc cưới tại Trống Đồng Palace Long Biên" loading="lazy" /><figcaption>Không gian tiệc tại Trống Đồng Palace Long Biên</figcaption></figure><VenueMap /></div><a className="inline-link" href={wedding.venue.mapsUrl} target="_blank" rel="noreferrer">Chỉ đường trên Google Maps <span>↗</span></a></div></article>
       </div>
     </section>
   );
@@ -133,19 +141,28 @@ export function GallerySection() {
 
   return (
     <section id="gallery" className="gallery section-pad" aria-labelledby="gallery-title">
-      <div className="gallery-intro scroll-reveal"><h2 id="gallery-title">Album<br /><em>của chúng tôi</em></h2></div>
-      <div className="gallery-grid scroll-reveal">
-        <p className="gallery-ao-dai-caption"><span>Nét xưa dịu dàng</span></p>
-        {galleryPhotos.map((photo, index) => (
-          <React.Fragment key={photo.layout}>
-            {index === 6 && <p className="gallery-sea-caption"><span>Một ngày bên biển</span></p>}
-            <figure className={`gallery-photo gallery-photo--${photo.layout}`}>
-              <button type="button" className="gallery-photo-trigger" onClick={() => openPhoto(index)} aria-label={`Xem lớn: ${photo.alt}`}>
-                <img src={photo.image} alt={photo.alt} loading="lazy" style={photo.focus ? { objectPosition: photo.focus } : undefined} />
-              </button>
-            </figure>
-          </React.Fragment>
-        ))}
+      <div className="gallery-intro scroll-reveal"><h2 id="gallery-title">Những khung hình<br /><em>của chúng mình.</em></h2></div>
+      <div className="gallery-albums">
+        {galleryAlbums.map((album, albumIndex) => {
+          const startIndex = galleryAlbums.slice(0, albumIndex).reduce((total, item) => total + item.photos.length, 0);
+          return (
+            <section className={`gallery-album gallery-album--${album.id} scroll-reveal`} key={album.id} aria-labelledby={`album-${album.id}`}>
+              <header className="gallery-album-heading">
+                <span>0{albumIndex + 1}</span>
+                <div><h3 id={`album-${album.id}`}>{album.title}</h3><p>{album.caption}</p></div>
+              </header>
+              <div className="gallery-album-grid">
+                {album.photos.map((photo, index) => (
+                  <figure className="gallery-photo" key={photo.image}>
+                    <button type="button" className="gallery-photo-trigger" onClick={() => openPhoto(startIndex + index)} aria-label={`Xem lớn: ${photo.alt}`}>
+                      <img src={photo.image} alt={photo.alt} loading="lazy" />
+                    </button>
+                  </figure>
+                ))}
+              </div>
+            </section>
+          );
+        })}
       </div>
       <dialog ref={dialogRef} className="lightbox" onClose={() => setActiveIndex(null)} onClick={onDialogClick} onKeyDown={onDialogKeyDown}>
         {activePhoto && (
@@ -164,7 +181,14 @@ export function GallerySection() {
 export function StaySection() {
   return (
     <section id="stay" className="stay" aria-labelledby="stay-title">
-      <div className="stay-copy section-pad"><h2 id="stay-title">Gửi những người<br /><em>thương yêu.</em></h2><p>Cảm ơn gia đình và bạn bè đã luôn yêu thương, quan tâm đến chúng mình. Được cùng mọi người nâng ly trong ngày cưới là điều hai đứa rất mong chờ.</p></div>
+      <div className="stay-copy section-pad">
+        <h2 id="stay-title">Gửi những người<br /><em>thương yêu.</em></h2>
+        <div className="stay-message">
+          <p>Chúng con xin gửi lời cảm ơn chân thành đến ông bà, cha mẹ và gia đình đã luôn yêu thương, chở che và dành cho chúng con những điều tốt đẹp nhất.</p>
+          <p>Chúng em cũng xin cảm ơn thầy cô, cô chú, anh chị cùng những người bạn thân yêu đã luôn quan tâm, đồng hành và dành cho chúng em những tình cảm quý báu.</p>
+          <p>Được đón mọi người đến chung vui và nhận những lời chúc phúc trong ngày cưới là niềm hạnh phúc mà chúng tôi luôn trân trọng.</p>
+        </div>
+      </div>
       <div className="stay-photo" role="img" aria-label="Bóng Hoàng Thái và Huyền Nhu trong hoàng hôn trên vịnh"></div>
     </section>
   );
@@ -209,11 +233,17 @@ export function RsvpSection() {
 
   return (
     <section id="rsvp" className="rsvp section-pad" aria-labelledby="rsvp-title">
-      <div className="rsvp-intro"><h2 id="rsvp-title">Bạn sẽ<br /><em>tham dự chứ?</em></h2><p>Bạn cho chúng mình biết số người tham dự để hai gia đình chuẩn bị đón tiếp chu đáo nhé.</p></div>
+      <div className="rsvp-intro">
+        <h2 id="rsvp-title">Bạn sẽ<br /><em>tham dự chứ?</em></h2>
+        <div className="rsvp-copy">
+          <p>Để hai gia đình có thể chuẩn bị và đón tiếp chu đáo, chúng tôi rất mong nhận được lời hồi âm cùng số người tham dự.</p>
+          <p>Xin chân thành cảm ơn và hẹn gặp mọi người trong ngày vui sắp tới!</p>
+        </div>
+      </div>
       <div className="rsvp-form-wrap">
         <form className="rsvp-form" onSubmit={submitRsvp}>
           {!invitedGuests && <label>Họ và tên<input required name="name" autoComplete="name" placeholder="Nhập họ và tên của bạn" /></label>}
-          <fieldset><legend>Xác nhận tham dự</legend><label className="choice"><input type="radio" name="attendance" value="Có mặt" checked={attendance === 'Có mặt'} onChange={() => setAttendance('Có mặt')} /><span>Mình sẽ tham dự</span></label><label className="choice"><input type="radio" name="attendance" value="Xin phép vắng mặt" checked={attendance === 'Xin phép vắng mặt'} onChange={() => setAttendance('Xin phép vắng mặt')} /><span>Xin phép vắng mặt</span></label></fieldset>
+          <fieldset><legend>Xác nhận tham dự</legend><label className="choice"><input type="radio" name="attendance" value="Có mặt" checked={attendance === 'Có mặt'} onChange={() => setAttendance('Có mặt')} /><span>Hẹn gặp Huyền Nhu và Hoàng Thái trong ngày vui!</span></label><label className="choice"><input type="radio" name="attendance" value="Xin phép vắng mặt" checked={attendance === 'Xin phép vắng mặt'} onChange={() => setAttendance('Xin phép vắng mặt')} /><span>Rất tiếc mình không thể đến chung vui. Chúc Huyền Nhu và Hoàng Thái thật nhiều hạnh phúc!</span></label></fieldset>
           {attendance === 'Có mặt' && <label className="guest-count-field">Số người tham dự <span className="optional">(tính cả bạn)</span><select name="guestCount" defaultValue="1"><option value="1">1 người</option><option value="2">2 người</option><option value="3">3 người</option><option value="4">4 người</option></select></label>}
           <label>Lời chúc cho cô dâu, chú rể <span className="optional">(không bắt buộc)</span><input name="notes" placeholder="Viết lời chúc của bạn" /></label>
           <div className="rsvp-submit-wrap"><button className="button button-primary" type="submit">Gửi lời hồi đáp <span>→</span></button>{rsvpMoment > 0 && <RsvpBloom key={rsvpMoment} />}</div><p id="form-message" className={formMessage ? 'form-message-visible' : ''} role="status" aria-live="polite">{formMessage}</p>
