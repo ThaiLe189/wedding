@@ -59,8 +59,10 @@ export function InvitationComposer() {
   const companionName = companion.replace(/\s+/g, ' ').trim();
   const invitedGuests = [recipient, companionName].filter(Boolean).join(' và ');
   const link = new URL(window.location.pathname, window.location.origin);
-  if (recipient) link.searchParams.set('to', recipient);
-  if (companionName) link.searchParams.set('with', companionName);
+  const guestParams = new URLSearchParams();
+  if (recipient) guestParams.set('to', recipient);
+  if (companionName) guestParams.set('with', companionName);
+  link.hash = guestParams.toString(); // hash, không phải query: giữ preview chung của link gốc
 
   useEffect(() => {
     const intro = document.createElement('wedding-intro');
